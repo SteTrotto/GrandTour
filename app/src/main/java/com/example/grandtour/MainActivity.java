@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    //kkk
+    //gg
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
