@@ -30,4 +30,5 @@
         android:label="@string/title_user"
         tools:layout="@layout/fragment_user" />
 
+
 </navigation>

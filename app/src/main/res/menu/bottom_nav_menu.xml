@@ -19,5 +19,5 @@
     <item
         android:id="@+id/navigation_user"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="test" />
+        android:title="@string/title_user" />
 </menu>

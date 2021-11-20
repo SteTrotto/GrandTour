@@ -37,6 +37,8 @@ public class UserFragment extends Fragment {
         return root;
     }
 
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
