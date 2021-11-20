@@ -14,23 +14,24 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentNotificationsBinding;
+import com.example.grandtour.databinding.FragmentUserBinding;
 import com.example.grandtour.ui.notifications.NotificationsViewModel;
 
 public class UserFragment extends Fragment {
 
-    private UserViewModel notificationsViewModel;
-    private FragmentNotificationsBinding binding;
+    private UserViewModel UserViewModel;
+    private FragmentUserBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
+        UserViewModel =
                 new ViewModelProvider(this).get(UserViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentUserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textUser;
+        UserViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
