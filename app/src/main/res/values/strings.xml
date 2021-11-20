@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GrandTour</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_search">Ricerca</string>
     <string name="title_reviews">Reviews</string>
     <string name="title_user">User</string>
 </resources>
