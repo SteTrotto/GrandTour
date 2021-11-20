@@ -12,10 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.grandtour.R;
-import com.example.grandtour.databinding.FragmentNotificationsBinding;
 import com.example.grandtour.databinding.FragmentUserBinding;
-import com.example.grandtour.ui.notifications.NotificationsViewModel;
 
 public class UserFragment extends Fragment {
 
