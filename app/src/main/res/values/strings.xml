@@ -4,7 +4,9 @@
     <string name="title_search">Ricerca</string>
     <string name="title_reviews">Reviews</string>
     <string name="title_user">Utente</string>
-
+    <string name="title_ricerca2">Ricerca_recensione</string>
+    <string name="action_search">Action_Serach</string>
+    <string name="action_settings">Action_Setting</string>
 
 <!--
     <string-array name="regione">
@@ -37,5 +39,12 @@
         <item>Aereo</item>
         <item>Pullman</item>
     </string-array>
+
+        <string-array name="lista_posti_vancanza">
+            <!-- array dei posti dove si può andare in vacanza-->
+            <!--si dovrebbe fare una query dal database -->
+            <item>Riccione</item>
+            <item>Milano Marittima</item>
+        </string-array>
 
 </resources>
