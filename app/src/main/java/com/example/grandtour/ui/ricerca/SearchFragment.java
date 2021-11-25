@@ -1,12 +1,14 @@
 package com.example.grandtour.ui.ricerca;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -22,6 +24,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentSearchBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 
 public class SearchFragment extends Fragment {
 
@@ -31,9 +37,16 @@ public class SearchFragment extends Fragment {
     private ImageButton imageButton;
     private EditText editText;
     private EditText editDate;
+    private EditText editRitorno;
     private EditText editTrasporto;
     private Spinner spinnerMezzo;
     private int spinnerSel;
+
+    final Calendar myCalendar = Calendar.getInstance();
+
+    private String saveDate;
+
+    private boolean andata;
 
 
     final private String TAG_S = "SEARCH";
@@ -59,7 +72,8 @@ public class SearchFragment extends Fragment {
 
         imageButton = root.findViewById(R.id.search_button);
         editText = root.findViewById(R.id.search_regione);
-        editDate = root.findViewById(R.id.search_data);
+        editDate = root.findViewById(R.id.search_data_partenza);
+        editRitorno = root.findViewById(R.id.search_data_ritorno);
         //editTrasporto = root.findViewById(R.id.search_trasporto);
         spinnerMezzo = root.findViewById(R.id.spinner_mezzo);
 
@@ -76,23 +90,60 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+        };
+
+        editDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                andata = true;
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SearchFragment.this.getContext(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+
+        });
+
+        editRitorno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                andata = false;
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SearchFragment.this.getContext(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+
 
         //test bottone
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-                public void onClick(View v) {
+            public void onClick(View v) {
                 String string = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
                 Log.d(TAG_S, String.valueOf(editText.getText()));
                 Log.d(TAG_S, String.valueOf(editDate.getText()));
+                Log.d(TAG_S, String.valueOf(editRitorno.getText()));
                 //Log.d(TAG_S, String.valueOf(editTrasporto.getText()));
                 Log.d(TAG_S, string);
             }
         }
         );
-
-
 
 
 
@@ -118,4 +169,13 @@ public class SearchFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
+
+        if(andata)  editDate.setText(sdf.format(myCalendar.getTime()));
+        else        editRitorno.setText(sdf.format(myCalendar.getTime()));
+    }
+
 }
