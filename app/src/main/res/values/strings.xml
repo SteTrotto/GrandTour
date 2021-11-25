@@ -4,4 +4,38 @@
     <string name="title_search">Ricerca</string>
     <string name="title_reviews">Reviews</string>
     <string name="title_user">Utente</string>
+
+
+<!--
+    <string-array name="regione">
+        <item>Regione</item>
+        <item>Abruzzo</item>
+        <item>Basilicata</item>
+        <item>Calabria</item>
+        <item>Campania</item>
+        <item>Emilia Romagna</item>
+        <item>Friuli Venezia Giulia</item>
+        <item>Lazio</item>
+        <item>Liguria</item>
+        <item>Lombardia</item>
+        <item>Marche</item>
+        <item>Molise</item>
+        <item>Piemonte</item>
+        <item>Puglia</item>
+        <item>Sardegna</item>
+        <item>Sicilia</item>
+        <item>Toscana</item>
+        <item>Trentino Alto Adige</item>
+        <item>Umbria</item>
+        <item>Valle d'Aosta</item>
+        <item>Veneto</item>
+    </string-array>
+-->
+    <string-array name="mezzo">
+        <item>Mezzo</item>
+        <item>Treno</item>
+        <item>Aereo</item>
+        <item>Pullman</item>
+    </string-array>
+
 </resources>
