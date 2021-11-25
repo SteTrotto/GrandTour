@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Recensioni.ReviewsFragment">
-
+<!--
     <TextView
         android:id="@+id/text_reviews"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.144" />
-
+-->
     <Button
         android:id="@+id/button"
         android:layout_width="242dp"
@@ -32,5 +32,9 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintVertical_bias="0.147"
+        android:onClick="goToRicerca_recensione2"
+
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
