@@ -17,11 +17,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentUserBinding;
+import com.example.grandtour.databinding.FragmentUserSingupBinding;
 
 public class UserSingUp extends Fragment {
 
     private UserViewModel UserViewModel;
-    private FragmentUserBinding binding;
+    private FragmentUserSingupBinding binding;
 
     final private String TAG_S = "USER";
 
@@ -31,7 +32,7 @@ public class UserSingUp extends Fragment {
         UserViewModel =
                 new ViewModelProvider(this).get(UserViewModel.class);
 
-        binding = FragmentUserBinding.inflate(inflater, container, false);
+        binding = FragmentUserSingupBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textUser;
