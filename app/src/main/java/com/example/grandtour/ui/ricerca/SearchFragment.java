@@ -38,14 +38,10 @@ public class SearchFragment extends Fragment {
     private EditText editText;
     private EditText editDate;
     private EditText editRitorno;
-    private EditText editTrasporto;
     private Spinner spinnerMezzo;
     private int spinnerSel;
 
     final Calendar myCalendar = Calendar.getInstance();
-
-    private String saveDate;
-
     private boolean andata;
 
 
@@ -139,7 +135,6 @@ public class SearchFragment extends Fragment {
                 Log.d(TAG_S, String.valueOf(editText.getText()));
                 Log.d(TAG_S, String.valueOf(editDate.getText()));
                 Log.d(TAG_S, String.valueOf(editRitorno.getText()));
-                //Log.d(TAG_S, String.valueOf(editTrasporto.getText()));
                 Log.d(TAG_S, string);
             }
         }
