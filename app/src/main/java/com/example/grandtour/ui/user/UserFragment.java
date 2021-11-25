@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStateManagerControl;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -26,6 +28,7 @@ public class UserFragment extends Fragment {
     private EditText Edit_Nome_User;
     private EditText Edit_Pwd_User;
     private Button Button_User;
+    private Button Button_Sing_up;
 
     final private String TAG_S = "USER";
 
@@ -50,6 +53,7 @@ public class UserFragment extends Fragment {
         Edit_Nome_User = root.findViewById(R.id.login_name);
         Edit_Pwd_User = root.findViewById(R.id.login_password);
         Button_User = root.findViewById(R.id.login);
+        Button_Sing_up = root.findViewById(R.id.SingUp);
 
         //bottone sing in
         Button_User.setOnClickListener(new View.OnClickListener() {
@@ -71,16 +75,29 @@ public class UserFragment extends Fragment {
             }
         });
 
+        //bottone sing up
+        Button_Sing_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Fragment fragment = null;
+                fragment = new UserSingUp();
+                replaceFragment(fragment);
+            }
+        }
 
-
-
-
-
+        );
 
         return root;
     }
 
-
+     public void replaceFragment(Fragment someFragment)
+     {
+         FragmentTransaction transaction = getFragmentManager().beginTransaction();
+         transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+         transaction.addToBackStack(null);
+         transaction.commit();
+     }
 
     @Override
     public void onDestroyView() {

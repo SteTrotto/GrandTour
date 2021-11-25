@@ -30,5 +30,11 @@
         android:label="@string/title_user"
         tools:layout="@layout/fragment_user" />
 
+    <fragment
+        android:id="@+id/navigation_user_SingUp"
+        android:name="com.example.grandtour.ui.user.UserSingUp"
+        android:label="@string/title_user"
+        tools:layout="@layout/fragment_user_singup" />
+
 
 </navigation>
