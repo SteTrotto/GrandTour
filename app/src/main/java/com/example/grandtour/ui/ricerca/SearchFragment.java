@@ -24,8 +24,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentSearchBinding;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 
@@ -43,6 +45,9 @@ public class SearchFragment extends Fragment {
 
     final Calendar myCalendar = Calendar.getInstance();
     private boolean andata;
+
+    final private String myFormat = "dd/MM/yy"; //In which you need put here
+    final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
 
     final private String TAG_S = "SEARCH";
@@ -70,7 +75,6 @@ public class SearchFragment extends Fragment {
         editText = root.findViewById(R.id.search_regione);
         editDate = root.findViewById(R.id.search_data_partenza);
         editRitorno = root.findViewById(R.id.search_data_ritorno);
-        //editTrasporto = root.findViewById(R.id.search_trasporto);
         spinnerMezzo = root.findViewById(R.id.spinner_mezzo);
 
         //selezione oggetto spinner
@@ -129,13 +133,57 @@ public class SearchFragment extends Fragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String string = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
-                Log.d(TAG_S, String.valueOf(editText.getText()));
-                Log.d(TAG_S, String.valueOf(editDate.getText()));
-                Log.d(TAG_S, String.valueOf(editRitorno.getText()));
-                Log.d(TAG_S, string);
+                String regione = String.valueOf(editText.getText());
+                String dataAndata = String.valueOf(editDate.getText());
+                String dataRitorno = String.valueOf(editRitorno.getText());
+                String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
+
+                //if(regione.equalsIgnoreCase("Regione")) return;
+                Log.d(TAG_S, regione);
+
+                //if(dataAndata.equalsIgnoreCase("Data partenza")) return;
+                Log.d(TAG_S, dataAndata);
+
+                //if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
+                Log.d(TAG_S, dataRitorno);
+
+                //if(mezzo.equalsIgnoreCase("mezzo")) return;
+                Log.d(TAG_S, mezzo);
+
+                String today = sdf.format(new Date());
+                Log.d(TAG_S, today);
+
+
+                Date t = new Date();
+                try {
+                    t = sdf.parse(today);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date a = new Date();
+                try {
+                    a = sdf.parse(dataAndata);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date r = new Date();
+                try {
+                    r = sdf.parse(dataRitorno);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                /*
+                if(t.after(a)) {
+                    Log.e(TAG_S, "oggi dopo di andata");
+                }
+                if(t.after(r)) {
+                    Log.e(TAG_S, "oggi dopo di ritorno");
+                }*/
+                if(a.after(r)) {
+                    Log.e(TAG_S, "andata dopo ritorno"); //return;  //messagio per utente
+                }
             }
         }
         );
@@ -166,8 +214,8 @@ public class SearchFragment extends Fragment {
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
+        //String myFormat = "dd/MM/yy"; //In which you need put here
+        //SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
         if(andata)  editDate.setText(sdf.format(myCalendar.getTime()));
         else        editRitorno.setText(sdf.format(myCalendar.getTime()));
