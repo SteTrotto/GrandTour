@@ -8,7 +8,7 @@
     <string name="action_search">Action_Serach</string>
     <string name="action_settings">Action_Setting</string>
 
-<!--
+
     <string-array name="regione">
         <item>Regione</item>
         <item>Abruzzo</item>
@@ -29,10 +29,10 @@
         <item>Toscana</item>
         <item>Trentino Alto Adige</item>
         <item>Umbria</item>
-        <item>Valle d'Aosta</item>
+        <item>Valle d"'"Aosta</item>
         <item>Veneto</item>
     </string-array>
--->
+
     <string-array name="mezzo">
         <item>Mezzo</item>
         <item>Treno</item>

@@ -37,11 +37,12 @@ public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
 
     private ImageButton imageButton;
-    private EditText editText;
-    private EditText editDate;
+    private EditText editAndata;
     private EditText editRitorno;
     private Spinner spinnerMezzo;
     private int spinnerSel;
+    private Spinner spinnerSearch;
+    private int spinnerReg;
 
     final Calendar myCalendar = Calendar.getInstance();
     private boolean andata;
@@ -72,10 +73,18 @@ public class SearchFragment extends Fragment {
 
 
         imageButton = root.findViewById(R.id.search_button);
-        editText = root.findViewById(R.id.search_regione);
-        editDate = root.findViewById(R.id.search_data_partenza);
+        editAndata = root.findViewById(R.id.search_data_partenza);
         editRitorno = root.findViewById(R.id.search_data_ritorno);
         spinnerMezzo = root.findViewById(R.id.spinner_mezzo);
+
+        spinnerSearch = root.findViewById(R.id.spinner_search);
+
+        spinnerSearch.setOnItemSelectedListener(new SpinnerActivity(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                spinnerReg = pos;                                      //elemento selenzionato della lista
+            }
+        });
 
         //selezione oggetto spinner
         spinnerMezzo.setOnItemSelectedListener(new SpinnerActivity(){
@@ -102,7 +111,7 @@ public class SearchFragment extends Fragment {
             }
         };
 
-        editDate.setOnClickListener(new View.OnClickListener() {
+        editAndata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 andata = true;
@@ -135,21 +144,21 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
-                String regione = String.valueOf(editText.getText());
-                String dataAndata = String.valueOf(editDate.getText());
+                String regione = (String) spinnerSearch.getItemAtPosition(spinnerReg);
+                String dataAndata = String.valueOf(editAndata.getText());
                 String dataRitorno = String.valueOf(editRitorno.getText());
                 String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
 
-                //if(regione.equalsIgnoreCase("Regione")) return;
+                if(regione.equalsIgnoreCase("Regione")) return;
                 Log.d(TAG_S, regione);
 
-                //if(dataAndata.equalsIgnoreCase("Data partenza")) return;
+                if(dataAndata.equalsIgnoreCase("Data partenza")) return;
                 Log.d(TAG_S, dataAndata);
 
-                //if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
+                if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
                 Log.d(TAG_S, dataRitorno);
 
-                //if(mezzo.equalsIgnoreCase("mezzo")) return;
+                if(mezzo.equalsIgnoreCase("mezzo")) return;
                 Log.d(TAG_S, mezzo);
 
                 String today = sdf.format(new Date());
@@ -157,11 +166,13 @@ public class SearchFragment extends Fragment {
 
 
                 Date t = new Date();
+                /*
                 try {
                     t = sdf.parse(today);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                */
                 Date a = new Date();
                 try {
                     a = sdf.parse(dataAndata);
@@ -174,16 +185,21 @@ public class SearchFragment extends Fragment {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                /*
+
+
+                //lista check delle date
+                //aggiungere controlli
                 if(t.after(a)) {
-                    Log.e(TAG_S, "oggi dopo di andata");
+                    Log.e(TAG_S, "oggi dopo di andata"); //return:  //messaggio per utente
                 }
                 if(t.after(r)) {
-                    Log.e(TAG_S, "oggi dopo di ritorno");
-                }*/
+                    Log.e(TAG_S, "oggi dopo di ritorno"); //return;  //messaggio per utente
+                }
                 if(a.after(r)) {
                     Log.e(TAG_S, "andata dopo ritorno"); //return;  //messagio per utente
                 }
+                //invio a pagina dei risultati
+                //uso SearchViewModel per salvataggio dei parametri
             }
         }
         );
@@ -217,8 +233,7 @@ public class SearchFragment extends Fragment {
         //String myFormat = "dd/MM/yy"; //In which you need put here
         //SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
-        if(andata)  editDate.setText(sdf.format(myCalendar.getTime()));
+        if(andata)  editAndata.setText(sdf.format(myCalendar.getTime()));
         else        editRitorno.setText(sdf.format(myCalendar.getTime()));
     }
-
 }

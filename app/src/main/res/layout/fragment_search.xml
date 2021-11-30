@@ -39,13 +39,13 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/search_regione"
-        android:layout_width="200dp"
+    <Spinner
+        android:layout_width="210dp"
         android:layout_height="61dp"
-        android:text="Regione"
-        android:textAllCaps="false"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:id="@+id/spinner_search"
+        android:entries="@array/regione"
+        android:spinnerMode="dropdown"/>
 
     <EditText
         android:id="@+id/search_data_partenza"
@@ -72,9 +72,10 @@
         android:focusableInTouchMode="false"/>
 
     <Spinner
-        android:layout_width="200dp"
+        android:layout_width="210dp"
         android:layout_height="61dp"
         android:layout_gravity="center"
         android:id="@+id/spinner_mezzo"
-        android:entries="@array/mezzo"/>
+        android:entries="@array/mezzo"
+        android:spinnerMode="dialog"/>
 </LinearLayout>
