@@ -41,5 +41,11 @@
         android:label="@string/title_user"
         tools:layout="@layout/fragment_user_singup" />
 
+    <fragment
+        android:id="@+id/navigation_search_result"
+        android:name="com.example.grandtour.ui.ricerca.SearchResult"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search_result"/>
+
 
 </navigation>
