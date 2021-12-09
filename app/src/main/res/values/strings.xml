@@ -9,8 +9,9 @@
     <string name="action_settings">Action_Setting</string>
 
 
+
     <string-array name="regione">
-        <item>Regione</item>
+        <item><b>Regione</b></item>
         <item>Abruzzo</item>
         <item>Basilicata</item>
         <item>Calabria</item>
@@ -46,5 +47,110 @@
             <item>Riccione</item>
             <item>Milano Marittima</item>
         </string-array>
+
+    <string-array name="Iniziale">
+        <item>Viaggi</item>
+    </string-array>
+
+    <string-array name="ViaggiAbruzzo">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiBasilicata">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiCalabria">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiCampania">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiEmilia">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiFriuli">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiLazio">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiLiguria">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiLombardia">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiMarche">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiMolise">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiPiemonte">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiPuglia">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiSardegna">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiSicilia">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiToscana">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiTrentino">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiUmbria">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiAosta">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+    </string-array>
+
+    <string-array name="ViaggiVeneto">
+        <item>Viaggio 1</item>
+        <item>Viaggio 2</item>
+        <item>Viaggio 3</item>
+    </string-array>
 
 </resources>

@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Cerca un posto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049" />
--->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.ricerca_recensione.Ricerca_RecensioneFragment"
+        android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/spinner_search_regione"
+        android:layout_width="210dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:entries="@array/regione"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:id="@+id/spinner_search_viaggio"
+        android:layout_width="210dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:spinnerMode="dropdown"
+        android:entries="@array/Iniziale"/>
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -31,49 +34,80 @@
         android:numStars="5"
         android:scaleX="0.5"
         android:scaleY="0.5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.133" />
+        android:layout_gravity="center" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_states"
-        android:text="Invia"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.169" />
+    <TextView
+            android:id="@+id/titolo_recensione"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Titolo della recensione"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="188dp"
-        android:layout_height="51dp"
+        android:background="@android:color/transparent"
+        android:layout_width="210dp"
+        android:layout_height="61dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Lascia un commento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        app:layout_constraintVertical_bias="0.133" />
+        android:gravity="left"
+        android:layout_gravity="center"
+        android:inputType="text"
+        android:hint = "Inserisci il titolo"
+        android:textSize="15dp"
+        android:paddingLeft="5dp" />
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="200dp"
-        android:layout_height="93dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/commento_recensione"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Scrivi una recensione"
+        android:textSize="15dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/editTextCommento"
+        android:background="@android:color/transparent"
+        android:layout_width="210dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:gravity="left"
+        android:layout_gravity="center"
+        android:inputType="text"
+        android:hint = "Raccontaci la tua esperienza"
+        android:textSize="15dp"
+        android:paddingLeft="5dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="210dp"
+        android:layout_height="61dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/button_states"
+        android:text="Invia" />
+
+    </LinearLayout>
+</ScrollView>
+
+        <!--
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="200dp"
+                android:layout_height="93dp"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        -->
+
+
