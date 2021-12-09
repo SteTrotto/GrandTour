@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "692319942313",
+    "project_id": "grandtour-42d4d",
+    "storage_bucket": "grandtour-42d4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692319942313:android:27cf4c5bf63293be5a9bb8",
+        "android_client_info": {
+          "package_name": "com.example.grandtour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692319942313-6btpkpnobn0r779u7tl0f8uarsd2nt34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAifbxfRf8pG_7zoAyxTU9F21FM_qhTV1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692319942313-6btpkpnobn0r779u7tl0f8uarsd2nt34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
