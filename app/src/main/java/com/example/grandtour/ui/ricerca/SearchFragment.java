@@ -18,11 +18,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentSearchBinding;
+import com.example.grandtour.ui.user.UserSingUp;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +35,7 @@ import java.util.Locale;
 
 public class SearchFragment extends Fragment {
 
-    private SearchViewModel searchViewModel;
+    private static SearchViewModel searchViewModel;
     private FragmentSearchBinding binding;
 
     private ImageButton imageButton;
@@ -70,8 +72,6 @@ public class SearchFragment extends Fragment {
             }
         });
 
-
-
         imageButton = root.findViewById(R.id.search_button);
         editAndata = root.findViewById(R.id.search_data_partenza);
         editRitorno = root.findViewById(R.id.search_data_ritorno);
@@ -90,10 +90,10 @@ public class SearchFragment extends Fragment {
         spinnerMezzo.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                spinnerSel = pos;                                      //elemento selenzionato della lista
                 //super.onItemSelected(parent, view, pos, id);
                 //System.out.println("pos " + pos);
                 //System.out.println("id " + id);
-                spinnerSel = pos;                                      //elemento selenzionato della lista
                 //String m = (String) spinnerMezzo.getItemAtPosition(spinnerSel);    //elemento singolo della lista
                 //System.out.println("modulo " + m);
             }
@@ -135,10 +135,7 @@ public class SearchFragment extends Fragment {
         });
 
 
-
-
-
-        //test bottone
+        //bottone
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,16 +146,16 @@ public class SearchFragment extends Fragment {
                 String dataRitorno = String.valueOf(editRitorno.getText());
                 String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
 
-                if(regione.equalsIgnoreCase("Regione")) return;
+                //if(regione.equalsIgnoreCase("Regione")) return;
                 Log.d(TAG_S, regione);
 
-                if(dataAndata.equalsIgnoreCase("Data partenza")) return;
+                //if(dataAndata.equalsIgnoreCase("Data partenza")) return;
                 Log.d(TAG_S, dataAndata);
 
-                if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
+                //if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
                 Log.d(TAG_S, dataRitorno);
 
-                if(mezzo.equalsIgnoreCase("mezzo")) return;
+                //if(mezzo.equalsIgnoreCase("mezzo")) return;
                 Log.d(TAG_S, mezzo);
 
                 String today = sdf.format(new Date());
@@ -190,16 +187,29 @@ public class SearchFragment extends Fragment {
                 //lista check delle date
                 //aggiungere controlli
                 if(t.after(a)) {
-                    Log.e(TAG_S, "oggi dopo di andata"); //return:  //messaggio per utente
+                    Log.e(TAG_S, "oggi dopo di andata");
+                    //return;  //messaggio per utente
                 }
                 if(t.after(r)) {
-                    Log.e(TAG_S, "oggi dopo di ritorno"); //return;  //messaggio per utente
+                    Log.e(TAG_S, "oggi dopo di ritorno");
+                    //return;  //messaggio per utente
                 }
                 if(a.after(r)) {
-                    Log.e(TAG_S, "andata dopo ritorno"); //return;  //messagio per utente
+                    Log.e(TAG_S, "andata dopo ritorno");
+                    //return;  //messagio per utente
                 }
+
+                searchViewModel.setmDateA(a);
+                searchViewModel.setmDateR(r);
+                searchViewModel.setmRegione(regione);
+                searchViewModel.setmMezzo(mezzo);
+
                 //invio a pagina dei risultati
                 //uso SearchViewModel per salvataggio dei parametri
+
+                Fragment fragment = null;
+                fragment = new SearchResult();
+                replaceFragment(fragment);
             }
         }
         );
@@ -230,10 +240,19 @@ public class SearchFragment extends Fragment {
     }
 
     private void updateLabel() {
-        //String myFormat = "dd/MM/yy"; //In which you need put here
-        //SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
-
         if(andata)  editAndata.setText(sdf.format(myCalendar.getTime()));
         else        editRitorno.setText(sdf.format(myCalendar.getTime()));
     }
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public static SearchViewModel getSearchViewModel() {
+        return searchViewModel;
+    }
+
 }
