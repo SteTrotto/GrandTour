@@ -25,7 +25,7 @@ public class UserSingUp extends Fragment {
     private FragmentUserSingupBinding binding;
     private EditText mail;
     private EditText nome_e_cognome;
-    private EditText nome_utente;
+    private EditText Data;
     private EditText pwd;
     private Button iscriviti;
 
@@ -51,8 +51,8 @@ public class UserSingUp extends Fragment {
 
         nome_e_cognome = root.findViewById(R.id.nome_e_cognome);
         mail=root.findViewById(R.id.mail);
-        nome_utente=root.findViewById(R.id.nome_utente);
         pwd=root.findViewById(R.id.pwd);
+        Data=root.findViewById(R.id.DataNascita);
         iscriviti=root.findViewById(R.id.SingUp);
 
         //bottone sing_up
@@ -61,7 +61,7 @@ public class UserSingUp extends Fragment {
             public void onClick(View v) {
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
-                Log.d(TAG_S, String.valueOf(nome_utente.getText()));
+                Log.d(TAG_S, String.valueOf(mail.getText()));
                 Log.d(TAG_S, String.valueOf(pwd.getText()));
                 //controllo registrazione
 

@@ -25,7 +25,7 @@ public class UserFragment extends Fragment {
 
     private UserViewModel UserViewModel;
     private FragmentUserBinding binding;
-    private EditText Edit_Nome_User;
+    private EditText Edit_Mail_User;
     private EditText Edit_Pwd_User;
     private Button Button_User;
     private Button Button_Sing_up;
@@ -50,7 +50,7 @@ public class UserFragment extends Fragment {
         });
 
         //associa i valori alle variabili
-        Edit_Nome_User = root.findViewById(R.id.login_name);
+        Edit_Mail_User = root.findViewById(R.id.login_mail);
         Edit_Pwd_User = root.findViewById(R.id.login_password);
         Button_User = root.findViewById(R.id.login);
         Button_Sing_up = root.findViewById(R.id.SingUp);
@@ -61,10 +61,10 @@ public class UserFragment extends Fragment {
             public void onClick(View v) {
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
-                Log.d(TAG_S, String.valueOf(Edit_Nome_User.getText()));
+                Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
                 Log.d(TAG_S, String.valueOf(Edit_Pwd_User.getText()));
                 //controllo log-in
-                if(String.valueOf(Edit_Nome_User.getText()).equals("tina") && String.valueOf(Edit_Pwd_User.getText()).equals("tina"))
+                if(String.valueOf(Edit_Mail_User.getText()).equals("tina") && String.valueOf(Edit_Pwd_User.getText()).equals("tina"))
                     System.out.println("succeso");
                 else
                     {
