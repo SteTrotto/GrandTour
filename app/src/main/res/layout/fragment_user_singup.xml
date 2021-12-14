@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -34,7 +40,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="indirizzo e-mail"
+        android:hint ="indirizzo e-mail"
         android:textAllCaps="false"
         />
     <TextView
@@ -49,7 +55,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Nome e Cognome"
+        android:hint ="Nome e Cognome"
         android:textAllCaps="false"
         />
     <TextView
@@ -62,7 +68,7 @@
     <EditText
         android:id="@+id/DataNascita"
         android:layout_width="200dp"
-        android:text="Data nascità"
+        android:hint ="Data nascità"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:clickable="false"
@@ -82,7 +88,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Password"
+        android:hint ="Password"
         android:textAllCaps="false"
         />
     <Button
@@ -92,6 +98,8 @@
         android:text="Iscriviti"
         android:textAllCaps="false"
         android:layout_gravity="center"
+        android:layout_marginBottom="100dp"
         />
 
 </LinearLayout>
+</ScrollView>
