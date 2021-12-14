@@ -47,5 +47,18 @@
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search_result"/>
 
+    <fragment
+        android:id="@+id/viauslizzaRecensioni"
+        android:name="com.example.grandtour.ui.visualizza_recensioni.Visualizza_Recensioni_Fragment"
+        android:label="Visualizza_rec"
+        tools:layout="@layout/fragment_visualizza_recensione"/>
+
+    <fragment
+        android:id="@+id/RicercaVisualizzaRec"
+        android:name="com.example.grandtour.ui.visualizza_recensioni.Visualizza_Recensioni_Fragment"
+        android:label="Ricerca_Visualizza"
+        tools:layout="@layout/fragment_ricerca_visualizza"/>
+
+
 
 </navigation>

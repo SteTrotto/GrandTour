@@ -1,42 +1,30 @@
 package com.example.grandtour.ui.ricerca_visualizza;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
-import com.example.grandtour.databinding.FragmentRicercaRecensioneBinding;
 
+import com.example.grandtour.databinding.FragmentRicercaVisualizzaBinding;
 import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
-import com.example.grandtour.ui.Recensioni.ReviewsViewModel;
-import com.example.grandtour.ui.ricerca_recensione.Ricerca_RecensioneViewModel;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.grandtour.ui.visualizza_recensioni.Visualizza_Recensioni_Fragment;
 
 public class Ricerca_VisualizzaFragment extends Fragment {
 
-    private FragmentVisualizzaRecensioneBinding binding;
+    private FragmentRicercaVisualizzaBinding binding;
     private Ricerca_VisualizzaViewModel visViewModel;
     private Button cerca;
-    private TextView mNameView;
-
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,11 +33,11 @@ public class Ricerca_VisualizzaFragment extends Fragment {
         visViewModel =
                 new ViewModelProvider(this).get(Ricerca_VisualizzaViewModel.class);
 
-        binding = FragmentVisualizzaRecensioneBinding.inflate(inflater, container, false);
+        binding = FragmentRicercaVisualizzaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         //riempiamo lo spinner
-        View v = inflater.inflate(R.layout.fragement_ricerca_visualizza, container, false);
+        View v = inflater.inflate(R.layout.fragment_ricerca_visualizza, container, false);
 
         //prendo i due parametri spinner
         Spinner regione = (Spinner) v.findViewById(R.id.spinner_search_regione1);
@@ -211,36 +199,27 @@ public class Ricerca_VisualizzaFragment extends Fragment {
             }
         });
 
-        //da qui in giù va in un altra pagina, è solo una prova
-
-        //riferimento al database
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference().child("Name");
-        mNameView = (TextView) v.findViewById(R.id.textView2);
         //riferimento al bottone cerca
         cerca = (Button) v.findViewById(R.id.buttonCerca);
         cerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("myTag", "Sono dentro il metodo");
+                Fragment fragment = null;
+                fragment =new Visualizza_Recensioni_Fragment();
+                replaceFragment(fragment);
 
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String name = snapshot.getValue().toString();
-                        mNameView.setText("Name: " + name);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
 
             }
         });
 
         return v;
+    }
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 

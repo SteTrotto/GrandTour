@@ -9,4 +9,11 @@
     tools:context=".ui.visualizza_recensioni.Visualizza_Recensioni_Fragment">
 
 
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:text="Regione:" />
+
     </LinearLayout>
