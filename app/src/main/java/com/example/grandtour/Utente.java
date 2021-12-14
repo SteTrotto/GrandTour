@@ -4,14 +4,16 @@ public class Utente {
 
     private String email;
     private String password;
+    private String nome_cognome;
 
     public Utente()
     {
 
     }
 
-    public Utente(String email, String password)
+    public Utente(String nome_cognome, String email, String password)
     {
+        nome_cognome = this.nome_cognome;
         email = this.email;
         password = this.password;
     }

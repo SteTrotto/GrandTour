@@ -1,7 +1,9 @@
 package com.example.grandtour.ui.user;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,16 +21,27 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
+import com.example.grandtour.Utente;
 import com.example.grandtour.databinding.FragmentUserBinding;
 import com.example.grandtour.databinding.FragmentUserSingupBinding;
 import com.example.grandtour.ui.ricerca.SearchFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.Executor;
 
 public class UserSingUp extends Fragment {
 
+    private FirebaseAuth mAuth;
     private UserViewModel UserViewModel;
     private FragmentUserSingupBinding binding;
     private EditText mail;
@@ -36,6 +50,9 @@ public class UserSingUp extends Fragment {
     private EditText pwd;
     private Button iscriviti;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://console.firebase.google.com/u/1/project/grandtour-42d4d/authentication/users");
+    DatabaseReference myRef = database.getReference();
+
     final Calendar myCalendar = Calendar.getInstance();
     private boolean andata;
 
@@ -43,6 +60,7 @@ public class UserSingUp extends Fragment {
     final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
     final private String TAG_S = "USER";
+    private final String TAG = "Registrati";
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -76,7 +94,7 @@ public class UserSingUp extends Fragment {
                 Log.d(TAG_S, String.valueOf(mail.getText()));
                 Log.d(TAG_S, String.valueOf(pwd.getText()));
                 //controllo registrazione
-
+                createAccount(mail.getText().toString(), pwd.getText().toString());
 
 
 
@@ -118,4 +136,112 @@ public class UserSingUp extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    private boolean validateForm()      //controllo form
+    {
+        String email = mail.getText().toString();
+        String password = pwd.getText().toString();
+        String nUtente = nome_e_cognome.getText().toString();
+
+        //aggiungere controllo nomi utenti del DB
+
+        boolean valid = true;
+        if (TextUtils.isEmpty(email)) {
+            valid = false;
+        } else if(!email.contains("@")){
+            valid = false;
+            //Toast.makeText(UserSingUp.this, "L' email non è inserita correttamente",Toast.LENGTH_SHORT))
+        }
+        if (TextUtils.isEmpty(password)) {
+            valid = false;
+        } else {
+            if (password.length() < 6) {
+                valid = false;
+              //  Toast.makeText(UserSingUp.this, "La password deve avere almeno 6 caratteri",Toast.LENGTH_SHORT).show();
+            }
+        }
+        if(TextUtils.isEmpty(nUtente)){
+            valid = false;
+        }
+        else {
+            if (nUtente.contains(".")){
+                valid = false;
+               // Toast.makeText(UserSingUp.this, "Errore, un carattere non è valido", Toast.LENGTH_SHORT).show();
+            }
+            if (nUtente.length() < 4){
+                valid = false;
+                //Toast.makeText(UserSingUp.this, "Il nome utente deve avere almeno 4 caratteri",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        return valid;
+    }
+
+    private void createAccount(String email, String password) {
+        Log.d("crea account", "createAccount:" + email);
+
+
+        if (!validateForm()) {
+            return;
+        }
+
+
+        // [START create_user_with_email]
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("creazione utente", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+                            setNome(user);              //imposta nome utene dalla email
+
+                           // sendEmailVerification();    //manda email di verifica
+
+                            //mAuth = FirebaseAuth.getInstance();
+                            //mAuth.signOut();            //effettua il logout, perchè quando crea fa l'accesso in automatico
+
+                                    //ritorna all' accesso
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("errore creazione", "createUserWithEmail:failure", task.getException());
+                    //        Toast.makeText(UserSingUp.this, "Account già esistente.",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+        // [END create_user_with_email]
+    }
+    public void setNome(FirebaseUser user) {
+        String email = mail.getText().toString();
+        int pos = email.indexOf("@");   //posizione@
+        email = email.substring(0, pos); //prende la parte di mail prima di @
+
+
+        String nome = nome_e_cognome.getText().toString();
+
+
+        myRef = database.getReference().child("Utenti").child(nome);
+        Utente p = new Utente(nome, mail.getText().toString(), pwd.getText().toString());  //nomeUtente, monete, email
+        myRef.setValue(p);
+
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(nome)
+                //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                .build();
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User profile updated.");
+                        }
+                    }
+                });
+    }
+
 }
