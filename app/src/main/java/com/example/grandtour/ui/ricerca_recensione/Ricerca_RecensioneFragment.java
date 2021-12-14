@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -25,6 +26,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentRicercaRecensioneBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
+
 
 import java.util.ArrayList;
 
@@ -34,7 +39,8 @@ import java.util.ArrayList;
 
     private Ricerca_RecensioneViewModel ricerca_recViewModel;
     private FragmentRicercaRecensioneBinding binding;
-
+    private DatabaseReference mDatabase;
+    Button invia;
 
 
 
@@ -46,13 +52,13 @@ import java.util.ArrayList;
         binding = FragmentRicercaRecensioneBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
         //riempiamo lo spinner
         View v = inflater.inflate(R.layout.fragment_ricerca_recensione,container,false);
         Spinner a = (Spinner) v.findViewById(R.id.spinner_search_regione);
 
         Spinner b = (Spinner) v.findViewById(R.id.spinner_search_viaggio);
+
+
        /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.regione, android.R.layout.simple_spinner_item);
 
@@ -207,9 +213,24 @@ import java.util.ArrayList;
             }
             });
 
+        //Riferimento al bottone invia
+          invia=(Button) v.findViewById(R.id.button2);
+          //mDatabase = FirebaseDatabase.getInstance().getReference();
+          Firebase.setAndroidContext(getApplicationContext());
+
         return v; //or return root
 
     }
+  /*    public void btn(View view) {
+          invia.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  Firebase ref = new Firebase("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app/");
+                  String enteredUserEmail = userEmail.getText().toString();
+                  ref.child("userBackgroundCheck").setValue(enteredUserEmail);
+              }
+          });
+*/
 
   }
 
