@@ -2,6 +2,7 @@ package com.example.grandtour.ui.Recensioni;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentReviewsBinding;
 import com.example.grandtour.ui.ricerca_recensione.Ricerca_RecensioneFragment;
+import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
 
 
 public class ReviewsFragment extends Fragment {
@@ -25,7 +27,8 @@ public class ReviewsFragment extends Fragment {
     private ReviewsViewModel reviewsViewModel;
     private FragmentReviewsBinding binding;
 
-    private Button bottone;
+    private Button bottone_scrivi;
+    private Button bottone_visualizza;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,13 +40,25 @@ public class ReviewsFragment extends Fragment {
 
         //final Button button = binding.button;
 
-
-        bottone = root.findViewById(R.id.button);
-        bottone.setOnClickListener(new View.OnClickListener() {
+        //questo bottone è quello per andare a SCRIVERE le recensioni
+        bottone_scrivi = root.findViewById(R.id.button);
+        bottone_scrivi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = null;
                 fragment =new Ricerca_RecensioneFragment();
+                replaceFragment(fragment);
+
+            }
+        });
+        //Questo bottone è quello per andare a LEGGERE le recensioni
+        bottone_visualizza = root.findViewById(R.id.button2);
+        bottone_visualizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("myTag", "This is my message");
+                Fragment fragment = null;
+                fragment =new Ricerca_VisualizzaFragment();
                 replaceFragment(fragment);
 
             }
