@@ -56,7 +56,6 @@ public class ReviewsFragment extends Fragment {
         bottone_visualizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("myTag", "This is my message");
                 Fragment fragment = null;
                 fragment =new Ricerca_VisualizzaFragment();
                 replaceFragment(fragment);

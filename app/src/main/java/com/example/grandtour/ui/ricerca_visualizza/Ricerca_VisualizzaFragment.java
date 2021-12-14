@@ -1,6 +1,7 @@
 package com.example.grandtour.ui.ricerca_visualizza;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,12 +23,18 @@ import com.example.grandtour.databinding.FragmentRicercaRecensioneBinding;
 import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
 import com.example.grandtour.ui.Recensioni.ReviewsViewModel;
 import com.example.grandtour.ui.ricerca_recensione.Ricerca_RecensioneViewModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Ricerca_VisualizzaFragment extends Fragment {
 
     private FragmentVisualizzaRecensioneBinding binding;
     private Ricerca_VisualizzaViewModel visViewModel;
-
+    private Button cerca;
+    private TextView mNameView;
 
 
 
@@ -199,6 +207,35 @@ public class Ricerca_VisualizzaFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //da qui in giù va in un altra pagina, è solo una prova
+
+        //riferimento al database
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference().child("Name");
+        mNameView = (TextView) v.findViewById(R.id.textView2);
+        //riferimento al bottone cerca
+        cerca = (Button) v.findViewById(R.id.buttonCerca);
+        cerca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("myTag", "Sono dentro il metodo");
+
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String name = snapshot.getValue().toString();
+                        mNameView.setText("Name: " + name);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
             }
         });

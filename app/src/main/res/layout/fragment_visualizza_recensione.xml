@@ -6,12 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.visualizza_recensione.Visualizza_RecensioneFragment">
+    tools:context=".ui.visualizza_recensioni.Visualizza_Recensioni_Fragment">
 
 
-
-
-
-
-
-</LinearLayout>
+    </LinearLayout>
