@@ -216,7 +216,7 @@ import java.util.ArrayList;
         //Riferimento al bottone invia
           invia=(Button) v.findViewById(R.id.button2);
           //mDatabase = FirebaseDatabase.getInstance().getReference();
-          Firebase.setAndroidContext(getApplicationContext());
+         // Firebase.setAndroidContext(getApplicationContext());
 
         return v; //or return root
 
