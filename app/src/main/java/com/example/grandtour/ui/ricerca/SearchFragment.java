@@ -149,10 +149,10 @@ public class SearchFragment extends Fragment {
                 //if(regione.equalsIgnoreCase("Regione")) return;
                 Log.d(TAG_S, regione);
 
-                //if(dataAndata.equalsIgnoreCase("Data partenza")) return;
+                if(dataAndata.equalsIgnoreCase("Data partenza")) return;
                 Log.d(TAG_S, dataAndata);
 
-                //if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
+                if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
                 Log.d(TAG_S, dataRitorno);
 
                 //if(mezzo.equalsIgnoreCase("mezzo")) return;

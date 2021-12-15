@@ -50,6 +50,9 @@ public class SearchResult extends Fragment {
     private Date ritorno;
     private String mezzo;
 
+    private boolean search_regione = true;
+    private boolean search_mezzo = true;
+
     private ImageButton filtri;
     private LinearLayout visualizzaFiltri;
 
@@ -62,6 +65,9 @@ public class SearchResult extends Fragment {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app");
     DatabaseReference myRef = database.getReference();
+
+    final private String myFormat = "dd/MM/yy"; //In which you need put here
+    final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
     final private String TAG_SR = "SEARCH_RESULT";
 
@@ -123,9 +129,8 @@ public class SearchResult extends Fragment {
         searchViewModel.getRegione().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                //Log.d(TAG_SR, s);
                 regione = s;
-                //Log.d(TAG_SR, regione);
+                if(regione.equalsIgnoreCase("regione")) search_regione = false;
             }
         });
 
@@ -133,7 +138,6 @@ public class SearchResult extends Fragment {
             @Override
             public void onChanged(Date date) {
                 andata = date;
-                //Log.d(TAG_SR, String.valueOf(date));
             }
         });
 
@@ -141,7 +145,6 @@ public class SearchResult extends Fragment {
             @Override
             public void onChanged(Date date) {
                 ritorno = date;
-                //Log.d(TAG_SR, String.valueOf(date));
             }
         });
 
@@ -149,6 +152,7 @@ public class SearchResult extends Fragment {
             @Override
             public void onChanged(String s) {
                 mezzo = s;
+                if(mezzo.equalsIgnoreCase("mezzo")) search_mezzo = false;
             }
         });
     }
@@ -214,9 +218,29 @@ public class SearchResult extends Fragment {
                         Log.e(TAG_SR, regione);
 
                         //miss comparison of the Date
+                        Date a = new Date();
+                        try {
+                            a = sdf.parse(v.getDataPartenza());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        Date r = new Date();
+                        try {
+                            r = sdf.parse(v.getDataRitorno());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
 
 
-                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
+                        //controlli per la ricerca senza filtri
+                        //solo su regione e mezzo
+
+
+                        boolean compareDate = true;
+                        if(!a.after(andata) && !a.equals(andata)) compareDate = false;
+                        if(!r.before(ritorno) && !r.equals(ritorno)) compareDate = false;
+
+                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
                         mViaggioList.add(v);
 
                         //test v result from DB
