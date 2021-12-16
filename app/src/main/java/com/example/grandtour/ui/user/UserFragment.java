@@ -79,10 +79,7 @@ public class UserFragment extends Fragment {
                 Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
                 Log.d(TAG_S, String.valueOf(Edit_Pwd_User.getText()));
                 //controllo log-in
-                //signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
-                Fragment fragment2 = null;
-                fragment2 = new UserLogUtente();
-                replaceFragment(fragment2);
+                signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
             }
         });
 
@@ -130,7 +127,8 @@ public class UserFragment extends Fragment {
     {
         Log.d(TAG, "signIn:" + email);
         if (!validateForm()) {
-           // Toast.makeText(Accedi.this, "Email e/o password Errata.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Email e/o password Errata.", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(Accedi.this, "Email e/o password Errata.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -143,11 +141,10 @@ public class UserFragment extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            System.out.print("arriva");
+
                             Fragment fragment1 = null;
                             fragment1 = new UserLogUtente();
                             replaceFragment(fragment1);
-
 
                             if(user.isEmailVerified()) //se mail verificata //da modificare le posizione: cosi accede lo stesso
                             {
@@ -155,11 +152,14 @@ public class UserFragment extends Fragment {
                             }
                             else {
                                 Log.w(TAG, "mailVerificata:failure");
+                                Toast.makeText(getContext(), "Email non ancora verificata. \nControlla il tuo indirizzo di posta.",
+                                        Toast.LENGTH_SHORT).show();
                                 //Toast.makeText(Accedi.this, "Email non ancora verificata. \nControlla il tuo indirizzo di posta.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(getContext(),"Email e/o password Errata.", Toast.LENGTH_SHORT).show();
                             //Toast.makeText(Accedi.this, "Email e/o password Errata.", Toast.LENGTH_SHORT).show();
                             // [START_EXCLUDE]
                             //checkForMultiFactorFailure(task.getException());
