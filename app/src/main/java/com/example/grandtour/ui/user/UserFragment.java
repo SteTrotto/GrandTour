@@ -79,10 +79,7 @@ public class UserFragment extends Fragment {
                 Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
                 Log.d(TAG_S, String.valueOf(Edit_Pwd_User.getText()));
                 //controllo log-in
-                if(signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString())
-                {
-
-                }
+                signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
             }
         });
 
@@ -143,6 +140,12 @@ public class UserFragment extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            System.out.print("arriva");
+                            Fragment fragment1 = null;
+                            fragment1 = new UserLogUtente();
+                            replaceFragment(fragment1);
+
+
                             if(user.isEmailVerified()) //se mail verificata //da modificare le posizione: cosi accede lo stesso
                             {
                                // Intent in = new Intent(Accedi.this, MainActivity.class);startActivity(in);

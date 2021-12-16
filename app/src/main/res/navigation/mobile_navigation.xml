@@ -46,6 +46,12 @@
         tools:layout="@layout/fragment_user_singup" />
 
     <fragment
+        android:id="@+id/navigation_user_log"
+        android:name="com.example.grandtour.ui.user.UserLogUtente"
+        android:label="@string/title_user"
+        tools:layout="@layout/fragment_user_log" />
+
+    <fragment
         android:id="@+id/navigation_search_result"
         android:name="com.example.grandtour.ui.ricerca.SearchResult"
         android:label="@string/title_search"
