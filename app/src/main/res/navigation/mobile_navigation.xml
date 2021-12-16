@@ -16,7 +16,11 @@
         android:id="@+id/navigation_search"
         android:name="com.example.grandtour.ui.ricerca.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_navigation_search_result"
+            app:destination="@id/navigation_search_result" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_reviews"
