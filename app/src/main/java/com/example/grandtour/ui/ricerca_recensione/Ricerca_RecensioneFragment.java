@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Ricerca_RecensioneFragment extends Fragment /*AppCompatActivity*/ {
+  public class Ricerca_RecensioneFragment extends Fragment /*AppCompatActivity*/ {
 
     private Ricerca_RecensioneViewModel ricerca_recViewModel;
     private FragmentRicercaRecensioneBinding binding;
