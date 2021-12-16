@@ -79,7 +79,10 @@ public class UserFragment extends Fragment {
                 Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
                 Log.d(TAG_S, String.valueOf(Edit_Pwd_User.getText()));
                 //controllo log-in
-                signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
+                //signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
+                Fragment fragment2 = null;
+                fragment2 = new UserLogUtente();
+                replaceFragment(fragment2);
             }
         });
 
@@ -92,9 +95,8 @@ public class UserFragment extends Fragment {
                 fragment = new UserSingUp();
                 replaceFragment(fragment);
             }
-        }
+        });
 
-        );
 
         return root;
     }
@@ -134,13 +136,19 @@ public class UserFragment extends Fragment {
 
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            System.out.print("arriva");
+                            Fragment fragment1 = null;
+                            fragment1 = new UserLogUtente();
+                            replaceFragment(fragment1);
+
+
                             if(user.isEmailVerified()) //se mail verificata //da modificare le posizione: cosi accede lo stesso
                             {
                                // Intent in = new Intent(Accedi.this, MainActivity.class);startActivity(in);
