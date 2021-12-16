@@ -79,7 +79,10 @@ public class UserFragment extends Fragment {
                 Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
                 Log.d(TAG_S, String.valueOf(Edit_Pwd_User.getText()));
                 //controllo log-in
-                signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
+                if(signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString())
+                {
+
+                }
             }
         });
 
@@ -92,9 +95,8 @@ public class UserFragment extends Fragment {
                 fragment = new UserSingUp();
                 replaceFragment(fragment);
             }
-        }
+        });
 
-        );
 
         return root;
     }
@@ -134,7 +136,7 @@ public class UserFragment extends Fragment {
 
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
