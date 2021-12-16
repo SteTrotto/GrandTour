@@ -14,14 +14,14 @@ public class Recensione {
 
     }
 
-    public Recensione(String dR,/* String idI,*/ String idV, float r, String tR,String c, String u) {
+    public Recensione(String dR,/* String idI,*/ String idV, float r, String tR,String c/*, String u*/) {
         Regione = dR;
         //idItinerario = idI;
         idViaggio = idV;
         rating = r;
         titoloRecensione = tR;
         corpoRecensione=c;
-        utente = u;
+        //utente = u;
     }
 
 

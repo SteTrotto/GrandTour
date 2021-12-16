@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.grandtour.MainActivity;
 import com.example.grandtour.R;
 import com.example.grandtour.Utente;
 import com.example.grandtour.databinding.FragmentUserBinding;
@@ -50,7 +51,7 @@ public class UserSingUp extends Fragment {
     private EditText pwd;
     private Button iscriviti;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance("https://console.firebase.google.com/u/1/project/grandtour-42d4d/authentication/users");
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app");
     DatabaseReference myRef = database.getReference();
 
     final Calendar myCalendar = Calendar.getInstance();
@@ -85,6 +86,8 @@ public class UserSingUp extends Fragment {
         Data=root.findViewById(R.id.DataNascita);
         iscriviti=root.findViewById(R.id.SingUp);
 
+        mAuth = FirebaseAuth.getInstance();
+
         //bottone sing_up
         iscriviti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +97,7 @@ public class UserSingUp extends Fragment {
                 Log.d(TAG_S, String.valueOf(mail.getText()));
                 Log.d(TAG_S, String.valueOf(pwd.getText()));
                 //controllo registrazione
-                createAccount(mail.getText().toString(), pwd.getText().toString());
+                createAccount(String.valueOf(mail.getText()), String.valueOf(pwd.getText()));
 
 
 
@@ -188,7 +191,7 @@ public class UserSingUp extends Fragment {
 
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -221,8 +224,7 @@ public class UserSingUp extends Fragment {
         email = email.substring(0, pos); //prende la parte di mail prima di @
 
 
-        String nome = nome_e_cognome.getText().toString();
-
+        String nome = String.valueOf(nome_e_cognome.getText());
 
         myRef = database.getReference().child("Utenti").child(nome);
         Utente p = new Utente(nome, mail.getText().toString(), pwd.getText().toString());  //nomeUtente, monete, email
