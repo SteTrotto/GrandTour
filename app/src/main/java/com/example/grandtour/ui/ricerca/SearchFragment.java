@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,7 +83,7 @@ public class SearchFragment extends Fragment {
         spinnerSearch.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                spinnerReg = pos;                                      //elemento selenzionato della lista
+                spinnerReg = pos;                                      //elemento selenzionato della listaS
             }
         });
 
@@ -149,27 +150,25 @@ public class SearchFragment extends Fragment {
                 //if(regione.equalsIgnoreCase("Regione")) return;
                 Log.d(TAG_S, regione);
 
-                if(dataAndata.equalsIgnoreCase("Data partenza")) return;
+                if(dataAndata.equalsIgnoreCase("Data partenza")) {
+                    Toast.makeText(getContext(), "Data non inserita",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Log.d(TAG_S, dataAndata);
 
-                if(dataRitorno.equalsIgnoreCase("Data ritorno")) return;
+                if(dataRitorno.equalsIgnoreCase("Data ritorno")) {
+                    Toast.makeText(getContext(), "Data non inserita",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Log.d(TAG_S, dataRitorno);
 
                 //if(mezzo.equalsIgnoreCase("mezzo")) return;
                 Log.d(TAG_S, mezzo);
 
-                String today = sdf.format(new Date());
-                Log.d(TAG_S, today);
-
 
                 Date t = new Date();
-                /*
-                try {
-                    t = sdf.parse(today);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                */
                 Date a = new Date();
                 try {
                     a = sdf.parse(dataAndata);
@@ -188,15 +187,21 @@ public class SearchFragment extends Fragment {
                 //aggiungere controlli
                 if(t.after(a)) {
                     Log.e(TAG_S, "oggi dopo di andata");
-                    //return;  //messaggio per utente
+                    Toast.makeText(getContext(), "Errore data di partenza",
+                            Toast.LENGTH_SHORT).show();
+                    return;  //messaggio per utente
                 }
                 if(t.after(r)) {
                     Log.e(TAG_S, "oggi dopo di ritorno");
-                    //return;  //messaggio per utente
+                    Toast.makeText(getContext(), "Errore data di ritorno",
+                            Toast.LENGTH_SHORT).show();
+                    return;  //messaggio per utente
                 }
                 if(a.after(r)) {
                     Log.e(TAG_S, "andata dopo ritorno");
-                    //return;  //messagio per utente
+                    Toast.makeText(getContext(), "Errorei date di partenza e/o ritorno",
+                            Toast.LENGTH_SHORT).show();
+                    return;  //messagio per utente
                 }
 
                 searchViewModel.setmDateA(a);

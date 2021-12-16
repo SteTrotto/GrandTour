@@ -215,7 +215,7 @@ public class SearchResult extends Fragment {
                         //add v in a list/vector/listView/...
                         //comparison user search form with DB data
 
-                        Log.e(TAG_SR, regione);
+                        Log.d(TAG_SR, regione);
 
                         //miss comparison of the Date
                         Date a = new Date();
@@ -237,11 +237,34 @@ public class SearchResult extends Fragment {
 
 
                         boolean compareDate = true;
-                        if(!a.after(andata) && !a.equals(andata)) compareDate = false;
-                        if(!r.before(ritorno) && !r.equals(ritorno)) compareDate = false;
+                        if(a.before(andata) && !a.equals(andata)) {  //se A vigggio prima A ricerca
+                            compareDate = false;
+                            Log.d(TAG_SR, "ANDATA: viaggio prima ricerca");
+                            Log.e(TAG_SR, a.toString());
+                            Log.e(TAG_SR, andata.toString());
+                        }
+                        if(r.after(ritorno) && !r.equals(ritorno)) { //se R viaggio dopo R ricerca
+                            compareDate = false;
+                            Log.d(TAG_SR, "RITORNO: viaggio dopo ricerca");
+                            Log.e(TAG_SR, r.toString());
+                            Log.e(TAG_SR, ritorno.toString());
+                        }
 
-                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
-                        mViaggioList.add(v);
+                        if(!search_regione && !search_mezzo)
+                            if(compareDate)
+                                mViaggioList.add(v);
+
+                        if(!search_regione)
+                            if(v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
+                                mViaggioList.add(v);
+
+                        if(!search_mezzo)
+                            if(v.getRegione().equalsIgnoreCase(regione) && compareDate)
+                                mViaggioList.add(v);
+
+                        if(search_mezzo && search_regione)
+                            if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
+                                mViaggioList.add(v);
 
                         //test v result from DB
                         Log.d(TAG_SR, v.getDataPartenza());
