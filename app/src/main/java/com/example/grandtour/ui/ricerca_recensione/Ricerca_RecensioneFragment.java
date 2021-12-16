@@ -257,7 +257,7 @@ import java.util.HashMap;
                                            Log.d("Prova corpo", SCorpo);
 
                                            HashMap<String, String> val=new HashMap<String, String>();
-                                           val.put("Regione",texta);
+                                           val.put("regione",texta);
                                            val.put("idViaggio", textb);
                                            val.put("rating", SRatingValue);
                                            val.put("titoloRecensione", STitolo);
