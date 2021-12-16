@@ -79,7 +79,10 @@ public class UserFragment extends Fragment {
                 Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
                 Log.d(TAG_S, String.valueOf(Edit_Pwd_User.getText()));
                 //controllo log-in
-                signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
+                //signIn(Edit_Mail_User.getText().toString(), Edit_Pwd_User.getText().toString());
+                Fragment fragment2 = null;
+                fragment2 = new UserLogUtente();
+                replaceFragment(fragment2);
             }
         });
 

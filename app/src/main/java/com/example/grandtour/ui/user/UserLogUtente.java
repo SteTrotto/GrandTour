@@ -14,23 +14,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
-import com.example.grandtour.databinding.FragmentHomeBinding;
-import com.example.grandtour.ui.home.HomeViewModel;
+import com.example.grandtour.databinding.FragmentUserBinding;
 
 public class UserLogUtente extends Fragment {
 
     private UserViewModel UserViewModel;
-    private FragmentHomeBinding binding;
+    private FragmentUserBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         UserViewModel =
                 new ViewModelProvider(this).get(UserViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentUserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
+        final TextView textView = binding.textUser;
         UserViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
