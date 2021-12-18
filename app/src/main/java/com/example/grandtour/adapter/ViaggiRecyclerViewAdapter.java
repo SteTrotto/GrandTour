@@ -1,5 +1,6 @@
 package com.example.grandtour.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,11 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
         void onItemClick(Viaggio viaggio);
     }
 
-    private final List<Viaggio> mNewsList;
+    private final List<Viaggio> mViaggioList;
     private final OnItemClickListener mOnItemClickListener;
 
     public ViaggiRecyclerViewAdapter(List<Viaggio> viaggioList, OnItemClickListener onItemClickListener) {
-        this.mNewsList = viaggioList;
+        this.mViaggioList = viaggioList;
         this.mOnItemClickListener = onItemClickListener;
     }
 
@@ -39,16 +40,20 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
 
     @Override
     public void onBindViewHolder(@NonNull ViaggioViewHolder holder, int position) {
-        holder.bind(mNewsList.get(position));
+        holder.bind(mViaggioList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if (mNewsList != null) {
-            return mNewsList.size();
+        if (mViaggioList != null) {
+            return mViaggioList.size();
         }
 
         return 0;
+    }
+
+    public List<Viaggio> getViaggioList() {
+        return mViaggioList;
     }
 
     public class ViaggioViewHolder extends RecyclerView.ViewHolder {
@@ -70,6 +75,7 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
                 @Override
                 public void onClick(View v) {
                     mOnItemClickListener.onItemClick(viaggio);
+                    Log.e("!!!!!!!!!!!","------ ------");
                 }
             });
         }

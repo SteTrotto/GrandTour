@@ -1,10 +1,14 @@
 package com.example.grandtour.ui.ricerca;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -62,6 +66,7 @@ public class SearchResult extends Fragment {
     private List<Viaggio> mViaggioList = new ArrayList<>();
 
     RecyclerView mRecyclerViewViaggi;
+    ViaggiRecyclerViewAdapter adapter;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app");
     DatabaseReference myRef = database.getReference();
@@ -83,6 +88,7 @@ public class SearchResult extends Fragment {
         //searchViewModel.check();
 
         //decidere se rifare la ricerca con il risultato
+        /*
         filtri = root.findViewById(R.id.filter);
         visualizzaFiltri = root.findViewById(R.id.filter_visibility);
 
@@ -96,6 +102,7 @@ public class SearchResult extends Fragment {
                     visualizzaFiltri.setVisibility(View.GONE);
             }
         });
+        */
 
         //listViewResult = root.findViewById(R.id.search_list_result); //inutile se uso recyclerView
 
@@ -118,14 +125,43 @@ public class SearchResult extends Fragment {
 
         //dopo l'inserimento dei valori nella lista faccio un confronto con i valori dati dalla ricerca
 
+        //forse inutile -> contenente nell'adapter, vedere meglio
+        mRecyclerViewViaggi.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), mRecyclerViewViaggi ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        //Log.i(TAG_SR, "FUNZIONA!!!!");
+                        //Log.i(TAG_SR, "FUNZIONA!!!!");
+                        //Log.i(TAG_SR, "FUNZIONA!!!!");
+                        List<Viaggio> lv = adapter.getViaggioList();
+                        Viaggio v = lv.get(position);
+                        //Log.d(TAG_SR, "" + position);
+                        //Log.d(TAG_SR, v.getMezzo());
+                        //Log.i(TAG_SR, "FUNZIONA!!!!");
+                        //Log.i(TAG_SR, "FUNZIONA!!!!");
+                        //Log.i(TAG_SR, "FUNZIONA!!!!");
 
 
+                        //apro finestra di dialogo o un nuovo fragment passando il viaggio
+                        openViaggio();
+
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
 
         return root;
     }
 
+    public void openViaggio() {
+
+    }
+
     public void readViewModel() {
-        super.onStart();
+        //super.onStart();
         searchViewModel.getRegione().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -276,7 +312,7 @@ public class SearchResult extends Fragment {
 
                         Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
                     }
-                    ViaggiRecyclerViewAdapter adapter = new ViaggiRecyclerViewAdapter(mViaggioList,
+                    adapter = new ViaggiRecyclerViewAdapter(mViaggioList,
                             new ViaggiRecyclerViewAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(Viaggio viaggio) {
@@ -292,4 +328,50 @@ public class SearchResult extends Fragment {
 
     }
 
+}
+
+class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+
+        public void onLongItemClick(View view, int position);
+    }
+
+    GestureDetector mGestureDetector;
+
+    public RecyclerItemClickListener(Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
+        mListener = listener;
+        mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+                View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
+                if (child != null && mListener != null) {
+                    mListener.onLongItemClick(child, recyclerView.getChildAdapterPosition(child));
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent e) {
+        View childView = view.findChildViewUnder(e.getX(), e.getY());
+        if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
+            mListener.onItemClick(childView, view.getChildAdapterPosition(childView));
+            return true;
+        }
+        return false;
+    }
+
+    @Override public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) { }
+
+
+    @Override
+    public void onRequestDisallowInterceptTouchEvent (boolean disallowIntercept){}
 }
