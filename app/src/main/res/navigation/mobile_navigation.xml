@@ -58,6 +58,12 @@
         tools:layout="@layout/fragment_search_result"/>
 
     <fragment
+        android:id="@+id/navigation_viaggio"
+        android:name="com.example.grandtour.ui.ricerca.SearchViaggioFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_viaggio"/>
+
+    <fragment
         android:id="@+id/viauslizzaRecensioni"
         android:name="com.example.grandtour.ui.visualizza_recensioni.Visualizza_Recensioni_Fragment"
         android:label="Visualizza_rec"

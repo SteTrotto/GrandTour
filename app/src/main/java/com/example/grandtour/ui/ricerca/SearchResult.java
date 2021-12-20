@@ -17,6 +17,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,7 @@ import java.util.Locale;
 
 public class SearchResult extends Fragment {
 
+    private static Viaggio viaggio;
     private SearchViewModel searchViewModel = SearchFragment.getSearchViewModel();
     private FragmentSearchResultBinding binding;
 
@@ -129,22 +131,9 @@ public class SearchResult extends Fragment {
         mRecyclerViewViaggi.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), mRecyclerViewViaggi ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        // do whatever
-                        //Log.i(TAG_SR, "FUNZIONA!!!!");
-                        //Log.i(TAG_SR, "FUNZIONA!!!!");
-                        //Log.i(TAG_SR, "FUNZIONA!!!!");
                         List<Viaggio> lv = adapter.getViaggioList();
-                        Viaggio v = lv.get(position);
-                        //Log.d(TAG_SR, "" + position);
-                        //Log.d(TAG_SR, v.getMezzo());
-                        //Log.i(TAG_SR, "FUNZIONA!!!!");
-                        //Log.i(TAG_SR, "FUNZIONA!!!!");
-                        //Log.i(TAG_SR, "FUNZIONA!!!!");
-
-
-                        //apro finestra di dialogo o un nuovo fragment passando il viaggio
+                        viaggio = lv.get(position);
                         openViaggio();
-
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
@@ -157,7 +146,16 @@ public class SearchResult extends Fragment {
     }
 
     public void openViaggio() {
+        Fragment fragment = null;
+        fragment = new SearchViaggioFragment();
+        replaceFragment(fragment);
+    }
 
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void readViewModel() {
@@ -328,6 +326,9 @@ public class SearchResult extends Fragment {
 
     }
 
+    public static Viaggio getViaggio() {
+        return viaggio;
+    }
 }
 
 class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
