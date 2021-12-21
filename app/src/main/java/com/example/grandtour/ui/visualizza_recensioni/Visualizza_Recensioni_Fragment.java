@@ -51,10 +51,40 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
         //riempiamo lo spinner
         View v = inflater.inflate(R.layout.fragment_visualizza_recensione, container, false);
 
-        //colleghamo il database
+        mRecyclerView= (RecyclerView) v.findViewById(R.id.recycleview_recensioni);
+        new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Recensione> recensioni, List<String> keys) {
+                new RecycleView_Config().setConfig(mRecyclerView, getActivity(), recensioni, keys );
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
+
+    return v;
+    }
+
+
+}
+/*
+       //colleghamo il database
         //riferimento al database
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference().child("Recensioni");
+        DatabaseReference myRef = database.getReference().child("Name");
 
         mNameView = (TextView) v.findViewById(R.id.textView2);
 
@@ -70,14 +100,6 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
 
             }
         });
-
-    return v;
-    }
-
-
-}
-/*
-
         */
 
 
