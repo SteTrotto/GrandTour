@@ -29,8 +29,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grandtour.R;
 import com.example.grandtour.Recensione;
 import com.example.grandtour.databinding.FragmentRicercaRecensioneBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
@@ -264,7 +264,8 @@ import java.util.HashMap;
                                            val.put("corpoRecensione", SCorpo);
 
                                            //rec =new Recensione(texta,textb, ratingValue, STitolo, SCorpo);
-                                           myRef.child("Recensioni").push().setValue(val).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                           myRef.child("Recensioni").push().setValue(val);
+                                                   /*.addOnCompleteListener(new OnCompleteListener<Void>() {
                                                @Override
                                                public void onComplete(@NonNull Task<Void> task) {
                                                    if(task.isSuccessful())//if data is successfully store
@@ -277,7 +278,7 @@ import java.util.HashMap;
 
                                                    }
                                                }
-                                           });
+                                           });*/
 
                                        }
                                    });

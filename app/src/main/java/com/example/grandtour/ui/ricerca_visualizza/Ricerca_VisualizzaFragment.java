@@ -1,6 +1,8 @@
 package com.example.grandtour.ui.ricerca_visualizza;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +18,49 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
 
+import com.example.grandtour.Viaggio;
 import com.example.grandtour.databinding.FragmentRicercaVisualizzaBinding;
 import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
 import com.example.grandtour.ui.visualizza_recensioni.Visualizza_Recensioni_Fragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Ricerca_VisualizzaFragment extends Fragment {
 
     private FragmentRicercaVisualizzaBinding binding;
     private Ricerca_VisualizzaViewModel visViewModel;
     private Button cerca;
+    private static String strRegione;
+    private  static String strViaggio;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+    //prova login
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Log.d("Log in", "sono dentro");
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+            Log.d("Nome ", name);
+
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
+        }
+        else
+        {
+            Log.d("Log in", "nologgin");
+
+        }
+
 
         visViewModel =
                 new ViewModelProvider(this).get(Ricerca_VisualizzaViewModel.class);
@@ -39,10 +71,15 @@ public class Ricerca_VisualizzaFragment extends Fragment {
         //riempiamo lo spinner
         View v = inflater.inflate(R.layout.fragment_ricerca_visualizza, container, false);
 
+
         //prendo i due parametri spinner
-        Spinner regione = (Spinner) v.findViewById(R.id.spinner_search_regione1);
+
+         Spinner regione = (Spinner) v.findViewById(R.id.spinner_search_regione1);
 
         Spinner viaggio = (Spinner) v.findViewById(R.id.spinner_search_viaggio1); //viene settato dopo
+
+
+
 
 
 
@@ -53,6 +90,8 @@ public class Ricerca_VisualizzaFragment extends Fragment {
 
         b.setAdapter(adapter);
         */
+        Log.d("Prova regione inizo", regione.getSelectedItem().toString());
+        Log.d("Prova viaggio inizio", viaggio.getSelectedItem().toString());
 
         regione.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -199,22 +238,53 @@ public class Ricerca_VisualizzaFragment extends Fragment {
             }
         });
 
+
         //riferimento al bottone cerca
         cerca = (Button) v.findViewById(R.id.buttonCerca);
         cerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String sRegione = regione.getSelectedItem().toString();
+                String sViaggio = viaggio.getSelectedItem().toString();
+
+                //setto le variabili globali
+                setRegione(sRegione);
+                setViaggio(sViaggio);
+
+                //verifico funzionamento
+                Log.d("Prova ciao", getRegione());
+                Log.d("Prova bene", getViaggio());
+
+
+
                 Fragment fragment = null;
                 fragment =new Visualizza_Recensioni_Fragment();
                 replaceFragment(fragment);
-
-
             }
         });
+
+
 
         return v;
     }
 
+    public void setRegione(String regione)
+    {
+        strRegione=regione;
+    }
+    public void setViaggio(String viaggio)
+    {
+        strViaggio=viaggio;
+    }
+    public static String getViaggio()
+    {
+        return strViaggio;
+    }
+    public static String getRegione()
+    {
+        return strRegione;
+    }
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);

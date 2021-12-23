@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +20,10 @@ import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentRicercaVisualizzaBinding;
 import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
 import com.example.grandtour.databinding.RecensioniListaItemBinding;
+import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
 import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaViewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +40,7 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
     private Ricerca_VisualizzaViewModel visrecViewModel;
 
     private TextView mNameView;
-
+    Ricerca_VisualizzaFragment c;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
 
         //riempiamo lo spinner
         View v = inflater.inflate(R.layout.fragment_visualizza_recensione, container, false);
+
 
         mRecyclerView= (RecyclerView) v.findViewById(R.id.recycleview_recensioni);
         new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
@@ -74,9 +77,10 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
             }
         });
 
-
     return v;
+
     }
+
 
 
 }
