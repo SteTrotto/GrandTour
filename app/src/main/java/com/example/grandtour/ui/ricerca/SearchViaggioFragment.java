@@ -27,6 +27,8 @@ public class SearchViaggioFragment extends Fragment {
     private TextView destinazione;
     private TextView mezzo;
     private TextView regione;
+    private TextView dataPartenza;
+    private TextView dataRitorno;
 
     final private String TAG_SV = "SEARCH VIAGGIO";
 
@@ -42,6 +44,14 @@ public class SearchViaggioFragment extends Fragment {
         destinazione = root.findViewById(R.id.destinazione_result);
         destinazione.setText(vResult.getDestinazione());
 
+        mezzo = root.findViewById(R.id.mezzo_result);
+        mezzo.setText(vResult.getMezzo());
+
+        dataPartenza = root.findViewById(R.id.partenza_result);
+        dataPartenza.setText("Data Partenza: " + vResult.getDataPartenza());
+
+        dataRitorno = root.findViewById(R.id.ritorno_result);
+        dataRitorno.setText("Data Ritorno: " + vResult.getDataRitorno());
         //aggiungere gli altri valori delle View seguendo il layout
 
 

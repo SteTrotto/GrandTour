@@ -25,9 +25,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.grandtour.InternetConnection;
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentSearchBinding;
 import com.example.grandtour.ui.user.UserSingUp;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -211,8 +213,12 @@ public class SearchFragment extends Fragment {
                 searchViewModel.setmRegione(regione);
                 searchViewModel.setmMezzo(mezzo);
 
-                //invio a pagina dei risultati
-                //uso SearchViewModel per salvataggio dei parametri
+                if(!InternetConnection.haveInternetConnection(getContext())) {
+                    Log.d(TAG_S, "ERRORE DI CONNESSIONE");
+                    Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Fragment fragment = null;
                 fragment = new SearchResult();

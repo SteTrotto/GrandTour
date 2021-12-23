@@ -12,7 +12,7 @@
 
 
     <ImageView
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="0dp"
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:srcCompat="@mipmap/ic_launcher_round"
@@ -24,13 +24,40 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="10dp"
-        android:text=""/>
+        android:text="Monza"/>
 
-    <!--
-        aggiungere:
-        -valori di Viaggio mancanti
-        -dettagli come recensioni ecc ecc ...
-    -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/partenza_result"
+            android:text="Data Partenza: 11/11/2021"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ritorno_result"
+            android:text="Data Ritorno: 23/01/2022"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mezzo_result"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="Treno"
+        android:layout_margin="10dp"/>
+
+    <!-- aggiungere itinerario -->
 
 
 

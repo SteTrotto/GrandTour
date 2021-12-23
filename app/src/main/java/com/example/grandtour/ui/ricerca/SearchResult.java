@@ -112,22 +112,6 @@ public class SearchResult extends Fragment {
         mRecyclerViewViaggi.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-/*
-        //ritardo della lettura del DB -> ritardo inserimento dati nel RecyclerView
-        //ideale leggere dati su MainActivity
-        ViaggiRecyclerViewAdapter adapter = new ViaggiRecyclerViewAdapter(mViaggioList,
-                new ViaggiRecyclerViewAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Viaggio viaggio) {
-                        Log.d(TAG_SR, "onItemClick: " + viaggio);
-                    }
-                });
-        mRecyclerViewViaggi.setAdapter(adapter);
-*/
-
-        //dopo l'inserimento dei valori nella lista faccio un confronto con i valori dati dalla ricerca
-
-        //forse inutile -> contenente nell'adapter, vedere meglio
         mRecyclerViewViaggi.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), mRecyclerViewViaggi ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {

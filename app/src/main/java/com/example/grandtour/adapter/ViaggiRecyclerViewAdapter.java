@@ -75,7 +75,6 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
                 @Override
                 public void onClick(View v) {
                     mOnItemClickListener.onItemClick(viaggio);
-                    Log.e("!!!!!!!!!!!","------ ------");
                 }
             });
         }
