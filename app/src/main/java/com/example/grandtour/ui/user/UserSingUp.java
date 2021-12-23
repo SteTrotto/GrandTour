@@ -37,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 
@@ -98,9 +99,6 @@ public class UserSingUp extends Fragment {
                 Log.d(TAG_S, String.valueOf(pwd.getText()));
                 //controllo registrazione
                 createAccount(String.valueOf(mail.getText()), String.valueOf(pwd.getText()));
-
-
-
             }
         });
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -145,6 +143,7 @@ public class UserSingUp extends Fragment {
         String email = mail.getText().toString();
         String password = pwd.getText().toString();
         String nUtente = nome_e_cognome.getText().toString();
+        String data_nascita = Data.getText().toString();
 
         //aggiungere controllo nomi utenti del DB
 
@@ -153,6 +152,7 @@ public class UserSingUp extends Fragment {
             valid = false;
         } else if(!email.contains("@")){
             valid = false;
+            Toast.makeText(getContext(), "L' email non è inserita correttamente",Toast.LENGTH_SHORT).show();
             //Toast.makeText(UserSingUp.this, "L' email non è inserita correttamente",Toast.LENGTH_SHORT))
         }
         if (TextUtils.isEmpty(password)) {
@@ -160,6 +160,7 @@ public class UserSingUp extends Fragment {
         } else {
             if (password.length() < 6) {
                 valid = false;
+                Toast.makeText(getContext(), "La password deve avere almeno 6 caratteri",Toast.LENGTH_SHORT).show();
               //  Toast.makeText(UserSingUp.this, "La password deve avere almeno 6 caratteri",Toast.LENGTH_SHORT).show();
             }
         }
@@ -169,10 +170,12 @@ public class UserSingUp extends Fragment {
         else {
             if (nUtente.contains(".")){
                 valid = false;
+                Toast.makeText(getContext(),"Errore, un carattere non è valido", Toast.LENGTH_SHORT).show();
                // Toast.makeText(UserSingUp.this, "Errore, un carattere non è valido", Toast.LENGTH_SHORT).show();
             }
             if (nUtente.length() < 4){
                 valid = false;
+                Toast.makeText(getContext(),"Il nome utente deve avere almeno 4 caratteri",Toast.LENGTH_SHORT).show();
                 //Toast.makeText(UserSingUp.this, "Il nome utente deve avere almeno 4 caratteri",Toast.LENGTH_SHORT).show();
             }
         }
@@ -227,7 +230,7 @@ public class UserSingUp extends Fragment {
         String nome = String.valueOf(nome_e_cognome.getText());
 
         myRef = database.getReference().child("Utenti").child(nome);
-        Utente p = new Utente(nome, mail.getText().toString(), pwd.getText().toString());  //nomeUtente, monete, email
+        Utente p = new Utente(nome, mail.getText().toString(), pwd.getText().toString(), Data.getText().toString() );  //nomeUtente, monete, email
         myRef.setValue(p);
 
 
