@@ -146,7 +146,7 @@ public class UserFragment extends Fragment {
                             fragment1 = new UserLogUtente();
                             replaceFragment(fragment1);
 
-                            if(user.isEmailVerified()) //se mail verificata //da modificare le posizione: cosi accede lo stesso
+                         /*   if(user.isEmailVerified()) //se mail verificata //da modificare le posizione: cosi accede lo stesso
                             {
                                // Intent in = new Intent(Accedi.this, MainActivity.class);startActivity(in);
                             }
@@ -155,8 +155,9 @@ public class UserFragment extends Fragment {
                                 Toast.makeText(getContext(), "Email non ancora verificata. \nControlla il tuo indirizzo di posta.",
                                         Toast.LENGTH_SHORT).show();
                                 //Toast.makeText(Accedi.this, "Email non ancora verificata. \nControlla il tuo indirizzo di posta.", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
+                            }*/
+                        }
+                            else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getContext(),"Email e/o password Errata.", Toast.LENGTH_SHORT).show();
