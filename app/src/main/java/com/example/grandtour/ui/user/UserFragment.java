@@ -140,7 +140,7 @@ public class UserFragment extends Fragment {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
 
                             Fragment fragment1 = null;
                             fragment1 = new UserLogUtente();

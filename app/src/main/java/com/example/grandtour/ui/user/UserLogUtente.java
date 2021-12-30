@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,10 +31,10 @@ public class UserLogUtente extends Fragment {
     private TextView preferiti;
     private TextView contatti;
     private TextView recensione_app;
-    private Button button_profilo;
-    private Button button_preferiti;
-    private Button button_contatti;
-    private Button button_recensione_app;
+    private ImageButton button_profilo;
+    private ImageButton button_preferiti;
+    private ImageButton button_contatti;
+    private ImageButton button_recensione_app;
 
     private FirebaseAuth mAuth;
     private final String TAG = "HOME";
@@ -60,10 +61,10 @@ public class UserLogUtente extends Fragment {
         contatti = root.findViewById(R.id.casella3);
         recensione_app = root.findViewById(R.id.casella4);
 
-        button_profilo = root.findViewById(R.id.casella1);
-        button_preferiti = root.findViewById(R.id.casella2);
-        button_contatti = root.findViewById(R.id.casella3);
-        button_recensione_app = root.findViewById(R.id.casella4);
+        button_profilo = root.findViewById(R.id.button1);
+        button_preferiti = root.findViewById(R.id.button2);
+        button_contatti = root.findViewById(R.id.button3);
+        button_recensione_app = root.findViewById(R.id.button4);
         //mAuth = FirebaseAuth.getInstance();
 
 
@@ -71,7 +72,7 @@ public class UserLogUtente extends Fragment {
         {
             @Override
             public void onClick(View v) {
-                if (button_profilo.getVisibility() == View.GONE) {
+                if (profilo.getVisibility() == View.GONE) {
                     profilo.setVisibility(View.VISIBLE);
                 }
                 else

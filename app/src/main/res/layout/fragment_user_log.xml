@@ -93,7 +93,8 @@
                 android:hint ="cose a caso"
                 android:textAllCaps="false"
                 android:layout_marginTop="5dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:text="test">
 
             </TextView>
 
