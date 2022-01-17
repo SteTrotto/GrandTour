@@ -24,11 +24,11 @@ public class SearchViaggioFragment extends Fragment {
 
     private Viaggio vResult = SearchResult.getViaggio();
 
-    private TextView destinazione;
+    //private TextView destinazione;
     private TextView mezzo;
     private TextView regione;
-    private TextView dataPartenza;
-    private TextView dataRitorno;
+    //private TextView dataPartenza;
+    //private TextView dataRitorno;
 
     private TextView durata;
     private TextView nomeViaggio;
@@ -41,7 +41,6 @@ public class SearchViaggioFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
 
         binding = FragmentViaggioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

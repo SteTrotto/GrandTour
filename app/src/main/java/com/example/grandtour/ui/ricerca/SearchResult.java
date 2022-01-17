@@ -73,8 +73,8 @@ public class SearchResult extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app");
     DatabaseReference myRef = database.getReference();
 
-    final private String myFormat = "dd/MM/yy"; //In which you need put here
-    final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
+    //final private String myFormat = "dd/MM/yy"; //In which you need put here
+    //final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
     final private String TAG_SR = "SEARCH_RESULT";
 
@@ -277,11 +277,11 @@ public class SearchResult extends Fragment {
                             if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
                                 mViaggioList.add(v);
 */
-                        //test v result from DB
                         //Log.d(TAG_SR, v.getDataPartenza());
                         //Log.d(TAG_SR, v.getDataRitorno());
                         //Log.d(TAG_SR, v.getDestinazione());
                         //Log.d(TAG_SR, v.getIdItinerario());
+                        //test v result from DB
                         Log.d(TAG_SR, v.getMezzo());
                         Log.d(TAG_SR, v.getRegione());
                         Log.d(TAG_SR, v.getDurata());
@@ -291,8 +291,32 @@ public class SearchResult extends Fragment {
                         Log.d(TAG_SR, v.getTappa3());
                         Log.d(TAG_SR, v.getTappa4());
 
-                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
-                        mViaggioList.add(v);
+                        if(!search_mezzo && !search_regione && !search_durata)
+                            mViaggioList.add(v);
+
+                        if(!search_regione)
+                            if(v.getMezzo().equalsIgnoreCase(mezzo))
+                                mViaggioList.add(v);
+
+                        if(!search_mezzo)
+                            if(v.getRegione().equalsIgnoreCase(regione))
+                                mViaggioList.add(v);
+/*
+                        if(!search_regione && !search_durata)
+                            if(v.getMezzo().equalsIgnoreCase(mezzo))
+                                mViaggioList.add(v);
+
+                        if(!search_mezzo && !search_durata)
+                            if(v.getRegione().equalsIgnoreCase(regione))
+                                mViaggioList.add(v);
+
+                        if(!search_mezzo && !search_regione)
+                            if(v.getDurata().equalsIgnoreCase(durata))
+                                mViaggioList.add(v);
+*/
+                        if(search_mezzo && search_regione && search_durata)
+                            if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
+                                mViaggioList.add(v);
 
                         Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
                     }

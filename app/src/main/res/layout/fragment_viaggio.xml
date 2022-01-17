@@ -10,7 +10,6 @@
     android:layout_gravity="center">
 
 
-
     <ImageView
         android:layout_marginTop="0dp"
         android:layout_width="200dp"
@@ -24,8 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="10dp"
-        android:text=""/>
+        android:text="Tour"/>
 
+    <!--
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,9 +46,8 @@
             android:id="@+id/ritorno_result"
             android:text="Data Ritorno: 23/01/2022"/>
 
-
     </LinearLayout>
-
+    -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +57,6 @@
         android:layout_margin="10dp"/>
 
     <!-- aggiungere le varie tappe -->
-
 
 
 </LinearLayout>

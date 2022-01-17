@@ -48,18 +48,17 @@ public class SearchFragment extends Fragment {
     //private EditText editRitorno;
     private Spinner spinnerMezzo;
     private int spinnerSel;
-    private Spinner spinnerSearch;
+    private Spinner spinnerRegione;
     private int spinnerReg;
 
     private Spinner spinnerDurata;
     private int spinnerDur;
 
-    final Calendar myCalendar = Calendar.getInstance();
-    private boolean andata;
+    //final Calendar myCalendar = Calendar.getInstance();
+    //private boolean andata;
 
-    final private String myFormat = "dd/MM/yy"; //In which you need put here
-    final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
-
+    //final private String myFormat = "dd/MM/yy"; //In which you need put here
+    //final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
     final private String TAG_S = "SEARCH";
 
@@ -83,18 +82,8 @@ public class SearchFragment extends Fragment {
         imageButton = root.findViewById(R.id.search_button);
         //editAndata = root.findViewById(R.id.search_data_partenza);
         //editRitorno = root.findViewById(R.id.search_data_ritorno);
-        spinnerMezzo = root.findViewById(R.id.spinner_mezzo);
-        spinnerSearch = root.findViewById(R.id.spinner_regione);
-
-        spinnerDurata = root.findViewById(R.id.spinner_durata);
-        spinnerDurata.setOnItemSelectedListener(new SpinnerActivity(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                spinnerDur = pos;
-            }
-        });
-
-        spinnerSearch.setOnItemSelectedListener(new SpinnerActivity(){
+        spinnerRegione = root.findViewById(R.id.spinner_regione);
+        spinnerRegione.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 spinnerReg = pos;                                      //elemento selenzionato della listaS
@@ -102,6 +91,7 @@ public class SearchFragment extends Fragment {
         });
 
         //selezione oggetto spinner
+        spinnerMezzo = root.findViewById(R.id.spinner_mezzo);
         spinnerMezzo.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -114,13 +104,21 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        spinnerDurata = root.findViewById(R.id.spinner_durata);
+        spinnerDurata.setOnItemSelectedListener(new SpinnerActivity(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                spinnerDur = pos;
+            }
+        });
+
         //bottone
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
-                String regione = (String) spinnerSearch.getItemAtPosition(spinnerReg);
+                String regione = (String) spinnerRegione.getItemAtPosition(spinnerReg);
                 //String dataAndata = String.valueOf(editAndata.getText());
                 //String dataRitorno = String.valueOf(editRitorno.getText());
                 String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
@@ -132,11 +130,11 @@ public class SearchFragment extends Fragment {
                 Log.d(TAG_S, mezzo);
                 Log.d(TAG_S, durata);
 
-                if(durata.equalsIgnoreCase("Durata:")) {
+                /*if(durata.equalsIgnoreCase("Durata:")) {
                     Toast.makeText(getContext(), "Durata non inserita",
                             Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }*/
                 //if(mezzo.equalsIgnoreCase("mezzo")) return;
 
 /*
