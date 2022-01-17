@@ -18,6 +18,8 @@ public class SearchViewModel extends ViewModel {
     private MutableLiveData<String> mRegione;
     private MutableLiveData<String> mMezzo;
 
+    private MutableLiveData<String> mDurata;
+
     final private String TAG_SVM = "SEARCH_VIEW_MODEL";
 
     public SearchViewModel() {
@@ -29,6 +31,8 @@ public class SearchViewModel extends ViewModel {
 
         mRegione = new MutableLiveData<>();
         mMezzo = new MutableLiveData<>();
+
+        mDurata = new MutableLiveData<>();
     }
 
     public LiveData<String> getText() {
@@ -51,6 +55,8 @@ public class SearchViewModel extends ViewModel {
         this.mMezzo.setValue(mezzo);
     }
 
+    public void setmDurata(String durata) {this.mDurata.setValue(durata);}
+
     public LiveData<String> getRegione() {
         return mRegione;
     }
@@ -66,6 +72,8 @@ public class SearchViewModel extends ViewModel {
     public LiveData<String> getMezzo() {
         return mMezzo;
     }
+
+    public LiveData<String> getDurata() {return mDurata;}
 
     public void check() {
         Log.d(TAG_SVM, mRegione.getValue());

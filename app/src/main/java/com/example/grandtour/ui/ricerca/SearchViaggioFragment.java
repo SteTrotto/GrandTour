@@ -30,6 +30,13 @@ public class SearchViaggioFragment extends Fragment {
     private TextView dataPartenza;
     private TextView dataRitorno;
 
+    private TextView durata;
+    private TextView nomeViaggio;
+    private TextView tappa1;
+    private TextView tappa2;
+    private TextView tappa3;
+    private TextView tappa4;
+
     final private String TAG_SV = "SEARCH VIAGGIO";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,19 +48,21 @@ public class SearchViaggioFragment extends Fragment {
 
         Log.d(TAG_SV,vResult.getRegione());
 
-        destinazione = root.findViewById(R.id.destinazione_result);
-        destinazione.setText(vResult.getDestinazione());
-
         mezzo = root.findViewById(R.id.mezzo_result);
         mezzo.setText(vResult.getMezzo());
 
-        dataPartenza = root.findViewById(R.id.partenza_result);
-        dataPartenza.setText("Data Partenza: " + vResult.getDataPartenza());
+        nomeViaggio = root.findViewById(R.id.nomeV_result);
+        nomeViaggio.setText(vResult.getNomeViaggio());
 
-        dataRitorno = root.findViewById(R.id.ritorno_result);
-        dataRitorno.setText("Data Ritorno: " + vResult.getDataRitorno());
+        //destinazione = root.findViewById(R.id.destinazione_result);
+        //destinazione.setText(vResult.getDestinazione());
+
+        //dataPartenza = root.findViewById(R.id.partenza_result);
+        //dataPartenza.setText("Data Partenza: " + vResult.getDataPartenza());
+
+        //dataRitorno = root.findViewById(R.id.ritorno_result);
+        //dataRitorno.setText("Data Ritorno: " + vResult.getDataRitorno());
         //aggiungere gli altri valori delle View seguendo il layout
-
 
         return root;
     }

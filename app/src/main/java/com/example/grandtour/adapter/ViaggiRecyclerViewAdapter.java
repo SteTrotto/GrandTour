@@ -69,7 +69,7 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
 
         public void bind(Viaggio viaggio) {
             //this.textViewNewsTitle.setText(viaggio.getTitle());
-            this.textViewNewsSource.setText(viaggio.getDestinazione());
+            this.textViewNewsSource.setText(viaggio.getNomeViaggio());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

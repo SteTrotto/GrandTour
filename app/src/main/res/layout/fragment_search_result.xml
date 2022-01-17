@@ -51,68 +51,6 @@
             android:background="@drawable/baseline_expand_more_36"/>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:id="@+id/filter_visibility">
-
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/search_button"
-            android:background="@drawable/baseline_search_24"/>
-
-
-
-    <Spinner
-        android:layout_width="210dp"
-        android:layout_height="61dp"
-        android:layout_gravity="center"
-        android:id="@+id/spinner_search"
-        android:entries="@array/regione"
-        android:spinnerMode="dropdown"/>
-
-    <EditText
-        android:id="@+id/search_data_partenza"
-        android:layout_width="200dp"
-        android:layout_height="61dp"
-        android:text="Data partenza"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
-
-    <EditText
-        android:id="@+id/search_data_ritorno"
-        android:layout_width="200dp"
-        android:layout_height="61dp"
-        android:text="Data ritorno"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
-
-    <Spinner
-        android:layout_width="210dp"
-        android:layout_height="61dp"
-        android:layout_gravity="center"
-        android:id="@+id/spinner_mezzo"
-        android:entries="@array/mezzo"
-        android:spinnerMode="dialog"/>
-
-</LinearLayout>
-
 <!--
     <ListView
         android:layout_width="wrap_content"

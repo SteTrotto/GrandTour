@@ -44,12 +44,15 @@ public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
 
     private ImageButton imageButton;
-    private EditText editAndata;
-    private EditText editRitorno;
+    //private EditText editAndata;
+    //private EditText editRitorno;
     private Spinner spinnerMezzo;
     private int spinnerSel;
     private Spinner spinnerSearch;
     private int spinnerReg;
+
+    private Spinner spinnerDurata;
+    private int spinnerDur;
 
     final Calendar myCalendar = Calendar.getInstance();
     private boolean andata;
@@ -78,11 +81,18 @@ public class SearchFragment extends Fragment {
         });
 
         imageButton = root.findViewById(R.id.search_button);
-        editAndata = root.findViewById(R.id.search_data_partenza);
-        editRitorno = root.findViewById(R.id.search_data_ritorno);
+        //editAndata = root.findViewById(R.id.search_data_partenza);
+        //editRitorno = root.findViewById(R.id.search_data_ritorno);
         spinnerMezzo = root.findViewById(R.id.spinner_mezzo);
+        spinnerSearch = root.findViewById(R.id.spinner_regione);
 
-        spinnerSearch = root.findViewById(R.id.spinner_search);
+        spinnerDurata = root.findViewById(R.id.spinner_durata);
+        spinnerDurata.setOnItemSelectedListener(new SpinnerActivity(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                spinnerDur = pos;
+            }
+        });
 
         spinnerSearch.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
@@ -104,6 +114,102 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        //bottone
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //String.valueOf(editText.getText()) prende il valore in stringa del editText
+                String regione = (String) spinnerSearch.getItemAtPosition(spinnerReg);
+                //String dataAndata = String.valueOf(editAndata.getText());
+                //String dataRitorno = String.valueOf(editRitorno.getText());
+                String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
+
+                String durata = (String) spinnerDurata.getItemAtPosition(spinnerDur);
+
+                //if(regione.equalsIgnoreCase("Regione")) return;
+                Log.d(TAG_S, regione);
+                Log.d(TAG_S, mezzo);
+                Log.d(TAG_S, durata);
+
+                if(durata.equalsIgnoreCase("Durata:")) {
+                    Toast.makeText(getContext(), "Durata non inserita",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //if(mezzo.equalsIgnoreCase("mezzo")) return;
+
+/*
+                if(dataAndata.equalsIgnoreCase("Data partenza")) {
+                    Toast.makeText(getContext(), "Data non inserita",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.d(TAG_S, dataAndata);
+
+                if(dataRitorno.equalsIgnoreCase("Data ritorno")) {
+                    Toast.makeText(getContext(), "Data non inserita",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.d(TAG_S, dataRitorno);
+
+
+                Date t = new Date();
+                Date a = new Date();
+                try {
+                    a = sdf.parse(dataAndata);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Date r = new Date();
+                try {
+                    r = sdf.parse(dataRitorno);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                //lista check delle date
+                if(t.after(a)) {
+                    Log.e(TAG_S, "oggi dopo di andata");
+                    Toast.makeText(getContext(), "Errore data di partenza",
+                            Toast.LENGTH_SHORT).show();
+                    return;  //messaggio per utente
+                }
+                if(t.after(r)) {
+                    Log.e(TAG_S, "oggi dopo di ritorno");
+                    Toast.makeText(getContext(), "Errore data di ritorno",
+                            Toast.LENGTH_SHORT).show();
+                    return;  //messaggio per utente
+                }
+                if(a.after(r)) {
+                    Log.e(TAG_S, "andata dopo ritorno");
+                    Toast.makeText(getContext(), "Errorei date di partenza e/o ritorno",
+                            Toast.LENGTH_SHORT).show();
+                    return;  //messagio per utente
+                }
+*/
+                //searchViewModel.setmDateA(a);
+                //searchViewModel.setmDateR(r);
+                searchViewModel.setmRegione(regione);
+                searchViewModel.setmMezzo(mezzo);
+                searchViewModel.setmDurata(durata);
+
+                if(!InternetConnection.haveInternetConnection(getContext())) {
+                    Log.d(TAG_S, "ERRORE DI CONNESSIONE");
+                    Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Fragment fragment = null;
+                fragment = new SearchResult();
+                replaceFragment(fragment);
+            }
+        }
+        );
+
+/*
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -138,97 +244,7 @@ public class SearchFragment extends Fragment {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
-        //bottone
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //String.valueOf(editText.getText()) prende il valore in stringa del editText
-                String regione = (String) spinnerSearch.getItemAtPosition(spinnerReg);
-                String dataAndata = String.valueOf(editAndata.getText());
-                String dataRitorno = String.valueOf(editRitorno.getText());
-                String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
-
-                //if(regione.equalsIgnoreCase("Regione")) return;
-                Log.d(TAG_S, regione);
-
-                if(dataAndata.equalsIgnoreCase("Data partenza")) {
-                    Toast.makeText(getContext(), "Data non inserita",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Log.d(TAG_S, dataAndata);
-
-                if(dataRitorno.equalsIgnoreCase("Data ritorno")) {
-                    Toast.makeText(getContext(), "Data non inserita",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Log.d(TAG_S, dataRitorno);
-
-                //if(mezzo.equalsIgnoreCase("mezzo")) return;
-                Log.d(TAG_S, mezzo);
-
-
-                Date t = new Date();
-                Date a = new Date();
-                try {
-                    a = sdf.parse(dataAndata);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                Date r = new Date();
-                try {
-                    r = sdf.parse(dataRitorno);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
-                //lista check delle date
-                //aggiungere controlli
-                if(t.after(a)) {
-                    Log.e(TAG_S, "oggi dopo di andata");
-                    Toast.makeText(getContext(), "Errore data di partenza",
-                            Toast.LENGTH_SHORT).show();
-                    return;  //messaggio per utente
-                }
-                if(t.after(r)) {
-                    Log.e(TAG_S, "oggi dopo di ritorno");
-                    Toast.makeText(getContext(), "Errore data di ritorno",
-                            Toast.LENGTH_SHORT).show();
-                    return;  //messaggio per utente
-                }
-                if(a.after(r)) {
-                    Log.e(TAG_S, "andata dopo ritorno");
-                    Toast.makeText(getContext(), "Errorei date di partenza e/o ritorno",
-                            Toast.LENGTH_SHORT).show();
-                    return;  //messagio per utente
-                }
-
-                searchViewModel.setmDateA(a);
-                searchViewModel.setmDateR(r);
-                searchViewModel.setmRegione(regione);
-                searchViewModel.setmMezzo(mezzo);
-
-                if(!InternetConnection.haveInternetConnection(getContext())) {
-                    Log.d(TAG_S, "ERRORE DI CONNESSIONE");
-                    Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Fragment fragment = null;
-                fragment = new SearchResult();
-                replaceFragment(fragment);
-            }
-        }
-        );
-
-
-
+*/
         return root;
     }
 
@@ -252,11 +268,6 @@ public class SearchFragment extends Fragment {
         binding = null;
     }
 
-    private void updateLabel() {
-        if(andata)  editAndata.setText(sdf.format(myCalendar.getTime()));
-        else        editRitorno.setText(sdf.format(myCalendar.getTime()));
-    }
-
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
@@ -267,5 +278,12 @@ public class SearchFragment extends Fragment {
     public static SearchViewModel getSearchViewModel() {
         return searchViewModel;
     }
+
+    /*
+    private void updateLabel() {
+        if(andata)  editAndata.setText(sdf.format(myCalendar.getTime()));
+        else        editRitorno.setText(sdf.format(myCalendar.getTime()));
+    }
+    */
 
 }

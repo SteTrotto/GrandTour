@@ -52,18 +52,18 @@ public class SearchResult extends Fragment {
     private FragmentSearchResultBinding binding;
 
     private String regione = "test";
-    private Date andata;
-    private Date ritorno;
+    //private Date andata;
+    //private Date ritorno;
     private String mezzo;
+
+    private String durata;
 
     private boolean search_regione = true;
     private boolean search_mezzo = true;
+    private boolean search_durata = true;
 
-    private ImageButton filtri;
-    private LinearLayout visualizzaFiltri;
 
     private ListView listViewResult;
-
 
     private List<Viaggio> mViaggioList = new ArrayList<>();
 
@@ -88,23 +88,6 @@ public class SearchResult extends Fragment {
         View root = binding.getRoot();
 
         //searchViewModel.check();
-
-        //decidere se rifare la ricerca con il risultato
-        /*
-        filtri = root.findViewById(R.id.filter);
-        visualizzaFiltri = root.findViewById(R.id.filter_visibility);
-
-        filtri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (visualizzaFiltri.getVisibility() == View.GONE) {
-                    visualizzaFiltri.setVisibility(View.VISIBLE);
-                }
-                else
-                    visualizzaFiltri.setVisibility(View.GONE);
-            }
-        });
-        */
 
         //listViewResult = root.findViewById(R.id.search_list_result); //inutile se uso recyclerView
 
@@ -152,6 +135,23 @@ public class SearchResult extends Fragment {
             }
         });
 
+        searchViewModel.getMezzo().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                mezzo = s;
+                if(mezzo.equalsIgnoreCase("mezzo")) search_mezzo = false;
+            }
+        });
+
+        searchViewModel.getRegione().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                durata = s;
+                if(durata.equalsIgnoreCase("Durata:")) search_durata = false;
+            }
+        });
+
+        /*
         searchViewModel.getAndata().observe(getViewLifecycleOwner(), new Observer<Date>() {
             @Override
             public void onChanged(Date date) {
@@ -165,14 +165,7 @@ public class SearchResult extends Fragment {
                 ritorno = date;
             }
         });
-
-        searchViewModel.getMezzo().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                mezzo = s;
-                if(mezzo.equalsIgnoreCase("mezzo")) search_mezzo = false;
-            }
-        });
+*/
     }
 
     public void readDB() {
@@ -234,7 +227,7 @@ public class SearchResult extends Fragment {
                         //comparison user search form with DB data
 
                         Log.d(TAG_SR, regione);
-
+/*
                         //miss comparison of the Date
                         Date a = new Date();
                         try {
@@ -283,14 +276,23 @@ public class SearchResult extends Fragment {
                         if(search_mezzo && search_regione)
                             if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
                                 mViaggioList.add(v);
-
+*/
                         //test v result from DB
-                        Log.d(TAG_SR, v.getDataPartenza());
-                        Log.d(TAG_SR, v.getDataRitorno());
-                        Log.d(TAG_SR, v.getDestinazione());
-                        Log.d(TAG_SR, v.getIdItinerario());
+                        //Log.d(TAG_SR, v.getDataPartenza());
+                        //Log.d(TAG_SR, v.getDataRitorno());
+                        //Log.d(TAG_SR, v.getDestinazione());
+                        //Log.d(TAG_SR, v.getIdItinerario());
                         Log.d(TAG_SR, v.getMezzo());
                         Log.d(TAG_SR, v.getRegione());
+                        Log.d(TAG_SR, v.getDurata());
+                        Log.d(TAG_SR, v.getNomeViaggio());
+                        Log.d(TAG_SR, v.getTappa1());
+                        Log.d(TAG_SR, v.getTappa2());
+                        Log.d(TAG_SR, v.getTappa3());
+                        Log.d(TAG_SR, v.getTappa4());
+
+                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
+                        mViaggioList.add(v);
 
                         Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
                     }

@@ -8,7 +8,11 @@
     <string name="action_search">Action_Serach</string>
     <string name="action_settings">Action_Setting</string>
 
-
+<string-array name="durata">
+    <item>Durata:</item>
+    <item>3</item>
+    <item>4+</item>
+</string-array>
 
     <string-array name="regione">
         <item><b>Regione</b></item>

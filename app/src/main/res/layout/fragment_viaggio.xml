@@ -19,12 +19,12 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/destinazione_result"
+        android:id="@+id/nomeV_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="10dp"
-        android:text="Monza"/>
+        android:text=""/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         android:text="Treno"
         android:layout_margin="10dp"/>
 
-    <!-- aggiungere itinerario -->
+    <!-- aggiungere le varie tappe -->
 
 
 
