@@ -1,10 +1,15 @@
 package com.example.grandtour.ui.ricerca;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +18,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
+import com.example.grandtour.MyAppGlideModule;
 import com.example.grandtour.R;
 import com.example.grandtour.Viaggio;
 import com.example.grandtour.databinding.FragmentViaggioBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class SearchViaggioFragment extends Fragment {
 
@@ -37,6 +56,11 @@ public class SearchViaggioFragment extends Fragment {
     private TextView tappa3;
     private TextView tappa4;
 
+    private ImageView image;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+    StorageReference spaceRef;
+
     final private String TAG_SV = "SEARCH VIAGGIO";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,6 +77,13 @@ public class SearchViaggioFragment extends Fragment {
         nomeViaggio = root.findViewById(R.id.nomeV_result);
         nomeViaggio.setText(vResult.getNomeViaggio());
 
+        spaceRef = storageRef.child("lombardia/Lombardia.jpg");
+
+        image = root.findViewById(R.id.image_viaggio);
+        Glide.with(getContext())
+                .load(spaceRef)
+                .into(this.image);
+
         //destinazione = root.findViewById(R.id.destinazione_result);
         //destinazione.setText(vResult.getDestinazione());
 
@@ -65,5 +96,6 @@ public class SearchViaggioFragment extends Fragment {
 
         return root;
     }
+
 
 }

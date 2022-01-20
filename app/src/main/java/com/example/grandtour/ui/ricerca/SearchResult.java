@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,8 +80,17 @@ public class SearchResult extends Fragment {
 
     final private String TAG_SR = "SEARCH_RESULT";
 
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+    StorageReference imagesRef = storageRef.child("lombardia");
+    StorageReference spaceRef = storageRef.child("lombardia/Lombardia.jpg");
+    StorageReference pathReference = storageRef.child("lombardia/Lombardia.jpg");
+    static private Context context;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        context = getContext();
 
         readViewModel();    //function for the read of user form value
         readDB();           //function for the read of the Database
@@ -339,6 +350,10 @@ public class SearchResult extends Fragment {
     public static Viaggio getViaggio() {
         return viaggio;
     }
+
+    public static Context getContext2() {
+        return context;
+    }
 }
 
 class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
@@ -385,4 +400,6 @@ class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
 
     @Override
     public void onRequestDisallowInterceptTouchEvent (boolean disallowIntercept){}
+
+
 }

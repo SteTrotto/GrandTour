@@ -1,18 +1,25 @@
 package com.example.grandtour.adapter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.grandtour.MainActivity;
 import com.example.grandtour.R;
 import com.example.grandtour.Viaggio;
+import com.example.grandtour.ui.ricerca.SearchResult;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
+import com.bumptech.glide.Glide;
 
 public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecyclerViewAdapter.ViaggioViewHolder>{
 
@@ -23,6 +30,10 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
 
     private final List<Viaggio> mViaggioList;
     private final OnItemClickListener mOnItemClickListener;
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+    StorageReference pathReference;
 
     public ViaggiRecyclerViewAdapter(List<Viaggio> viaggioList, OnItemClickListener onItemClickListener) {
         this.mViaggioList = viaggioList;
@@ -59,17 +70,24 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
     public class ViaggioViewHolder extends RecyclerView.ViewHolder {
 
         //private final TextView textViewNewsTitle;
-        private final TextView textViewNewsSource;
+        private final TextView textViewViaggioSource;
+        private final ImageView imageViewViaggioImage;
 
         public ViaggioViewHolder(@NonNull View itemView) {
             super(itemView);
             //this.textViewNewsTitle = itemView.findViewById(R.id.img);
-            this.textViewNewsSource = itemView.findViewById(R.id.info_text);
+            this.textViewViaggioSource = itemView.findViewById(R.id.info_text);
+            this.imageViewViaggioImage = itemView.findViewById(R.id.info_image);
         }
 
         public void bind(Viaggio viaggio) {
             //this.textViewNewsTitle.setText(viaggio.getTitle());
-            this.textViewNewsSource.setText(viaggio.getNomeViaggio());
+            this.textViewViaggioSource.setText(viaggio.getNomeViaggio());
+
+            //controlli del viaggio
+            pathReference = storageRef.child("lombardia/Lombardia.jpg");
+            Context c = SearchResult.getContext2();
+            Glide.with(c).load(pathReference).into(this.imageViewViaggioImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
