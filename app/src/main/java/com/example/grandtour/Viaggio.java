@@ -28,6 +28,7 @@ public class Viaggio {
         tappa1 = t1;
         tappa2 = t2;
         tappa3 = t3;
+        tappa4 = "";
     }
 
     public Viaggio(String m, String r, String d, String n, String t1, String t2, String t3, String t4) {

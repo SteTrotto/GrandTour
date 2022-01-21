@@ -117,6 +117,12 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                if(spinnerReg == 0) {
+                    Toast.makeText(getContext(), "Regione non inserita",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
                 String regione = (String) spinnerRegione.getItemAtPosition(spinnerReg);
                 //String dataAndata = String.valueOf(editAndata.getText());

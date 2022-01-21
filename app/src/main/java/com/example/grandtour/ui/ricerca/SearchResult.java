@@ -60,7 +60,6 @@ public class SearchResult extends Fragment {
 
     private String durata;
 
-    private boolean search_regione = true;
     private boolean search_mezzo = true;
     private boolean search_durata = true;
 
@@ -80,17 +79,10 @@ public class SearchResult extends Fragment {
 
     final private String TAG_SR = "SEARCH_RESULT";
 
-
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReference();
-    StorageReference imagesRef = storageRef.child("lombardia");
-    StorageReference spaceRef = storageRef.child("lombardia/Lombardia.jpg");
-    StorageReference pathReference = storageRef.child("lombardia/Lombardia.jpg");
     static private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        context = getContext();
 
         readViewModel();    //function for the read of user form value
         readDB();           //function for the read of the Database
@@ -105,7 +97,6 @@ public class SearchResult extends Fragment {
         mRecyclerViewViaggi = root.findViewById(R.id.search_recyclerview);
         mRecyclerViewViaggi.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
         mRecyclerViewViaggi.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), mRecyclerViewViaggi ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
@@ -119,6 +110,8 @@ public class SearchResult extends Fragment {
                     }
                 })
         );
+
+        context = getContext();
 
         return root;
     }
@@ -142,7 +135,6 @@ public class SearchResult extends Fragment {
             @Override
             public void onChanged(String s) {
                 regione = s;
-                if(regione.equalsIgnoreCase("regione")) search_regione = false;
             }
         });
 
@@ -302,32 +294,13 @@ public class SearchResult extends Fragment {
                         Log.d(TAG_SR, v.getTappa3());
                         Log.d(TAG_SR, v.getTappa4());
 
-                        if(!search_mezzo && !search_regione && !search_durata)
-                            mViaggioList.add(v);
-
-                        if(!search_regione)
-                            if(v.getMezzo().equalsIgnoreCase(mezzo))
-                                mViaggioList.add(v);
-
+                        //ottimizzare filtri
                         if(!search_mezzo)
                             if(v.getRegione().equalsIgnoreCase(regione))
                                 mViaggioList.add(v);
-/*
-                        if(!search_regione && !search_durata)
-                            if(v.getMezzo().equalsIgnoreCase(mezzo))
-                                mViaggioList.add(v);
 
-                        if(!search_mezzo && !search_durata)
-                            if(v.getRegione().equalsIgnoreCase(regione))
-                                mViaggioList.add(v);
-
-                        if(!search_mezzo && !search_regione)
-                            if(v.getDurata().equalsIgnoreCase(durata))
-                                mViaggioList.add(v);
-*/
-                        if(search_mezzo && search_regione && search_durata)
-                            if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
-                                mViaggioList.add(v);
+                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
+                            mViaggioList.add(v);
 
                         Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
                     }
@@ -351,7 +324,7 @@ public class SearchResult extends Fragment {
         return viaggio;
     }
 
-    public static Context getContext2() {
+    public static Context getContesto() {
         return context;
     }
 }

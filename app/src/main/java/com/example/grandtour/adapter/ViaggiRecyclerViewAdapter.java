@@ -84,10 +84,13 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
             //this.textViewNewsTitle.setText(viaggio.getTitle());
             this.textViewViaggioSource.setText(viaggio.getNomeViaggio());
 
-            //controlli del viaggio
-            pathReference = storageRef.child("lombardia/Lombardia.jpg");
-            Context c = SearchResult.getContext2();
-            Glide.with(c).load(pathReference).into(this.imageViewViaggioImage);
+            String path = viaggio.getRegione() + "/" + viaggio.getRegione() + ".jpg";
+            //pathReference = storageRef.child("Lombardia/Lombardia.jpg");
+            pathReference = storageRef.child(path);
+            Context c = SearchResult.getContesto();
+            Glide.with(c)
+                    .load(pathReference)
+                    .into(this.imageViewViaggioImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

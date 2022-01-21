@@ -77,12 +77,15 @@ public class SearchViaggioFragment extends Fragment {
         nomeViaggio = root.findViewById(R.id.nomeV_result);
         nomeViaggio.setText(vResult.getNomeViaggio());
 
-        spaceRef = storageRef.child("lombardia/Lombardia.jpg");
-
+        String path = vResult.getRegione() + "/" + vResult.getTappa1() + ".jpg";
+        //spaceRef = storageRef.child("Lombardia/Lombardia.jpg");
+        spaceRef = storageRef.child(path);
         image = root.findViewById(R.id.image_viaggio);
+        Log.e(TAG_SV, "link: " + path);
         Glide.with(getContext())
                 .load(spaceRef)
-                .into(this.image);
+                .into(image);
+        Log.e(TAG_SV, "link: " + path);
 
         //destinazione = root.findViewById(R.id.destinazione_result);
         //destinazione.setText(vResult.getDestinazione());
