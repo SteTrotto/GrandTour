@@ -85,7 +85,6 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
             this.textViewViaggioSource.setText(viaggio.getNomeViaggio());
 
             String path = viaggio.getRegione() + "/" + viaggio.getRegione() + ".jpg";
-            //pathReference = storageRef.child("Lombardia/Lombardia.jpg");
             pathReference = storageRef.child(path);
             Context c = SearchResult.getContesto();
             Glide.with(c)

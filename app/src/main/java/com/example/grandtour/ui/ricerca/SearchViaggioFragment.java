@@ -57,6 +57,11 @@ public class SearchViaggioFragment extends Fragment {
     private TextView tappa4;
 
     private ImageView image;
+    private ImageView image1;
+    private ImageView image2;
+    private ImageView image3;
+    private ImageView image4;
+
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     StorageReference spaceRef;
@@ -77,8 +82,8 @@ public class SearchViaggioFragment extends Fragment {
         nomeViaggio = root.findViewById(R.id.nomeV_result);
         nomeViaggio.setText(vResult.getNomeViaggio());
 
-        String path = vResult.getRegione() + "/" + vResult.getTappa1() + ".jpg";
-        //spaceRef = storageRef.child("Lombardia/Lombardia.jpg");
+
+        String path = vResult.getRegione() + "/" + vResult.getRegione() + ".jpg";
         spaceRef = storageRef.child(path);
         image = root.findViewById(R.id.image_viaggio);
         Log.e(TAG_SV, "link: " + path);
@@ -86,6 +91,51 @@ public class SearchViaggioFragment extends Fragment {
                 .load(spaceRef)
                 .into(image);
         Log.e(TAG_SV, "link: " + path);
+
+
+        image1 = root.findViewById(R.id.image_tappa1);
+        tappa1 = root.findViewById(R.id.nome1_result);
+        tappa1.setText(vResult.getTappa1());
+        path = vResult.getRegione() + "/" + vResult.getTappa1() + ".jpg";
+        spaceRef = storageRef.child(path);
+        Glide.with(getContext())
+                .load(spaceRef)
+                .into(image1);
+
+
+        image2 = root.findViewById(R.id.image_tappa2);
+        tappa2 = root.findViewById(R.id.nome2_result);
+        tappa2.setText(vResult.getTappa2());
+        path = vResult.getRegione() + "/" + vResult.getTappa2() + ".jpg";
+        spaceRef = storageRef.child(path);
+        Glide.with(getContext())
+                .load(spaceRef)
+                .into(image2);
+
+
+        image3 = root.findViewById(R.id.image_tappa3);
+        tappa3 = root.findViewById(R.id.nome3_result);
+        tappa3.setText(vResult.getTappa3());
+        path = vResult.getRegione() + "/" + vResult.getTappa3() + ".jpg";
+        spaceRef = storageRef.child(path);
+        Glide.with(getContext())
+                .load(spaceRef)
+                .into(image3);
+
+
+        image4 = root.findViewById(R.id.image_tappa4);
+        tappa4 = root.findViewById(R.id.nome4_result);
+        if(vResult.getTappa4().equalsIgnoreCase("")) {
+            image4.setVisibility(View.INVISIBLE);
+            tappa4.setVisibility(View.INVISIBLE);
+        } else {
+            tappa4.setText(vResult.getTappa4());
+            path = vResult.getRegione() + "/" + vResult.getTappa4() + ".jpg";
+            spaceRef = storageRef.child(path);
+            Glide.with(getContext())
+                    .load(spaceRef)
+                    .into(image4);
+        }
 
         //destinazione = root.findViewById(R.id.destinazione_result);
         //destinazione.setText(vResult.getDestinazione());
