@@ -34,6 +34,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,18 +54,17 @@ public class SearchResult extends Fragment {
     private FragmentSearchResultBinding binding;
 
     private String regione = "test";
-    private Date andata;
-    private Date ritorno;
+    //private Date andata;
+    //private Date ritorno;
     private String mezzo;
 
-    private boolean search_regione = true;
-    private boolean search_mezzo = true;
+    private String durata;
 
-    private ImageButton filtri;
-    private LinearLayout visualizzaFiltri;
+    private boolean search_mezzo = true;
+    private boolean search_durata = true;
+
 
     private ListView listViewResult;
-
 
     private List<Viaggio> mViaggioList = new ArrayList<>();
 
@@ -73,10 +74,12 @@ public class SearchResult extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app");
     DatabaseReference myRef = database.getReference();
 
-    final private String myFormat = "dd/MM/yy"; //In which you need put here
-    final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
+    //final private String myFormat = "dd/MM/yy"; //In which you need put here
+    //final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
     final private String TAG_SR = "SEARCH_RESULT";
+
+    static private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -89,45 +92,11 @@ public class SearchResult extends Fragment {
 
         //searchViewModel.check();
 
-        //decidere se rifare la ricerca con il risultato
-        /*
-        filtri = root.findViewById(R.id.filter);
-        visualizzaFiltri = root.findViewById(R.id.filter_visibility);
-
-        filtri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (visualizzaFiltri.getVisibility() == View.GONE) {
-                    visualizzaFiltri.setVisibility(View.VISIBLE);
-                }
-                else
-                    visualizzaFiltri.setVisibility(View.GONE);
-            }
-        });
-        */
-
         //listViewResult = root.findViewById(R.id.search_list_result); //inutile se uso recyclerView
 
         mRecyclerViewViaggi = root.findViewById(R.id.search_recyclerview);
         mRecyclerViewViaggi.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-/*
-        //ritardo della lettura del DB -> ritardo inserimento dati nel RecyclerView
-        //ideale leggere dati su MainActivity
-        ViaggiRecyclerViewAdapter adapter = new ViaggiRecyclerViewAdapter(mViaggioList,
-                new ViaggiRecyclerViewAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Viaggio viaggio) {
-                        Log.d(TAG_SR, "onItemClick: " + viaggio);
-                    }
-                });
-        mRecyclerViewViaggi.setAdapter(adapter);
-*/
-
-        //dopo l'inserimento dei valori nella lista faccio un confronto con i valori dati dalla ricerca
-
-        //forse inutile -> contenente nell'adapter, vedere meglio
         mRecyclerViewViaggi.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), mRecyclerViewViaggi ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
@@ -141,6 +110,8 @@ public class SearchResult extends Fragment {
                     }
                 })
         );
+
+        context = getContext();
 
         return root;
     }
@@ -164,10 +135,26 @@ public class SearchResult extends Fragment {
             @Override
             public void onChanged(String s) {
                 regione = s;
-                if(regione.equalsIgnoreCase("regione")) search_regione = false;
             }
         });
 
+        searchViewModel.getMezzo().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                mezzo = s;
+                if(mezzo.equalsIgnoreCase("mezzo")) search_mezzo = false;
+            }
+        });
+
+        searchViewModel.getRegione().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                durata = s;
+                if(durata.equalsIgnoreCase("Durata:")) search_durata = false;
+            }
+        });
+
+        /*
         searchViewModel.getAndata().observe(getViewLifecycleOwner(), new Observer<Date>() {
             @Override
             public void onChanged(Date date) {
@@ -181,14 +168,7 @@ public class SearchResult extends Fragment {
                 ritorno = date;
             }
         });
-
-        searchViewModel.getMezzo().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                mezzo = s;
-                if(mezzo.equalsIgnoreCase("mezzo")) search_mezzo = false;
-            }
-        });
+*/
     }
 
     public void readDB() {
@@ -250,7 +230,7 @@ public class SearchResult extends Fragment {
                         //comparison user search form with DB data
 
                         Log.d(TAG_SR, regione);
-
+/*
                         //miss comparison of the Date
                         Date a = new Date();
                         try {
@@ -299,14 +279,28 @@ public class SearchResult extends Fragment {
                         if(search_mezzo && search_regione)
                             if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
                                 mViaggioList.add(v);
-
+*/
+                        //Log.d(TAG_SR, v.getDataPartenza());
+                        //Log.d(TAG_SR, v.getDataRitorno());
+                        //Log.d(TAG_SR, v.getDestinazione());
+                        //Log.d(TAG_SR, v.getIdItinerario());
                         //test v result from DB
-                        Log.d(TAG_SR, v.getDataPartenza());
-                        Log.d(TAG_SR, v.getDataRitorno());
-                        Log.d(TAG_SR, v.getDestinazione());
-                        Log.d(TAG_SR, v.getIdItinerario());
                         Log.d(TAG_SR, v.getMezzo());
                         Log.d(TAG_SR, v.getRegione());
+                        Log.d(TAG_SR, v.getDurata());
+                        Log.d(TAG_SR, v.getNomeViaggio());
+                        Log.d(TAG_SR, v.getTappa1());
+                        Log.d(TAG_SR, v.getTappa2());
+                        Log.d(TAG_SR, v.getTappa3());
+                        Log.d(TAG_SR, v.getTappa4());
+
+                        //ottimizzare filtri
+                        if(!search_mezzo)
+                            if(v.getRegione().equalsIgnoreCase(regione))
+                                mViaggioList.add(v);
+
+                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
+                            mViaggioList.add(v);
 
                         Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
                     }
@@ -328,6 +322,10 @@ public class SearchResult extends Fragment {
 
     public static Viaggio getViaggio() {
         return viaggio;
+    }
+
+    public static Context getContesto() {
+        return context;
     }
 }
 
@@ -375,4 +373,6 @@ class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
 
     @Override
     public void onRequestDisallowInterceptTouchEvent (boolean disallowIntercept){}
+
+
 }
