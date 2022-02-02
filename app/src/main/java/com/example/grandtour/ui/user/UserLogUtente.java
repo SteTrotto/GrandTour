@@ -21,6 +21,7 @@ import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentUserBinding;
 import com.example.grandtour.databinding.FragmentUserLogBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class UserLogUtente extends Fragment {
 
@@ -40,6 +41,8 @@ public class UserLogUtente extends Fragment {
     private final String TAG = "HOME";
 
     final private String TAG_S = "USER";
+
+    private TextView email;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -81,6 +84,10 @@ public class UserLogUtente extends Fragment {
         });
 
 
+        email = root.findViewById(R.id.email);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user =  mAuth.getCurrentUser();
+        email.setText(user.getEmail());
 
 
 

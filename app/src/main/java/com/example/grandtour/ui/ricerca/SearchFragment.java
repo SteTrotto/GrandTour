@@ -117,14 +117,16 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                String regione;
                 if(spinnerReg == 0) {
-                    Toast.makeText(getContext(), "Regione non inserita",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                    //Toast.makeText(getContext(), "Regione non inserita", Toast.LENGTH_SHORT).show();
+                    regione = "Regione";
+                    //return;
+                } else
+                    regione = (String) spinnerRegione.getItemAtPosition(spinnerReg);
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
-                String regione = (String) spinnerRegione.getItemAtPosition(spinnerReg);
+                //String regione = (String) spinnerRegione.getItemAtPosition(spinnerReg);
                 //String dataAndata = String.valueOf(editAndata.getText());
                 //String dataRitorno = String.valueOf(editRitorno.getText());
                 String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);

@@ -1,5 +1,6 @@
 package com.example.grandtour.ui.ricerca;
 
+import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -9,9 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,12 +24,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
+import com.example.grandtour.MainActivity;
 import com.example.grandtour.MyAppGlideModule;
 import com.example.grandtour.R;
 import com.example.grandtour.Viaggio;
+import com.example.grandtour.databinding.ActivityMainBinding;
 import com.example.grandtour.databinding.FragmentViaggioBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -61,6 +68,10 @@ public class SearchViaggioFragment extends Fragment {
     private ImageView image2;
     private ImageView image3;
     private ImageView image4;
+
+    private LinearLayout linearLayout;
+    boolean visibile;
+    private ImageButton hide;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
@@ -137,6 +148,50 @@ public class SearchViaggioFragment extends Fragment {
                     .into(image4);
         }
 
+
+        linearLayout = (LinearLayout) root.findViewById(R.id.linearlayout);
+        LinearLayout.MarginLayoutParams params = (LinearLayout.MarginLayoutParams) linearLayout.getLayoutParams();
+        visibile = true;
+        hide = root.findViewById(R.id.hide);
+        hide.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(visibile) {
+                    params.setMargins(0, 600, 0, 0);
+                    linearLayout.setLayoutParams(params);
+                    MainActivity.setInvi();
+                    image.setVisibility(View.GONE);
+                    visibile = false;
+                }
+                else {
+                    params.setMargins(0, 810, 0, 0);
+                    linearLayout.setLayoutParams(params);
+                    MainActivity.setVis();
+                    image.setVisibility(View.VISIBLE);
+                    visibile = true;
+                }
+            }
+        });
+
+
+        //implementare il nascondere l'immagine del viaggio
+
+
+        /*Log.e(TAG_SV, "" + params.topMargin); //270dp = 810 px
+        //params.setMargins(0, 600, 0, 0);         //quando foto viaggio è GONE
+        Log.e(TAG_SV, "" + params.topMargin);
+        //linearLayout.setLayoutParams(params);
+
+        //MainActivity.setInvi();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                MainActivity.setVis();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+*/
         //destinazione = root.findViewById(R.id.destinazione_result);
         //destinazione.setText(vResult.getDestinazione());
 

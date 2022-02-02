@@ -60,6 +60,7 @@ public class SearchResult extends Fragment {
 
     private String durata;
 
+    private boolean search_regione = true;
     private boolean search_mezzo = true;
     private boolean search_durata = true;
 
@@ -135,6 +136,7 @@ public class SearchResult extends Fragment {
             @Override
             public void onChanged(String s) {
                 regione = s;
+                if(regione.equalsIgnoreCase("Regione")) search_regione = false;
             }
         });
 
@@ -146,7 +148,7 @@ public class SearchResult extends Fragment {
             }
         });
 
-        searchViewModel.getRegione().observe(getViewLifecycleOwner(), new Observer<String>() {
+        searchViewModel.getDurata().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 durata = s;
@@ -294,13 +296,44 @@ public class SearchResult extends Fragment {
                         Log.d(TAG_SR, v.getTappa3());
                         Log.d(TAG_SR, v.getTappa4());
 
-                        //ottimizzare filtri
-                        if(!search_mezzo)
+                        //nessun filtro in ricerca
+                        if(!search_regione && !search_mezzo && !search_durata)
+                                mViaggioList.add(v);
+
+                        //ricerca solo regione
+                        if(search_regione && !search_mezzo && !search_durata)
                             if(v.getRegione().equalsIgnoreCase(regione))
                                 mViaggioList.add(v);
 
-                        if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
-                            mViaggioList.add(v);
+                        //ricerca solo mezzo
+                        if(!search_regione && search_mezzo && !search_durata)
+                            if(v.getMezzo().equalsIgnoreCase(mezzo))
+                                mViaggioList.add(v);
+
+                        //ricerca solo durata
+                        if(!search_regione && !search_mezzo && search_durata)
+                            if(v.getDurata().equalsIgnoreCase(durata))
+                                mViaggioList.add(v);
+
+                        //regione e mezzo
+                        if(search_regione && search_mezzo && !search_durata)
+                            if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
+                                mViaggioList.add(v);
+
+                        //durata e mezzo
+                        if(!search_regione && search_mezzo && search_durata)
+                            if(v.getDurata().equalsIgnoreCase(durata) && v.getMezzo().equalsIgnoreCase(mezzo))
+                                mViaggioList.add(v);
+
+                        //regione e durata
+                        if(search_regione && !search_mezzo && search_durata)
+                            if(v.getRegione().equalsIgnoreCase(regione) && v.getDurata().equalsIgnoreCase(durata))
+                                mViaggioList.add(v);
+
+                        //tutti filtri
+                        if(search_regione && search_mezzo && search_durata)
+                            if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && v.getDurata().equalsIgnoreCase(durata))
+                                mViaggioList.add(v);
 
                         Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
                     }
@@ -315,9 +348,6 @@ public class SearchResult extends Fragment {
                 }
             }
         });
-
-
-
     }
 
     public static Viaggio getViaggio() {

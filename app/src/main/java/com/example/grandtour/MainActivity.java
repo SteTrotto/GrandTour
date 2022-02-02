@@ -1,6 +1,7 @@
 package com.example.grandtour;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,13 +16,16 @@ import com.example.grandtour.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-
+    static BottomNavigationView bottomNavigationView;
+//test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        bottomNavigationView = findViewById(R.id.nav_view);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -34,4 +38,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    public static void setInvi() {
+        bottomNavigationView.setVisibility(View.INVISIBLE);
+    }
+    public static boolean getInvi() {
+        return bottomNavigationView.getVisibility() == View.INVISIBLE;
+    }
+    public static void setVis() {
+        if(bottomNavigationView.getVisibility() == View.INVISIBLE)
+            bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+    public static boolean getVis() {
+        return bottomNavigationView.getVisibility() == View.VISIBLE;
+    }
 }
