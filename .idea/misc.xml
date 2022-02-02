@@ -19,22 +19,18 @@
         <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_ricerca_recensione.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_user.xml" value="0.2" />
-        <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_user_log.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_user_log.xml" value="0.264" />
         <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_user_singup.xml" value="0.264" />
+        <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_visualizza_recensione.xml" value="0.4742468415937804" />
         <entry key="..\:/Users/Gabriele/AndroidStudioProjects/GrandTour/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20729166666666668" />
-        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/baseline_expand_more_18.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/baseline_expand_more_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/baseline_expand_more_36.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/baseline_search_20.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/baseline_search_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/button_states.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.20729166666666668" />
-        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/drawable/outline_account_circle_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_dashboard.xml" value="0.1322463768115942" />
-        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_home.xml" value="0.14628623188405798" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_reviews.xml" value="0.1322463768115942" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_ricerca_visualizza.xml" value="0.1852355072463768" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_search.xml" value="0.264" />
@@ -44,9 +40,8 @@
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_user_log.xml" value="0.18342391304347827" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_viaggio.xml" value="0.2" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/fragment_visualizza_recensione.xml" value="0.16259057971014493" />
-        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/row_result.xml" value="0.1671195652173913" />
+        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/layout/row_result.xml" value="0.16927083333333334" />
         <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19114583333333332" />
-        <entry key="..\:/Users/utente/AndroidStudioProjects/GrandTour/app/src/main/res/menu/menu.xml" value="0.25" />
       </map>
     </option>
   </component>
