@@ -6,6 +6,8 @@ public class Recensione {
     private String rating;
     private String regione;
     private String idViaggio;
+    private String id_Utente;
+    private String nome_Utente;
     //private String utente;
     //private String data;
 
@@ -14,12 +16,14 @@ public class Recensione {
     }
 
     //costruttore pieno
-    public Recensione(String titoloRecensione, String corpoRecensione, String rating, String regione, String idViaggio) {
+    public Recensione(String titoloRecensione, String corpoRecensione, String rating, String regione, String idViaggio, String id_Utente, String nome_utente) {
         this.titoloRecensione = titoloRecensione;
         this.corpoRecensione = corpoRecensione;
         this.rating = rating;
         this.regione = regione;
         this.idViaggio = idViaggio;
+        this.id_Utente = id_Utente;
+        this.nome_Utente = nome_utente;
     }
 
     public String getTitoloRecensione() {
@@ -38,6 +42,7 @@ public class Recensione {
         this.corpoRecensione = corpoRecensione;
     }
 
+    //rating
     public String getRating() {
         return rating;
     }
@@ -46,6 +51,7 @@ public class Recensione {
         this.rating = rating;
     }
 
+    //nome Regione
     public String getRegione() {
         return regione;
     }
@@ -54,6 +60,7 @@ public class Recensione {
         this.regione = regione;
     }
 
+    //id viaggio
     public String getIdViaggio() {
         return idViaggio;
     }
@@ -61,4 +68,15 @@ public class Recensione {
     public void setIdViaggio(String idViaggio) {
         this.idViaggio = idViaggio;
     }
+
+    //id utente
+    public String getId_Utente() {return id_Utente; }
+
+    public void setId_Utente(String id_utente) { this.id_Utente = id_utente; }
+
+    //nome utente
+    public String getNome_Utente(){ return nome_Utente; }
+
+    public void setNome_Utente (String nome_utente) { this.nome_Utente = nome_utente; }
+
 }
