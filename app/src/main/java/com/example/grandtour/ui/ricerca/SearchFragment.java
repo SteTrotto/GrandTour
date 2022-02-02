@@ -72,12 +72,8 @@ public class SearchFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.textSearch;
-        searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        textView.setText("Cerca una Destinazione");
 
         imageButton = root.findViewById(R.id.search_button);
         //editAndata = root.findViewById(R.id.search_data_partenza);
