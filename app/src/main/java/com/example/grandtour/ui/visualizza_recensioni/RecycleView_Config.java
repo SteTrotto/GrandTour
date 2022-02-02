@@ -29,6 +29,7 @@ public class RecycleView_Config {
         private TextView mRating;
         private TextView mRegione;
         private TextView mViaggio;
+        private TextView mNome_Utente;
 
         private String key;
 
@@ -41,6 +42,7 @@ public class RecycleView_Config {
             mRating = (TextView) itemView.findViewById(R.id.rating_txtView);
             mRegione = (TextView) itemView.findViewById(R.id.regione_txtView);
             mViaggio = (TextView) itemView.findViewById(R.id.viaggio_txtView);
+            mNome_Utente = (TextView) itemView.findViewById(R.id.nome_Utente_textView);
 
         }
 
@@ -50,6 +52,7 @@ public class RecycleView_Config {
             mRating.setText(recensione.getRating());
             mRegione.setText(recensione.getRegione());
             mViaggio.setText(recensione.getIdViaggio());
+            mNome_Utente.setText(recensione.getNome_Utente());
             this.key=key;
         }
 

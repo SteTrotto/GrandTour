@@ -1,6 +1,7 @@
 package com.example.grandtour.ui.ricerca_recensione;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,8 +30,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.grandtour.R;
 import com.example.grandtour.Recensione;
 import com.example.grandtour.databinding.FragmentRicercaRecensioneBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
@@ -239,45 +242,60 @@ import java.util.HashMap;
           invia.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View view) {
+                                           //login
+                                           FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                           if (user != null) {
+
+                                               //info utente
+                                               //nome
+                                               String name = user.getDisplayName();
+                                               //id
+                                               String uid = user.getUid();
+
+                                               //prendo il campo Regione
+                                               String texta = a.getSelectedItem().toString();
+
+                                               //prendo il campo Viaggio
+                                               String textb = b.getSelectedItem().toString();
+
+                                               //prendo il capo Rating
+                                               float ratingValue =  rate.getRating();
+                                               String SRatingValue=String.valueOf(ratingValue);
+                                               Log.d("Prova rating", SRatingValue);
+
+                                               //prendo il campo Titolo
+                                               String STitolo=titolo.getText().toString().trim();
+                                               Log.d("Prova titolo", STitolo);
+
+                                               //prendo il campo Corpo
+                                               String SCorpo=corpo.getText().toString().trim();
+                                               Log.d("Prova corpo", SCorpo);
+
+                                               HashMap<String, String> val=new HashMap<String, String>();
+                                               val.put("id_Utente", uid);
+                                               val.put("nome_Utente", name);
+                                               val.put("regione",texta);
+                                               val.put("idViaggio", textb);
+                                               val.put("rating", SRatingValue);
+                                               val.put("titoloRecensione", STitolo);
+                                               val.put("corpoRecensione", SCorpo);
 
 
-                                           //prendo il campo Regione
-                                           String texta = a.getSelectedItem().toString();
-                                           //prendo il campo Viaggio
-                                           String textb = b.getSelectedItem().toString();
-                                           //prendo il capo Rating
-                                           float ratingValue =  rate.getRating();
-                                           String SRatingValue=String.valueOf(ratingValue);
-                                           Log.d("Prova rating", SRatingValue);
-                                           //prendo il campo Titolo
-                                           String STitolo=titolo.getText().toString().trim();
-                                           Log.d("Prova titolo", STitolo);
-                                           //prendo il campo Corpo
-                                           String SCorpo=corpo.getText().toString().trim();
-                                           Log.d("Prova corpo", SCorpo);
+                                               //rec =new Recensione(texta,textb, ratingValue, STitolo, SCorpo);
+                                               myRef.child("Recensioni").push().setValue(val);
 
-                                           HashMap<String, String> val=new HashMap<String, String>();
-                                           val.put("regione",texta);
-                                           val.put("idViaggio", textb);
-                                           val.put("rating", SRatingValue);
-                                           val.put("titoloRecensione", STitolo);
-                                           val.put("corpoRecensione", SCorpo);
 
-                                           //rec =new Recensione(texta,textb, ratingValue, STitolo, SCorpo);
-                                           myRef.child("Recensioni").push().setValue(val).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                               @Override
-                                               public void onComplete(@NonNull Task<Void> task) {
-                                                   if(task.isSuccessful())//if data is successfully store
-                                                   {
-                                                       Toast.makeText(getActivity(), "Stored...", Toast.LENGTH_LONG).show();
-                                                   }
-                                                   else
-                                                   {
-                                                       Toast.makeText(getActivity(), "Error...", Toast.LENGTH_LONG).show();
 
-                                                   }
-                                               }
-                                           });
+
+
+                                           }
+                                           else
+                                           {
+                                               Log.d("Log in", "nologgin");
+
+                                           }
+
+
 
                                        }
                                    });

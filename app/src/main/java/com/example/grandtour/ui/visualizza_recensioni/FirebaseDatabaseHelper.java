@@ -1,7 +1,10 @@
 package com.example.grandtour.ui.visualizza_recensioni;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
+import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,9 +46,16 @@ public class FirebaseDatabaseHelper {
                 List<String> keys = new ArrayList<>();//serve per conservare tutte le chiavi delle recensioni
                 for (DataSnapshot keyNode : snapshot.getChildren()) //conterrà chiave e valore di uno specifico nodo
                 {
-                    keys.add(keyNode.getKey());//prendo la chiave del nodo e la salvo nella lista di tutte le chiavi
+
                     Recensione recensione=keyNode.getValue(Recensione.class); //creo un oggetto recensine con i campi presi dal database
-                    recensioni.add(recensione);
+
+                    if(recensione.getIdViaggio().equals(Ricerca_VisualizzaFragment.getViaggio()) &&
+                        recensione.getRegione().equals(Ricerca_VisualizzaFragment.getRegione()))
+                    {
+                        keys.add(keyNode.getKey());//prendo la chiave del nodo e la salvo nella lista di tutte le chiavi
+                        recensioni.add(recensione);
+                    }
+
                 }
                 dataStatus.DataIsLoaded(recensioni, keys);
 
