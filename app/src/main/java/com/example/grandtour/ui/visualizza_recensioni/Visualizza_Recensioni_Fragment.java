@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grandtour.R;
@@ -29,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +57,11 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
 
 
         mRecyclerView= (RecyclerView) v.findViewById(R.id.recycleview_recensioni);
+        SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
+        mRecyclerView.addItemDecoration(itemDecorator);
+        //mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
+
+
         new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Recensione> recensioni, List<String> keys) {

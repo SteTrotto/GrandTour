@@ -20,7 +20,7 @@ public class FirebaseDatabaseHelper {
   //  FirebaseDatabase database= FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app/");
     private DatabaseReference myRef;
 
-    private List<Recensione> recensioni=new ArrayList<>();
+    private List<Recensione> recensioni = new ArrayList<>();
 
     public interface DataStatus{
         void DataIsLoaded(List<Recensione> recensioni, List<String> keys);

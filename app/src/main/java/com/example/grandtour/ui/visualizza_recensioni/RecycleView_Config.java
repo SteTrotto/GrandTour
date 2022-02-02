@@ -3,6 +3,7 @@ package com.example.grandtour.ui.visualizza_recensioni;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,13 +24,13 @@ public class RecycleView_Config {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(mRecensioniAdapter);
     }
+
     class RecensioniItemView extends RecyclerView.ViewHolder {
 
         private TextView mTitle;
-        private TextView mRating;
-        private TextView mRegione;
-        private TextView mViaggio;
+        private RatingBar mRating;
         private TextView mNome_Utente;
+        private TextView mCorpo_Recensione;
 
         private String key;
 
@@ -39,9 +40,8 @@ public class RecycleView_Config {
                     inflate(R.layout.recensioni_lista_item, parent, false));
 
             mTitle =(TextView) itemView.findViewById(R.id.titolo_txtView);
-            mRating = (TextView) itemView.findViewById(R.id.rating_txtView);
-            mRegione = (TextView) itemView.findViewById(R.id.regione_txtView);
-            mViaggio = (TextView) itemView.findViewById(R.id.viaggio_txtView);
+            mRating = (RatingBar) itemView.findViewById(R.id.rating_ratingBar);
+            mCorpo_Recensione = (TextView) itemView.findViewById(R.id.corpo_Recensione);
             mNome_Utente = (TextView) itemView.findViewById(R.id.nome_Utente_textView);
 
         }
@@ -49,9 +49,8 @@ public class RecycleView_Config {
         public void bind (Recensione recensione, String key)
         {
             mTitle.setText(recensione.getTitoloRecensione());
-            mRating.setText(recensione.getRating());
-            mRegione.setText(recensione.getRegione());
-            mViaggio.setText(recensione.getIdViaggio());
+            mRating.setRating(Float.parseFloat(recensione.getRating()));
+            mCorpo_Recensione.setText(recensione.getCorpoRecensione());
             mNome_Utente.setText(recensione.getNome_Utente());
             this.key=key;
         }
