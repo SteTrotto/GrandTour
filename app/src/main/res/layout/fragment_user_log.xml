@@ -165,9 +165,18 @@
             android:layout_marginTop="5dp"
             android:visibility="gone"
             android:text="test2">
-
         </TextView>
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#66B2FF"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:visibility="gone"
+            />
 
     </LinearLayout>
 
