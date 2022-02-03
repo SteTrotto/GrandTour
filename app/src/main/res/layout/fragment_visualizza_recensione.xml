@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.visualizza_recensioni.Visualizza_Recensioni_Fragment">
+    android:layout_height="wrap_content"
+    android:paddingBottom="57dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleview_recensioni"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding = "5dp"
-        android:orientation="vertical"
-        android:background="#9370db"
-        android:layout_marginBottom="100dp"
-        />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        tools:context=".ui.visualizza_recensioni.Visualizza_Recensioni_Fragment">
 
-
-    <!--
-        <TextView
-            android:id="@+id/textView2"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleview_recensioni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
-                -->
+            android:background="#9370db"
+            android:orientation="vertical"
+            android:padding="5dp"
+             />
+
+
     </LinearLayout>
+</ScrollView>

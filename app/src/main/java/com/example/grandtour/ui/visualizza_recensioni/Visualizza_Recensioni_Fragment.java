@@ -56,10 +56,11 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_visualizza_recensione, container, false);
 
 
+
         mRecyclerView= (RecyclerView) v.findViewById(R.id.recycleview_recensioni);
+        //gioco di spazi tra le recensioni
         SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
         mRecyclerView.addItemDecoration(itemDecorator);
-        //mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext()).build());
 
 
         new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
@@ -113,28 +114,3 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
         });
         */
 
-
-/*
-        mRecyclerView= (RecyclerView) v.findViewById(R.id.recycleview_recensioni);
-        new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
-            @Override
-            public void DataIsLoaded(List<Recensione> recensioni, List<String> keys) {
-                new RecycleView_Config().setConfig(mRecyclerView, getActivity(), recensioni, keys );
-            }
-
-            @Override
-            public void DataIsInserted() {
-
-            }
-
-            @Override
-            public void DataIsUpdated() {
-
-            }
-
-            @Override
-            public void DataIsDeleted() {
-
-            }
-        });
-*/
