@@ -15,8 +15,9 @@ import com.example.grandtour.R;
 import java.util.List;
 
 public class RecycleView_Config {
-    private Context mContext;
+    private static Context mContext;
     private RecensioniAdapter mRecensioniAdapter;
+
 
     public void setConfig (RecyclerView recyclerView, Context context, List<Recensione> recensioni, List<String> keys ){
         mContext =context;
@@ -25,7 +26,7 @@ public class RecycleView_Config {
         recyclerView.setAdapter(mRecensioniAdapter);
     }
 
-    class RecensioniItemView extends RecyclerView.ViewHolder {
+    static class RecensioniItemView extends RecyclerView.ViewHolder {
 
         private TextView mTitle;
         private RatingBar mRating;
@@ -57,7 +58,7 @@ public class RecycleView_Config {
         }
 
      }
-    class RecensioniAdapter extends RecyclerView.Adapter<RecensioniItemView>{
+    public static class RecensioniAdapter extends RecyclerView.Adapter<RecensioniItemView>{
         private List<Recensione> mRecensineList;
         private List<String> mKeys;
 

@@ -2,6 +2,7 @@ package com.example.grandtour.ui.user;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grandtour.R;
+import com.example.grandtour.Viaggio;
+import com.example.grandtour.adapter.ViaggiRecyclerViewAdapter;
 import com.example.grandtour.databinding.FragmentUserLogBinding;
+import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
+import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
 import com.example.grandtour.ui.visualizza_recensioni.FirebaseDatabaseHelper;
 import com.example.grandtour.ui.visualizza_recensioni.Recensione;
+import com.example.grandtour.ui.visualizza_recensioni.RecycleView_Config;
+import com.example.grandtour.ui.visualizza_recensioni.SpacingitemDecorator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,43 +51,19 @@ public class UserLogUtente extends Fragment {
         void DataIsDeleted();
     }
 
+
+
     public UserLogUtente() {
         //colleghamo il database
         FirebaseDatabase database= FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app/");
         myRef=database.getReference().child("Recensioni");
     }
 
-    public void readRecensioni(final FirebaseDatabaseHelper.DataStatus dataStatus){
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                recensioni.clear(); //pulisco le recensioni da qualsiasi dato
-                List<String> keys = new ArrayList<>();//serve per conservare tutte le chiavi delle recensioni
-                for (DataSnapshot keyNode : snapshot.getChildren()) //conterrà chiave e valore di uno specifico nodo
-                {
-                    keys.add(keyNode.getKey());//prendo la chiave del nodo e la salvo nella lista di tutte le chiavi
-                    Recensione recensione=keyNode.getValue(Recensione.class); //creo un oggetto recensine con i campi presi dal database
-                    recensioni.add(recensione);
-                }
-                dataStatus.DataIsLoaded(recensioni, keys);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
-
-            }
-        });
-
-    }
-
 
     private UserViewModel UserViewModel;
     private FragmentUserLogBinding binding;
 
+    private RecycleView_Config.RecensioniAdapter adapter;
     private TextView profilo;
     private TextView preferiti;
     private TextView contatti;
@@ -87,8 +71,11 @@ public class UserLogUtente extends Fragment {
     private ImageButton button_preferiti;
     private ImageButton button_contatti;
 
+    private RecyclerView mRecyclerView;
+
 
     private FirebaseAuth mAuth;
+            FirebaseUser user;
     private final String TAG = "HOME";
 
     final private String TAG_S = "USER";
@@ -127,10 +114,9 @@ public class UserLogUtente extends Fragment {
         nome_cognome = root.findViewById(R.id.nome_cognome);
         Data = root.findViewById(R.id.DataNascita);
 
-
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user =  mAuth.getCurrentUser();
 
+         user =  mAuth.getCurrentUser();
         email.setText(user.getEmail());
         nome_cognome.setText(user.getDisplayName());
 
@@ -139,6 +125,14 @@ public class UserLogUtente extends Fragment {
                 //+"Data di nascita: "+ Data.getText());
         contatti.setText("Email: GrandTour@gmail.com"+"\n"
                 +"Numero di Telefono: 0002 98 54");
+
+        //lista di recensioni
+        mRecyclerView= (RecyclerView) root.findViewById(R.id.lista);
+        //gioco di spazi tra le recensioni
+        SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
+//        mRecyclerView.addItemDecoration(itemDecorator);
+
+        readRecensioni();
 
         button_profilo.setOnClickListener(new View.OnClickListener()
         {
@@ -159,9 +153,12 @@ public class UserLogUtente extends Fragment {
             public void onClick(View v) {
                 if (preferiti.getVisibility() == View.GONE) {
                     preferiti.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+
                 }
                 else
-                    preferiti.setVisibility(View.GONE);
+                {    preferiti.setVisibility(View.GONE);
+                mRecyclerView.setVisibility(View.GONE);}
             }
         });
 
@@ -187,4 +184,63 @@ public class UserLogUtente extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    public void readRecensioni(){
+/*
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                recensioni.clear(); //pulisco le recensioni da qualsiasi dato
+                List<String> keys = new ArrayList<>();//serve per conservare tutte le chiavi delle recensioni
+                for (DataSnapshot keyNode : snapshot.getChildren()) //conterrà chiave e valore di uno specifico nodo
+                {
+
+                    Recensione recensione = keyNode.getValue(Recensione.class); //creo un oggetto recensine con i campi presi dal database
+
+                    if (recensione.getId_Utente().equals(user.getUid())) {
+                        keys.add(keyNode.getKey());//prendo la chiave del nodo e la salvo nella lista di tutte le chiavi
+                        recensioni.add(recensione);
+                        Log.e("test 1", recensione.getId_Utente());
+                    }
+
+                }
+                //dataStatus.DataIsLoaded(recensioni, keys);
+                adapter = new RecycleView_Config.RecensioniAdapter(recensioni, keys);
+
+                adapter.onBindViewHolder();
+                adapter.onCreateViewHolder();
+
+                mRecyclerView.setAdapter(adapter);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+
+            }
+
+        });**/
+        new FirebaseDatabaseHelper().readRecensioniUtenete(new FirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Recensione> recensioni, List<String> keys) {
+                new RecycleView_Config().setConfig(mRecyclerView, getActivity(), recensioni, keys );
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+}
 }
