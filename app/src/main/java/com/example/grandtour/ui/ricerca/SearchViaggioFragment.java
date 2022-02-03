@@ -70,7 +70,7 @@ public class SearchViaggioFragment extends Fragment {
     private ImageView image4;
 
     private LinearLayout linearLayout;
-    boolean visibile;
+    private boolean visibile;
     private ImageButton hide;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -159,39 +159,20 @@ public class SearchViaggioFragment extends Fragment {
                 if(visibile) {
                     params.setMargins(0, 600, 0, 0);
                     linearLayout.setLayoutParams(params);
-                    MainActivity.setInvi();
+                    //MainActivity.setInvi();
                     image.setVisibility(View.GONE);
                     visibile = false;
                 }
                 else {
-                    params.setMargins(0, 810, 0, 0);
+                    params.setMargins(0, 990, 0, 0);//270dp 0 810px
                     linearLayout.setLayoutParams(params);
-                    MainActivity.setVis();
+                    //MainActivity.setVis();
                     image.setVisibility(View.VISIBLE);
                     visibile = true;
                 }
             }
         });
 
-
-        //implementare il nascondere l'immagine del viaggio
-
-
-        /*Log.e(TAG_SV, "" + params.topMargin); //270dp = 810 px
-        //params.setMargins(0, 600, 0, 0);         //quando foto viaggio è GONE
-        Log.e(TAG_SV, "" + params.topMargin);
-        //linearLayout.setLayoutParams(params);
-
-        //MainActivity.setInvi();
-
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                MainActivity.setVis();
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
-*/
         //destinazione = root.findViewById(R.id.destinazione_result);
         //destinazione.setText(vResult.getDestinazione());
 
