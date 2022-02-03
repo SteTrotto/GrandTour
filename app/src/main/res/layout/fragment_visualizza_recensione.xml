@@ -9,17 +9,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
+        android:orientation="vertical"
         tools:context=".ui.visualizza_recensioni.Visualizza_Recensioni_Fragment">
+
+        <TextView
+            android:id="@+id/titolo_recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TextView"
+            android:textSize="20dp"
+            android:paddingBottom="10dp"
+            android:background="@color/purple_500"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:padding="5dp"
+
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview_recensioni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#9370db"
+            android:background="@color/purple_500"
             android:orientation="vertical"
             android:padding="5dp"
              />
-
+<!-- #9370db -->
 
     </LinearLayout>
 </ScrollView>

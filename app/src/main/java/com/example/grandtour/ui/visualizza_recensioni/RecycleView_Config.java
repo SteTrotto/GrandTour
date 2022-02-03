@@ -44,6 +44,7 @@ public class RecycleView_Config {
             mCorpo_Recensione = (TextView) itemView.findViewById(R.id.corpo_Recensione);
             mNome_Utente = (TextView) itemView.findViewById(R.id.nome_Utente_textView);
 
+
         }
 
         public void bind (Recensione recensione, String key)

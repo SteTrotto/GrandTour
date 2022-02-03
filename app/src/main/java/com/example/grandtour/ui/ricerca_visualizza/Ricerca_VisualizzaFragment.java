@@ -261,6 +261,7 @@ public class Ricerca_VisualizzaFragment extends Fragment {
     {
         return strRegione;
     }
+
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);

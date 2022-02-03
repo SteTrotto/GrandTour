@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,13 +57,22 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
         //riempiamo lo spinner
         View v = inflater.inflate(R.layout.fragment_visualizza_recensione, container, false);
 
+        //assegno il titolo alla pagina
+        TextView mtitolo_RecycleView;
+        mtitolo_RecycleView = (TextView) v.findViewById(R.id.titolo_recycleView);
+        String str = Ricerca_VisualizzaFragment.getRegione();
+        str = str + " - " +Ricerca_VisualizzaFragment.getViaggio();
+        mtitolo_RecycleView.setText(str);
 
 
+        //lista di recensioni
         mRecyclerView= (RecyclerView) v.findViewById(R.id.recycleview_recensioni);
         //gioco di spazi tra le recensioni
         SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
         mRecyclerView.addItemDecoration(itemDecorator);
 
+        //cambiare nome di bottom nav menu
+        //View v = inflater.inflate(R.layout., container, false);
 
         new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
             @Override
