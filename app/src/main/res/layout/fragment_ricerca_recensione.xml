@@ -5,11 +5,12 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.ricerca_recensione.Ricerca_RecensioneFragment"
-        android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.ricerca_recensione.Ricerca_RecensioneFragment"
+    android:orientation="vertical">
+
 
     <Spinner
         android:id="@+id/spinner_search_regione"
@@ -17,6 +18,8 @@
         android:layout_height="61dp"
         android:layout_gravity="center"
         android:entries="@array/regione"
+        style="@style/spinner_style"
+        android:popupBackground="@drawable/popupspinner_style"
         android:spinnerMode="dropdown" />
 
     <Spinner
@@ -24,17 +27,20 @@
         android:layout_width="210dp"
         android:layout_height="61dp"
         android:layout_gravity="center"
+        style="@style/spinner_style"
+        android:popupBackground="@drawable/popupspinner_style"
         android:spinnerMode="dropdown"
-        android:entries="@array/Iniziale"/>
+        android:entries="@array/Iniziale" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="236dp"
         android:layout_height="53dp"
         android:numStars="5"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
-        android:layout_gravity="center" />
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        android:layout_gravity="center"
+        android:progressTint="#FFD700"/>
 
     <TextView
             android:id="@+id/titolo_recensione"
@@ -45,8 +51,9 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Titolo della recensione"
-            android:textSize="15dp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="17dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"/>
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -58,8 +65,8 @@
         android:layout_gravity="center"
         android:inputType="text"
         android:hint = "Inserisci il titolo"
-        android:textSize="15dp"
-        android:paddingLeft="5dp" />
+        android:textSize="17dp"
+        android:paddingLeft="10dp" />
 
     <TextView
         android:id="@+id/commento_recensione"
@@ -69,7 +76,8 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:text="Scrivi una recensione"
-        android:textSize="15dp" />
+        android:textSize="17dp"
+        android:paddingLeft="10dp"/>
 
     <EditText
         android:id="@+id/editTextCommento"
@@ -81,8 +89,9 @@
         android:layout_gravity="center"
         android:inputType="text"
         android:hint = "Raccontaci la tua esperienza"
-        android:textSize="15dp"
-        android:paddingLeft="5dp" />
+        android:textSize="17dp"
+        android:paddingLeft="10dp"
+        />
 
     <Button
         android:id="@+id/button2"
