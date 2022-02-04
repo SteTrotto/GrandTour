@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="TextView"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:paddingBottom="10dp"
             android:background="#66B2FF"
             android:textColor="#FFFFFF"
@@ -35,7 +35,7 @@
             android:orientation="vertical"
             android:padding="5dp"
              />
-<!-- #9370db -->
+<!-- #9370db  66B2FF -->
 
     </LinearLayout>
 </ScrollView>
