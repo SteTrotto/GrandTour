@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ricerca.SearchResult"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/azzurro">
 
     <TextView
         android:text="Risultati ricerca"
@@ -21,62 +22,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/search_list_result"
-        android:layout_alignParentTop="true"
-        tools:listitem="@layout/row_result"/>
--->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recyclerview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
-
-    <!--
-
-    decidere come visualizzare la listview dei risultati
-    di seguito l'idea della cardView
-
-    <androidx.cardview.widget.CardView
-        android:layout_marginTop="10dp"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        card_view:cardCornerRadius="4dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center|bottom"
-            android:src="@mipmap/ic_launcher_round"
-            android:layout_marginBottom="40dp"
-            android:id="@+id/img"
-            android:contentDescription="@string/app_name"
-            />
-
-        <TextView
-            android:id="@+id/info_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_margin="20dp"
-            android:text="Milano"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:text="24/12/2021"/>
-
-
-    </androidx.cardview.widget.CardView>
--->
 
 </LinearLayout>

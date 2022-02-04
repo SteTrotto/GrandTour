@@ -54,8 +54,6 @@ public class SearchResult extends Fragment {
     private FragmentSearchResultBinding binding;
 
     private String regione = "test";
-    //private Date andata;
-    //private Date ritorno;
     private String mezzo;
 
     private String durata;
@@ -64,19 +62,13 @@ public class SearchResult extends Fragment {
     private boolean search_mezzo = true;
     private boolean search_durata = true;
 
-
-    private ListView listViewResult;
-
     private List<Viaggio> mViaggioList = new ArrayList<>();
 
-    RecyclerView mRecyclerViewViaggi;
-    ViaggiRecyclerViewAdapter adapter;
+    private RecyclerView mRecyclerViewViaggi;
+    private ViaggiRecyclerViewAdapter adapter;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app");
     DatabaseReference myRef = database.getReference();
-
-    //final private String myFormat = "dd/MM/yy"; //In which you need put here
-    //final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
     final private String TAG_SR = "SEARCH_RESULT";
 
@@ -91,18 +83,13 @@ public class SearchResult extends Fragment {
         binding = FragmentSearchResultBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //searchViewModel.check();
-
-        //listViewResult = root.findViewById(R.id.search_list_result); //inutile se uso recyclerView
-
         mRecyclerViewViaggi = root.findViewById(R.id.search_recyclerview);
         mRecyclerViewViaggi.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mRecyclerViewViaggi.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), mRecyclerViewViaggi ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        List<Viaggio> lv = adapter.getViaggioList();
-                        viaggio = lv.get(position);
+                        viaggio = adapter.getViaggioList().get(position);
                         openViaggio();
                     }
 
@@ -131,7 +118,6 @@ public class SearchResult extends Fragment {
     }
 
     public void readViewModel() {
-        //super.onStart();
         searchViewModel.getRegione().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -155,62 +141,9 @@ public class SearchResult extends Fragment {
                 if(durata.equalsIgnoreCase("Durata:")) search_durata = false;
             }
         });
-
-        /*
-        searchViewModel.getAndata().observe(getViewLifecycleOwner(), new Observer<Date>() {
-            @Override
-            public void onChanged(Date date) {
-                andata = date;
-            }
-        });
-
-        searchViewModel.getRitorno().observe(getViewLifecycleOwner(), new Observer<Date>() {
-            @Override
-            public void onChanged(Date date) {
-                ritorno = date;
-            }
-        });
-*/
     }
 
     public void readDB() {
-/*
-        Log.d(TAG_SR, "-----  ----- ");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                for (DataSnapshot postSnapshot: dataSnapshot.child("Viaggi").getChildren()) {
-
-                    String idViaggio = postSnapshot.getKey();
-                    Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
-
-                    Viaggio v = postSnapshot.getValue(Viaggio.class);
-
-                    //add v in a list/vector/listView/...
-
-                    mViaggioList.add(v);
-
-                    ///test v result from DB
-                    Log.d(TAG_SR, v.getDataPartenza());
-                    Log.d(TAG_SR, v.getDataRitorno());
-                    Log.d(TAG_SR, v.getDestinazione());
-                    Log.d(TAG_SR, v.getIdItinerario());
-                    Log.d(TAG_SR, v.getMezzo());
-                    Log.d(TAG_SR, v.getRegione());
-
-                    Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("nome", "Failed to read value.", error.toException());
-            }
-        });
-*/
 
         myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -228,64 +161,8 @@ public class SearchResult extends Fragment {
 
                         Viaggio v = postSnapshot.getValue(Viaggio.class);
 
-                        //add v in a list/vector/listView/...
-                        //comparison user search form with DB data
-
                         Log.d(TAG_SR, regione);
-/*
-                        //miss comparison of the Date
-                        Date a = new Date();
-                        try {
-                            a = sdf.parse(v.getDataPartenza());
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        Date r = new Date();
-                        try {
-                            r = sdf.parse(v.getDataRitorno());
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
 
-
-                        //controlli per la ricerca senza filtri
-                        //solo su regione e mezzo
-
-
-                        boolean compareDate = true;
-                        if(a.before(andata) && !a.equals(andata)) {  //se A vigggio prima A ricerca
-                            compareDate = false;
-                            Log.d(TAG_SR, "ANDATA: viaggio prima ricerca");
-                            Log.e(TAG_SR, a.toString());
-                            Log.e(TAG_SR, andata.toString());
-                        }
-                        if(r.after(ritorno) && !r.equals(ritorno)) { //se R viaggio dopo R ricerca
-                            compareDate = false;
-                            Log.d(TAG_SR, "RITORNO: viaggio dopo ricerca");
-                            Log.e(TAG_SR, r.toString());
-                            Log.e(TAG_SR, ritorno.toString());
-                        }
-
-                        if(!search_regione && !search_mezzo)
-                            if(compareDate)
-                                mViaggioList.add(v);
-
-                        if(!search_regione)
-                            if(v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
-                                mViaggioList.add(v);
-
-                        if(!search_mezzo)
-                            if(v.getRegione().equalsIgnoreCase(regione) && compareDate)
-                                mViaggioList.add(v);
-
-                        if(search_mezzo && search_regione)
-                            if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && compareDate)
-                                mViaggioList.add(v);
-*/
-                        //Log.d(TAG_SR, v.getDataPartenza());
-                        //Log.d(TAG_SR, v.getDataRitorno());
-                        //Log.d(TAG_SR, v.getDestinazione());
-                        //Log.d(TAG_SR, v.getIdItinerario());
                         //test v result from DB
                         Log.d(TAG_SR, v.getMezzo());
                         Log.d(TAG_SR, v.getRegione());
