@@ -1,12 +1,22 @@
 <resources>
-    <string name="app_name">GrandTour</string>
-    <string name="title_home">Home</string>
-    <string name="title_search">Ricerca</string>
-    <string name="title_reviews">Recensioni</string>
-    <string name="title_user">Utente</string>
-    <string name="title_ricerca2">Ricerca_recensione</string>
-    <string name="action_search">Action_Serach</string>
-    <string name="action_settings">Action_Setting</string>
+    <string name = "scriviRecensioneButton">Scrivi una recensione</string>
+    <string name = "visualizzaRecensioneButton">Visualizza recensioni</string>
+    <string name = "TextView">TextView</string>
+    <string name = "TitoloRecensione">Titolo della recensione</string>
+    <string name = "hinitTitoloRecensione">Inserisci il titolo</string>
+    <string name = "CommentoRecensione">Scrivi una recensione</string>
+    <string name = "hinitCommentoRecensione">Raccontaci la tua esperienza</string>
+    <string name = "inviaButton">Invia</string>
+    <string name = "cercaButton">Cerca</string>
+
+    <string name = "app_name">GrandTour</string>
+    <string name = "title_home">Home</string>
+    <string name = "title_search">Ricerca</string>
+    <string name = "title_reviews">Recensioni</string>
+    <string name = "title_user">Utente</string>
+    <string name = "title_ricerca2">Ricerca_recensione</string>
+    <string name = "action_search">Action_Serach</string>
+    <string name = "action_settings">Action_Setting</string>
 
 <string-array name="durata">
     <item>Durata:</item>
