@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,7 +44,8 @@ public class SearchFragment extends Fragment {
     private static SearchViewModel searchViewModel;
     private FragmentSearchBinding binding;
 
-    private ImageButton imageButton;
+    private Button imageButton;//private ImageButton imageButton;
+
     //private EditText editAndata;
     //private EditText editRitorno;
     private Spinner spinnerMezzo;
@@ -75,7 +77,7 @@ public class SearchFragment extends Fragment {
 
         textView.setText("Cerca una Destinazione");
 
-        imageButton = root.findViewById(R.id.search_button);
+        imageButton = (Button) root.findViewById(R.id.search_button);
         //editAndata = root.findViewById(R.id.search_data_partenza);
         //editRitorno = root.findViewById(R.id.search_data_ritorno);
         spinnerRegione = root.findViewById(R.id.spinner_regione);

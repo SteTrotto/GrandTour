@@ -21,6 +21,8 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="0dp"
         android:textSize="20sp"
+        android:textStyle = "normal"
+        android:textColor = "@color/black"
         android:text="Tour" />
 
         <ImageButton
@@ -69,16 +71,18 @@
         android:id="@+id/mezzo_result"
         android:layout_gravity="bottom|center_horizontal"
         android:text="Mezzo"
+        android:textStyle = "normal"
+        android:textColor = "@color/black"
         android:layout_margin="5dp"/>
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="5dp"
-        android:background="@color/black"/>
+        android:background="@color/azzurro"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="0dp">
 
@@ -88,7 +92,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="120dp">
 
             <ImageView
                 android:layout_marginTop="10dp"
@@ -104,6 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginTop="10dp"
+                android:textStyle = "normal"
+                android:textColor = "@color/black"
                 android:text="Tour"/>
 
 
@@ -121,6 +128,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="10dp"
+                android:textStyle = "normal"
+                android:textColor = "@color/black"
                 android:text="Tour"/>
 
             <ImageView
@@ -137,6 +146,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="10dp"
+                android:textStyle = "normal"
+                android:textColor = "@color/black"
                 android:text="Tour"/>
 
             <ImageView
@@ -154,6 +165,8 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="10dp"
                 android:layout_marginBottom="0dp"
+                android:textStyle = "normal"
+                android:textColor = "@color/black"
                 android:text="Tour"/>
 
         </LinearLayout>

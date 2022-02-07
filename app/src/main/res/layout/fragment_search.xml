@@ -24,18 +24,20 @@
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:textStyle = "normal"
+            android:textColor = "@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        <!--
         <ImageButton
-            android:id="@+id/search_button"
+            android:id="@+id/search_buttonn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/baseline_search_24" />
-
+        -->
     </LinearLayout>
 
     <Spinner
@@ -44,7 +46,9 @@
         android:layout_gravity="center"
         android:id="@+id/spinner_regione"
         android:entries="@array/regione"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"/>
 
     <Spinner
         android:layout_width="210dp"
@@ -52,7 +56,9 @@
         android:layout_gravity="center"
         android:id="@+id/spinner_durata"
         android:entries="@array/durata"
-        android:spinnerMode="dialog"/>
+        android:spinnerMode="dropdown"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"/>
 <!--
     <EditText
         android:id="@+id/search_data_partenza"
@@ -84,5 +90,17 @@
         android:layout_gravity="center"
         android:id="@+id/spinner_mezzo"
         android:entries="@array/mezzo"
-        android:spinnerMode="dialog"/>
+        android:spinnerMode="dropdown"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"/>
+
+    <Button
+        android:id = "@+id/search_button"
+        android:layout_width = "190dp"
+        android:layout_height = "55dp"
+        android:layout_gravity = "center"
+        android:layout_marginTop = "20dp"
+        android:layout_marginBottom = "100dp"
+        android:background = "@drawable/button_states"
+        android:text = "@string/cercaButton" />
 </LinearLayout>

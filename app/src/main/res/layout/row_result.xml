@@ -54,6 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_margin="20dp"
+            android:textStyle = "normal"
+            android:textColor = "@color/black"
             android:text="Milano"/>
 
     </LinearLayout>
@@ -62,11 +64,11 @@
         class="android.view.View"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#000"/>
+        android:background="@color/azzurro"/>
     <view
         class="android.view.View"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#333"/>
+        android:background="@color/azzurro"/>
 
 </LinearLayout>
