@@ -35,6 +35,9 @@ import java.util.concurrent.Executor;
 
 public class UserFragment extends Fragment {
 
+
+    private Button Nav_user;
+
     private UserViewModel UserViewModel;
     private FragmentUserBinding binding;
     private EditText Edit_Mail_User;
@@ -42,9 +45,13 @@ public class UserFragment extends Fragment {
     private Button Button_User;
     private Button Button_Sing_up;
     private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth2;
     private final String TAG = "Accedi";
 
     final private String TAG_S = "USER";
+
+    FirebaseUser user;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -63,12 +70,17 @@ public class UserFragment extends Fragment {
             }
         });
 
+        mAuth2 = FirebaseAuth.getInstance();
+        user =  mAuth2.getCurrentUser();
+
         //associa i valori alle variabili
         Edit_Mail_User = root.findViewById(R.id.login_mail);
         Edit_Pwd_User = root.findViewById(R.id.login_password);
         Button_User = root.findViewById(R.id.login);
         Button_Sing_up = root.findViewById(R.id.SingUp);
         mAuth = FirebaseAuth.getInstance();
+        Nav_user = root.findViewById(R.id.navigation_user);
+
 
         //bottone sing in
         Button_User.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +134,8 @@ public class UserFragment extends Fragment {
          transaction.addToBackStack(null);
          transaction.commit();
      }
+
+
 
     private void signIn(String email, String password)
     {

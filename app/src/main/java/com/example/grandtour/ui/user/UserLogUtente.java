@@ -2,7 +2,6 @@ package com.example.grandtour.ui.user;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grandtour.R;
 import com.example.grandtour.Viaggio;
 import com.example.grandtour.adapter.ViaggiRecyclerViewAdapter;
+import com.example.grandtour.databinding.FragmentUserBinding;
 import com.example.grandtour.databinding.FragmentUserLogBinding;
 import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
 import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
@@ -70,6 +71,7 @@ public class UserLogUtente extends Fragment {
     private ImageButton button_profilo;
     private ImageButton button_preferiti;
     private ImageButton button_contatti;
+    private ImageButton button_log_out;
 
     private RecyclerView mRecyclerView;
 
@@ -107,6 +109,7 @@ public class UserLogUtente extends Fragment {
         button_profilo = root.findViewById(R.id.button1);
         button_preferiti = root.findViewById(R.id.button2);
         button_contatti = root.findViewById(R.id.button3);
+        button_log_out = root.findViewById(R.id.log_out);
 
         //mAuth = FirebaseAuth.getInstance();
 
@@ -116,7 +119,7 @@ public class UserLogUtente extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
-         user =  mAuth.getCurrentUser();
+        user =  mAuth.getCurrentUser();
         email.setText(user.getEmail());
         nome_cognome.setText(user.getDisplayName());
 
@@ -133,6 +136,21 @@ public class UserLogUtente extends Fragment {
 //        mRecyclerView.addItemDecoration(itemDecorator);
 
         readRecensioni();
+
+        button_log_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                mAuth.getInstance()
+                        .signOut();
+
+                    Fragment fragment = null;
+                    fragment = new UserFragment();
+                    replaceFragment(fragment);
+
+
+            }
+        });
 
         button_profilo.setOnClickListener(new View.OnClickListener()
         {
@@ -177,6 +195,14 @@ public class UserLogUtente extends Fragment {
 
 
         return root;
+    }
+
+    public void replaceFragment(Fragment someFragment)
+    {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override
@@ -242,5 +268,7 @@ public class UserLogUtente extends Fragment {
 
             }
         });
+
 }
+
 }
