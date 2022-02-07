@@ -69,19 +69,16 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
 
     public class ViaggioViewHolder extends RecyclerView.ViewHolder {
 
-        //private final TextView textViewNewsTitle;
         private final TextView textViewViaggioSource;
         private final ImageView imageViewViaggioImage;
 
         public ViaggioViewHolder(@NonNull View itemView) {
             super(itemView);
-            //this.textViewNewsTitle = itemView.findViewById(R.id.img);
             this.textViewViaggioSource = itemView.findViewById(R.id.info_text);
             this.imageViewViaggioImage = itemView.findViewById(R.id.info_image);
         }
 
         public void bind(Viaggio viaggio) {
-            //this.textViewNewsTitle.setText(viaggio.getTitle());
             this.textViewViaggioSource.setText(viaggio.getNomeViaggio());
 
             String path = viaggio.getRegione() + "/" + viaggio.getRegione() + ".jpg";
@@ -99,6 +96,5 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
             });
         }
     }
-
 
 }

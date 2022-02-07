@@ -3,6 +3,7 @@ package com.example.grandtour.ui.ricerca;
 import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -45,17 +47,12 @@ import java.net.URLConnection;
 
 public class SearchViaggioFragment extends Fragment {
 
-    private SearchViewModel searchViewModel;
     private FragmentViaggioBinding binding;
 
     private Viaggio vResult = SearchResult.getViaggio();
 
-    //private TextView destinazione;
     private TextView mezzo;
     private TextView regione;
-    //private TextView dataPartenza;
-    //private TextView dataRitorno;
-
     private TextView durata;
     private TextView nomeViaggio;
     private TextView tappa1;
@@ -72,6 +69,9 @@ public class SearchViaggioFragment extends Fragment {
     private LinearLayout linearLayout;
     private boolean visibile;
     private ImageButton hide;
+
+    private CardView cardView;
+    private CardView cardViewViaggio;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
@@ -93,15 +93,14 @@ public class SearchViaggioFragment extends Fragment {
         nomeViaggio = root.findViewById(R.id.nomeV_result);
         nomeViaggio.setText(vResult.getNomeViaggio());
 
+        cardViewViaggio = root.findViewById(R.id.card_view_viaggio);
 
         String path = vResult.getRegione() + "/" + vResult.getRegione() + ".jpg";
         spaceRef = storageRef.child(path);
         image = root.findViewById(R.id.image_viaggio);
-        Log.e(TAG_SV, "link: " + path);
         Glide.with(getContext())
                 .load(spaceRef)
                 .into(image);
-        Log.e(TAG_SV, "link: " + path);
 
 
         image1 = root.findViewById(R.id.image_tappa1);
@@ -134,11 +133,13 @@ public class SearchViaggioFragment extends Fragment {
                 .into(image3);
 
 
+        cardView = root.findViewById(R.id.card_view);
         image4 = root.findViewById(R.id.image_tappa4);
         tappa4 = root.findViewById(R.id.nome4_result);
         if(vResult.getTappa4().equalsIgnoreCase("")) {
-            image4.setVisibility(View.INVISIBLE);
+            //image4.setVisibility(View.INVISIBLE);
             tappa4.setVisibility(View.INVISIBLE);
+            cardView.setVisibility(View.INVISIBLE);
         } else {
             tappa4.setText(vResult.getTappa4());
             path = vResult.getRegione() + "/" + vResult.getTappa4() + ".jpg";
@@ -149,7 +150,7 @@ public class SearchViaggioFragment extends Fragment {
         }
 
 
-        linearLayout = (LinearLayout) root.findViewById(R.id.linearlayout);
+        linearLayout = root.findViewById(R.id.linearlayout);
         LinearLayout.MarginLayoutParams params = (LinearLayout.MarginLayoutParams) linearLayout.getLayoutParams();
         visibile = true;
         hide = root.findViewById(R.id.hide);
@@ -157,34 +158,26 @@ public class SearchViaggioFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(visibile) {
-                    params.setMargins(0, 600, 0, 0);
+                    params.setMargins(0, 690, 0, 0);
                     linearLayout.setLayoutParams(params);
-                    //MainActivity.setInvi();
-                    image.setVisibility(View.GONE);
+                    //image.setVisibility(View.GONE);
+                    cardViewViaggio.setVisibility(View.GONE);
                     visibile = false;
+                    hide.setBackground(getActivity().getDrawable(R.drawable.baseline_expand_more_24));
                 }
                 else {
-                    params.setMargins(0, 990, 0, 0);//270dp 0 810px
+                    params.setMargins(0, 990, 0, 0);//270dp = 810px
                     linearLayout.setLayoutParams(params);
-                    //MainActivity.setVis();
-                    image.setVisibility(View.VISIBLE);
+                    //image.setVisibility(View.VISIBLE);
+                    cardViewViaggio.setVisibility(View.VISIBLE);
                     visibile = true;
+                    hide.setBackground(getActivity().getDrawable(R.drawable.baseline_expand_less_24));
+
                 }
             }
         });
 
-        //destinazione = root.findViewById(R.id.destinazione_result);
-        //destinazione.setText(vResult.getDestinazione());
-
-        //dataPartenza = root.findViewById(R.id.partenza_result);
-        //dataPartenza.setText("Data Partenza: " + vResult.getDataPartenza());
-
-        //dataRitorno = root.findViewById(R.id.ritorno_result);
-        //dataRitorno.setText("Data Ritorno: " + vResult.getDataRitorno());
-        //aggiungere gli altri valori delle View seguendo il layout
-
         return root;
     }
-
 
 }

@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ricerca.SearchFragment"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:background="@color/azzurro">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -65,18 +65,6 @@
         android:layout_width="200dp"
         android:layout_height="61dp"
         android:text="Data partenza"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
-
-    <EditText
-        android:id="@+id/search_data_ritorno"
-        android:layout_width="200dp"
-        android:layout_height="61dp"
-        android:text="Data ritorno"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:clickable="false"
