@@ -72,8 +72,8 @@
     </string-array>
 
     <string-array name="ViaggiBasilicata">
-        <item>Viaggio 1</item>
-        <item>Viaggio 2</item>
+        <item>Rotolando verso Sud</item>
+        <item>A spasso per la Basilicata</item>
     </string-array>
 
     <string-array name="ViaggiCalabria">
@@ -97,8 +97,8 @@
     </string-array>
 
     <string-array name="ViaggiLazio">
-        <item>Viaggio 1</item>
-        <item>Viaggio 2</item>
+        <item>Giro della capitale</item>
+        <item>In giro per il Lazio</item>
     </string-array>
 
     <string-array name="ViaggiLiguria">
@@ -107,8 +107,8 @@
     </string-array>
 
     <string-array name="ViaggiLombardia">
-        <item>Viaggio 1</item>
-        <item>Viaggio 2</item>
+        <item>Giro della padania</item>
+        <item>Tour Lombardo</item>
     </string-array>
 
     <string-array name="ViaggiMarche">
