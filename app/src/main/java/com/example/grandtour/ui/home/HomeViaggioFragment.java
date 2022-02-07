@@ -1,12 +1,6 @@
-package com.example.grandtour.ui.ricerca;
+package com.example.grandtour.ui.home;
 
-import android.app.ActionBar;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,40 +10,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.GlideBuilder;
-import com.example.grandtour.MainActivity;
-import com.example.grandtour.MyAppGlideModule;
 import com.example.grandtour.R;
 import com.example.grandtour.Viaggio;
-import com.example.grandtour.databinding.ActivityMainBinding;
 import com.example.grandtour.databinding.FragmentViaggioBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
-public class SearchViaggioFragment extends Fragment {
+public class HomeViaggioFragment extends Fragment {
 
     private FragmentViaggioBinding binding;
 
-    private Viaggio vResult = SearchResult.getViaggio();
+    private Viaggio vResult = HomeFragment.getViaggio();
 
     private TextView mezzo;
     private TextView regione;
@@ -77,7 +53,7 @@ public class SearchViaggioFragment extends Fragment {
     StorageReference storageRef = storage.getReference();
     StorageReference spaceRef;
 
-    final private String TAG_SV = "SEARCH VIAGGIO";
+    final private String TAG_HV = "HOME VIAGGIO";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -85,7 +61,7 @@ public class SearchViaggioFragment extends Fragment {
         binding = FragmentViaggioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Log.d(TAG_SV,vResult.getRegione());
+        Log.d(TAG_HV,vResult.getRegione());
 
         mezzo = root.findViewById(R.id.mezzo_result);
         mezzo.setText(vResult.getMezzo());
@@ -178,5 +154,4 @@ public class SearchViaggioFragment extends Fragment {
 
         return root;
     }
-
 }

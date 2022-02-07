@@ -83,7 +83,7 @@ public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecycl
 
             String path = viaggio.getRegione() + "/" + viaggio.getRegione() + ".jpg";
             pathReference = storageRef.child(path);
-            Context c = SearchResult.getContesto();
+            Context c = MainActivity.getContesto();
             Glide.with(c)
                     .load(pathReference)
                     .into(this.imageViewViaggioImage);

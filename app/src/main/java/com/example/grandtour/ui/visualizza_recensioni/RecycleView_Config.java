@@ -1,6 +1,7 @@
 package com.example.grandtour.ui.visualizza_recensioni;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
@@ -60,11 +61,13 @@ public class RecycleView_Config {
      }
     public static class RecensioniAdapter extends RecyclerView.Adapter<RecensioniItemView>{
         private List<Recensione> mRecensineList;
+
         private List<String> mKeys;
 
         public RecensioniAdapter(List<Recensione> mRecensineList, List<String> mKeys) {
             this.mRecensineList = mRecensineList;
             this.mKeys = mKeys;
+
         }
 
         @NonNull
