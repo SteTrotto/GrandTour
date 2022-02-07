@@ -45,6 +45,7 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
 
     private TextView mNameView;
     Ricerca_VisualizzaFragment c;
+    private static String str;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
         //assegno il titolo alla pagina
         TextView mtitolo_RecycleView;
         mtitolo_RecycleView = (TextView) v.findViewById(R.id.titolo_recycleView);
-        String str = Ricerca_VisualizzaFragment.getRegione();
+        str = Ricerca_VisualizzaFragment.getRegione();
         str = str + " - " +Ricerca_VisualizzaFragment.getViaggio();
         mtitolo_RecycleView.setText(str);
 
@@ -77,7 +78,16 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
         new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Recensione> recensioni, List<String> keys) {
-                new RecycleView_Config().setConfig(mRecyclerView, getActivity(), recensioni, keys );
+                if (recensioni.size() == 0 )//se non è presente alcuna recensione esce il messaggio
+                {
+                    Toast.makeText(getContext(), "Non sono presenti recensioni", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    new RecycleView_Config().setConfig(mRecyclerView, getActivity(), recensioni, keys );
+                }
+
+
             }
 
             @Override
@@ -100,6 +110,10 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
 
     }
 
+    public static void setStr (String messaggio) //metodo utilizzato nel caso non ci siano recensioni
+    {
+        str = messaggio;
+    }
 
 
 }
