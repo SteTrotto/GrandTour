@@ -1,6 +1,8 @@
 package com.example.grandtour.ui.ricerca_recensione;
 
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.R;
@@ -32,6 +35,9 @@ import com.example.grandtour.Recensione;
 import com.example.grandtour.databinding.FragmentRicercaRecensioneBinding;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
+import com.example.grandtour.ui.Recensioni.ReviewsFragment;
+import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
+import com.example.grandtour.ui.visualizza_recensioni.Visualizza_Recensioni_Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -75,23 +81,10 @@ import java.util.HashMap;
 
         Button invia;
 
-
-
-
-       /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.regione, android.R.layout.simple_spinner_item);
-
-        b.setAdapter(adapter);
-        */
-
         a.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                /*
-                Log.d("myTag", "This is my message");
-               if(pos == 1) { //se abruzzo è selezionato
-                   Log.d("myTag", "Sei in abruzzo");
-                }*/
+
                 ArrayAdapter<CharSequence> adapter;
                 switch(pos) {
 
@@ -254,68 +247,88 @@ import java.util.HashMap;
 
                                                //prendo il campo Regione
                                                String texta = a.getSelectedItem().toString();
+                                               if (!(texta.equalsIgnoreCase("regione")))
+                                               {
+                                                   //prendo il campo Viaggio
+                                                   String textb = b.getSelectedItem().toString();
 
-                                               //prendo il campo Viaggio
-                                               String textb = b.getSelectedItem().toString();
-
-                                               //prendo il capo Rating
-                                               float ratingValue =  rate.getRating();
-                                               String SRatingValue=String.valueOf(ratingValue);
-                                               Log.d("Prova rating", SRatingValue);
-
-                                               //prendo il campo Titolo
-                                               String STitolo=titolo.getText().toString().trim();
-                                               Log.d("Prova titolo", STitolo);
-
-                                               //prendo il campo Corpo
-                                               String SCorpo=corpo.getText().toString().trim();
-                                               Log.d("Prova corpo", SCorpo);
-
-                                               HashMap<String, String> val=new HashMap<String, String>();
-                                               val.put("id_Utente", uid);
-                                               val.put("nome_Utente", name);
-                                               val.put("regione",texta);
-                                               val.put("idViaggio", textb);
-                                               val.put("rating", SRatingValue);
-                                               val.put("titoloRecensione", STitolo);
-                                               val.put("corpoRecensione", SCorpo);
-
-
-                                               //rec =new Recensione(texta,textb, ratingValue, STitolo, SCorpo);
-                                               myRef.child("Recensioni").push().setValue(val);
+                                                       //prendo il capo Rating
+                                                       float ratingValue =  rate.getRating();
+                                                       String SRatingValue=String.valueOf(ratingValue);
+                                                       if(ratingValue != 0)
+                                                       {
+                                                           //prendo il campo Titolo
+                                                           String STitolo=titolo.getText().toString().trim();
+                                                           if(!(STitolo.equalsIgnoreCase("")))
+                                                           {
+                                                               //prendo il campo Corpo
+                                                               String SCorpo=corpo.getText().toString().trim();
+                                                               if(!(SCorpo.equalsIgnoreCase("")))
+                                                               {
+                                                                   HashMap<String, String> val=new HashMap<String, String>();
+                                                                   val.put("id_Utente", uid);
+                                                                   val.put("nome_Utente", name);
+                                                                   val.put("regione",texta);
+                                                                   val.put("idViaggio", textb);
+                                                                   val.put("rating", SRatingValue);
+                                                                   val.put("titoloRecensione", STitolo);
+                                                                   val.put("corpoRecensione", SCorpo);
 
 
+                                                                   //inserisco la recensione nel database
+                                                                   myRef.child("Recensioni").push().setValue(val);
 
+                                                                   //messaggio di inserimento recensione
+                                                                   Toast.makeText(getContext(), "Recensione inserita con successo", Toast.LENGTH_LONG).show();
 
+                                                                   //reindirizzamento alla visualizzazione della recensione
+                                                                   //Setto il valore dei due spinner per la visualizzazione
+                                                                   Ricerca_VisualizzaFragment.setRegione(texta);
+                                                                   Ricerca_VisualizzaFragment.setViaggio(textb);
 
-                                           }
-                                           else
+                                                                   Fragment fragment = null;
+                                                                   fragment =new Visualizza_Recensioni_Fragment();
+                                                                   replaceFragment(fragment);
+
+                                                               }else
+                                                               {
+                                                                   Toast.makeText(getContext(), "Scrivere la recensione", Toast.LENGTH_LONG).show();
+                                                               }
+                                                           }else
+                                                           {
+                                                               Toast.makeText(getContext(), "Inserire il titolo", Toast.LENGTH_LONG).show();
+                                                           }
+                                                       }else
+                                                       {
+                                                           Toast.makeText(getContext(), "Inserire la valutazione", Toast.LENGTH_LONG).show();
+                                                       }
+                                               }else
+                                               {
+                                                   Toast.makeText(getContext(), "Selezionare la regione", Toast.LENGTH_LONG).show();
+                                               }
+                                           }else
                                            {
-                                               Log.d("Log in", "nologgin");
+                                               Toast.makeText(getContext(), "Fare il login", Toast.LENGTH_LONG).show();
 
                                            }
 
 
 
                                        }
-                                   });
+          });
 
-          //Firebase.setAndroidContext(getApplicationContext());
-
-        return v; //or return root
+        return v;
 
     }
+      public void replaceFragment(Fragment someFragment) {
+          FragmentTransaction transaction = getFragmentManager().beginTransaction();
+          transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+          transaction.addToBackStack(null);
+          transaction.commit();
+      }
 
   }
 
-
-                    /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item,
-                            getResources().getStringArray(R.array.viaggiAbruzzo));
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    */
-
-
-       // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
 

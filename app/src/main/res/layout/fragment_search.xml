@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ricerca.SearchFragment"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:background="@color/azzurro">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,18 +24,20 @@
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:textStyle = "normal"
+            android:textColor = "@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        <!--
         <ImageButton
+            android:id="@+id/search_buttonn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/search_button"
-            android:background="@drawable/baseline_search_24"/>
-
+            android:background="@drawable/baseline_search_24" />
+        -->
     </LinearLayout>
 
     <Spinner
@@ -44,7 +46,9 @@
         android:layout_gravity="center"
         android:id="@+id/spinner_regione"
         android:entries="@array/regione"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"/>
 
     <Spinner
         android:layout_width="210dp"
@@ -52,25 +56,15 @@
         android:layout_gravity="center"
         android:id="@+id/spinner_durata"
         android:entries="@array/durata"
-        android:spinnerMode="dialog"/>
+        android:spinnerMode="dropdown"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"/>
 <!--
     <EditText
         android:id="@+id/search_data_partenza"
         android:layout_width="200dp"
         android:layout_height="61dp"
         android:text="Data partenza"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
-
-    <EditText
-        android:id="@+id/search_data_ritorno"
-        android:layout_width="200dp"
-        android:layout_height="61dp"
-        android:text="Data ritorno"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:clickable="false"
@@ -84,5 +78,17 @@
         android:layout_gravity="center"
         android:id="@+id/spinner_mezzo"
         android:entries="@array/mezzo"
-        android:spinnerMode="dialog"/>
+        android:spinnerMode="dropdown"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"/>
+
+    <Button
+        android:id = "@+id/search_button"
+        android:layout_width = "190dp"
+        android:layout_height = "55dp"
+        android:layout_gravity = "center"
+        android:layout_marginTop = "20dp"
+        android:layout_marginBottom = "100dp"
+        android:background = "@drawable/button_states"
+        android:text = "@string/cercaButton" />
 </LinearLayout>

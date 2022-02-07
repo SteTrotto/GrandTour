@@ -1,113 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.ricerca_recensione.Ricerca_RecensioneFragment"
-        android:orientation="vertical">
+<LinearLayout
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    tools:context = ".ui.ricerca_recensione.Ricerca_RecensioneFragment"
+    android:orientation = "vertical">
+
 
     <Spinner
-        android:id="@+id/spinner_search_regione"
-        android:layout_width="210dp"
-        android:layout_height="61dp"
-        android:layout_gravity="center"
-        android:entries="@array/regione"
-        android:spinnerMode="dropdown" />
+        android:id = "@+id/spinner_search_regione"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
+        android:layout_gravity = "center"
+        android:entries = "@array/regione"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"
+        android:spinnerMode = "dropdown" />
 
     <Spinner
-        android:id="@+id/spinner_search_viaggio"
-        android:layout_width="210dp"
-        android:layout_height="61dp"
-        android:layout_gravity="center"
-        android:spinnerMode="dropdown"
-        android:entries="@array/Iniziale"/>
+        android:id = "@+id/spinner_search_viaggio"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
+        android:layout_gravity = "center"
+        style = "@style/spinner_style"
+        android:popupBackground = "@drawable/popupspinner_style"
+        android:spinnerMode = "dropdown"
+        android:entries = "@array/Iniziale" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="236dp"
-        android:layout_height="53dp"
-        android:numStars="5"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
-        android:layout_gravity="center" />
+        android:id = "@+id/ratingBar"
+        android:layout_width = "236dp"
+        android:layout_height = "53dp"
+        android:numStars = "5"
+        android:scaleX = "0.75"
+        android:scaleY = "0.75"
+        android:layout_gravity = "center"
+        android:progressTint = "#FFD700"
+        android:layout_marginBottom = "15dp"
+        android:layout_marginTop = "15dp"/>
 
     <TextView
-            android:id="@+id/titolo_recensione"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Titolo della recensione"
-            android:textSize="15dp"
-            android:layout_marginTop="10dp"/>
+            android:id = "@+id/titolo_recensione"
+            android:layout_width = "210dp"
+            android:layout_height = "wrap_content"
+            android:gravity = "start"
+            android:layout_gravity = "center"
+            android:textStyle = "bold"
+            android:textColor = "@color/black"
+            android:text = "@string/TitoloRecensione"
+            android:textSize = "17sp"
+            android:layout_marginTop = "10dp"
+            android:paddingStart = "10dp"
+            android:paddingEnd = "0dp"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:background="@android:color/transparent"
-        android:layout_width="210dp"
-        android:layout_height="61dp"
-        android:ems="10"
-        android:gravity="left"
-        android:layout_gravity="center"
-        android:inputType="text"
-        android:hint = "Inserisci il titolo"
-        android:textSize="15dp"
-        android:paddingLeft="5dp" />
+        android:id = "@+id/editTextTextPersonName"
+        android:background = "@android:color/transparent"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
+        android:ems = "10"
+        android:gravity = "start"
+        android:layout_gravity = "center"
+        android:inputType = "text"
+        android:hint = "@string/hinitTitoloRecensione"
+        android:importantForAutofill = "no"
+        android:textSize = "16sp"
+        android:paddingStart = "10dp"
+        android:paddingEnd = "0dp"/>
 
     <TextView
-        android:id="@+id/commento_recensione"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="Scrivi una recensione"
-        android:textSize="15dp" />
+        android:id = "@+id/commento_recensione"
+        android:layout_width = "210dp"
+        android:layout_height = "wrap_content"
+        android:layout_gravity = "center"
+        android:textStyle = "bold"
+        android:textColor = "@color/black"
+        android:text = "@string/CommentoRecensione"
+        android:textSize = "17sp"
+        android:paddingStart = "10dp"
+        android:paddingEnd = "0dp"/>
 
     <EditText
-        android:id="@+id/editTextCommento"
-        android:background="@android:color/transparent"
-        android:layout_width="210dp"
-        android:layout_height="61dp"
-        android:ems="10"
-        android:gravity="left"
-        android:layout_gravity="center"
-        android:inputType="text"
-        android:hint = "Raccontaci la tua esperienza"
-        android:textSize="15dp"
-        android:paddingLeft="5dp" />
+        android:id = "@+id/editTextCommento"
+        android:background = "@android:color/transparent"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
+        android:ems = "10"
+        android:gravity = "start"
+        android:layout_gravity = "center"
+        android:inputType = "text"
+        android:hint = "@string/hinitCommentoRecensione"
+        android:importantForAutofill = "no"
+        android:textSize = "15sp"
+        android:paddingStart = "10dp"
+        android:paddingEnd = "0dp"
+        />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="210dp"
-        android:layout_height="61dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/button_states"
-        android:text="Invia" />
+        android:id = "@+id/button2"
+        android:layout_width = "190dp"
+        android:layout_height = "55dp"
+        android:layout_gravity = "center"
+        android:layout_marginTop = "20dp"
+        android:layout_marginBottom = "100dp"
+        android:background = "@drawable/button_states"
+        android:text = "@string/inviaButton" />
 
     </LinearLayout>
 </ScrollView>
-
-        <!--
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="200dp"
-                android:layout_height="93dp"
-                android:iconifiedByDefault="false"
-                android:queryHint="Search"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        -->
 
 

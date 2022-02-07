@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -54,20 +55,6 @@ public class Ricerca_VisualizzaFragment extends Fragment {
 
         Spinner viaggio = (Spinner) v.findViewById(R.id.spinner_search_viaggio1); //viene settato dopo
 
-
-
-
-
-
-
-
-       /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.regione, android.R.layout.simple_spinner_item);
-
-        b.setAdapter(adapter);
-        */
-        Log.d("Prova regione inizo", regione.getSelectedItem().toString());
-        Log.d("Prova viaggio inizio", viaggio.getSelectedItem().toString());
 
         regione.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -222,21 +209,20 @@ public class Ricerca_VisualizzaFragment extends Fragment {
             public void onClick(View view) {
 
                 String sRegione = regione.getSelectedItem().toString();
-                String sViaggio = viaggio.getSelectedItem().toString();
+                if (!(sRegione.equalsIgnoreCase("regione"))) {
+                    String sViaggio = viaggio.getSelectedItem().toString();
 
-                //setto le variabili globali
-                setRegione(sRegione);
-                setViaggio(sViaggio);
+                    //setto le variabili globali
+                    setRegione(sRegione);
+                    setViaggio(sViaggio);
 
-                //verifico funzionamento
-                Log.d("Prova ciao", getRegione());
-                Log.d("Prova bene", getViaggio());
-
-
-
-                Fragment fragment = null;
-                fragment =new Visualizza_Recensioni_Fragment();
-                replaceFragment(fragment);
+                    Fragment fragment = null;
+                    fragment = new Visualizza_Recensioni_Fragment();
+                    replaceFragment(fragment);
+                }else
+                {
+                    Toast.makeText(getContext(), "Selezionare la regione", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -245,11 +231,11 @@ public class Ricerca_VisualizzaFragment extends Fragment {
         return v;
     }
 
-    public void setRegione(String regione)
+    public static void setRegione(String regione)
     {
         strRegione=regione;
     }
-    public void setViaggio(String viaggio)
+    public static void setViaggio(String viaggio)
     {
         strViaggio=viaggio;
     }
