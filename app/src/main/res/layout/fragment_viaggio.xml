@@ -22,8 +22,8 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="0dp"
         android:textSize="20sp"
-        android:textStyle = "normal"
-        android:textColor = "@color/black"
+        android:textStyle = "bold"
+        android:textColor = "@color/white"
         android:text="Tour" />
 
         <ImageButton
@@ -69,13 +69,14 @@
         android:layout_gravity="bottom|center_horizontal"
         android:text="Mezzo"
         android:textStyle = "normal"
-        android:textColor = "@color/black"
-        android:layout_margin="5dp"/>
+        android:textColor = "@color/white"
+        android:layout_margin="5dp"
+        android:textSize="17sp"/>
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="5dp"
-        android:background="@color/azzurro"/>
+        android:background="@color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -126,8 +127,9 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginTop="10dp"
                 android:textStyle = "normal"
-                android:textColor = "@color/black"
-                android:text="Tour"/>
+                android:textColor = "@color/white"
+                android:text="Tour"
+                android:textSize="17sp"/>
 
             <!--
             <ImageView
@@ -163,8 +165,9 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="10dp"
                 android:textStyle = "normal"
-                android:textColor = "@color/black"
-                android:text="Tour"/>
+                android:textColor = "@color/white"
+                android:text="Tour"
+                android:textSize="17sp"/>
 
             <!--
             <ImageView
@@ -199,8 +202,9 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="10dp"
                 android:textStyle = "normal"
-                android:textColor = "@color/black"
-                android:text="Tour"/>
+                android:textColor = "@color/white"
+                android:text="Tour"
+                android:textSize="17sp"/>
             <!--
             <ImageView
                 android:layout_marginTop="10dp"
@@ -236,8 +240,9 @@
                 android:layout_margin="10dp"
                 android:layout_marginBottom="0dp"
                 android:textStyle = "normal"
-                android:textColor = "@color/black"
-                android:text="Tour"/>
+                android:textColor = "@color/white"
+                android:text="Tour"
+                android:textSize="17sp"/>
 
         </LinearLayout>
 
