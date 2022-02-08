@@ -135,6 +135,8 @@ public class UserLogUtente extends Fragment {
         SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
 //        mRecyclerView.addItemDecoration(itemDecorator);
 
+
+
         readRecensioni();
 
         button_log_out.setOnClickListener(new View.OnClickListener() {
@@ -147,8 +149,6 @@ public class UserLogUtente extends Fragment {
                     Fragment fragment = null;
                     fragment = new UserFragment();
                     replaceFragment(fragment);
-
-
             }
         });
 
