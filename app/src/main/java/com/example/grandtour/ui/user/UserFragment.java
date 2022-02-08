@@ -75,13 +75,13 @@ public class UserFragment extends Fragment {
         Button_Sing_up = root.findViewById(R.id.SingUp);
         mAuth = FirebaseAuth.getInstance();
         user =  mAuth.getCurrentUser();
-
+/*
         if(user != null) {
             Fragment fragment1 = null;
             fragment1 = new UserLogUtente();
             replaceFragment(fragment1);
         }
-
+        */
       /*  if(conta == 0)
         {
             mAuth.getInstance()

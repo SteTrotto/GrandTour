@@ -2,6 +2,7 @@ package com.example.grandtour.ui.user;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,79 +121,79 @@ public class UserLogUtente extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         user =  mAuth.getCurrentUser();
-        email.setText(user.getEmail());
-        nome_cognome.setText(user.getDisplayName());
+        Log.e(TAG, "-------------------");
+        if(user == null) {
+            Fragment fragment1 = null;
+            fragment1 = new UserFragment();
+            replaceFragment(fragment1);
+        }
+        else {
+            email.setText(user.getEmail());
+            nome_cognome.setText(user.getDisplayName());
 
-        profilo.setText("Email: "+email.getText()+"\n"
-                +"Nome e Cognome: "+  nome_cognome.getText()+"\n");
-                //+"Data di nascita: "+ Data.getText());
-        contatti.setText("Email: GrandTour@gmail.com"+"\n"
-                +"Numero di Telefono: 0002 98 54");
+            profilo.setText("Email: " + email.getText() + "\n"
+                    + "Nome e Cognome: " + nome_cognome.getText() + "\n");
+            //+"Data di nascita: "+ Data.getText());
+            contatti.setText("Email: GrandTour@gmail.com" + "\n"
+                    + "Numero di Telefono: 0002 98 54");
 
-        //lista di recensioni
-        mRecyclerView= (RecyclerView) root.findViewById(R.id.lista);
-        //gioco di spazi tra le recensioni
-        SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
+            //lista di recensioni
+            mRecyclerView = (RecyclerView) root.findViewById(R.id.lista);
+            //gioco di spazi tra le recensioni
+            SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
 //        mRecyclerView.addItemDecoration(itemDecorator);
 
 
+            readRecensioni();
 
-        readRecensioni();
-
-        button_log_out.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                mAuth.getInstance()
-                        .signOut();
+            button_log_out.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mAuth.getInstance()
+                            .signOut();
 
                     Fragment fragment = null;
                     fragment = new UserFragment();
                     replaceFragment(fragment);
-            }
-        });
-
-        button_profilo.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                if (profilo.getVisibility() == View.GONE) {
-                    profilo.setVisibility(View.VISIBLE);
                 }
-                else
-                    profilo.setVisibility(View.GONE);
-            }
-        });
+            });
 
-
-        button_preferiti.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                if (preferiti.getVisibility() == View.GONE) {
-                    preferiti.setVisibility(View.VISIBLE);
-                    mRecyclerView.setVisibility(View.VISIBLE);
-
+            button_profilo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (profilo.getVisibility() == View.GONE) {
+                        profilo.setVisibility(View.VISIBLE);
+                    } else
+                        profilo.setVisibility(View.GONE);
                 }
-                else
-                {    preferiti.setVisibility(View.GONE);
-                mRecyclerView.setVisibility(View.GONE);}
-            }
-        });
+            });
 
-        button_contatti.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                if (contatti.getVisibility() == View.GONE) {
-                    contatti.setVisibility(View.VISIBLE);
+
+            button_preferiti.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (preferiti.getVisibility() == View.GONE) {
+                        preferiti.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.VISIBLE);
+
+                    } else {
+                        preferiti.setVisibility(View.GONE);
+                        mRecyclerView.setVisibility(View.GONE);
+                    }
                 }
-                else
-                    contatti.setVisibility(View.GONE);
-            }
-        });
+            });
 
+            button_contatti.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (contatti.getVisibility() == View.GONE) {
+                        contatti.setVisibility(View.VISIBLE);
+                    } else
+                        contatti.setVisibility(View.GONE);
+                }
+            });
 
+        }
 
         return root;
     }
