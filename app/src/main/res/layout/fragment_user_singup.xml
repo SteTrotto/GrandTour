@@ -47,6 +47,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:hint ="indirizzo e-mail"
+        android:inputType="textEmailAddress"
         android:textAllCaps="false"
         />
     <TextView
@@ -104,6 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:hint ="Password"
+        android:inputType="textPassword"
         android:textAllCaps="false"
         />
     <Button

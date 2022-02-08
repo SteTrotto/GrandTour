@@ -120,6 +120,8 @@ public class UserLogUtente extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
+
+
         user =  mAuth.getCurrentUser();
         Log.e(TAG, "-------------------");
         if(user == null) {

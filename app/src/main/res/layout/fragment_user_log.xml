@@ -36,11 +36,26 @@
 
         </TextView>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.user.UserLogUtente"
+        >
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="Log out:"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right">
+
+        </TextView>
         <ImageButton
             android:id="@+id/log_out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="right"
             android:background="@drawable/ic_baseline_exit_to_app_24" >
         </ImageButton>
 
@@ -160,7 +175,7 @@
             <TextView
                 android:textColor="@color/black"
                 android:orientation="vertical"
-                android:text="Preferiti"
+                android:text="Le Mie Recensioni"
                 android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

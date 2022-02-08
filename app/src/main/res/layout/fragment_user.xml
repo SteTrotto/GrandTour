@@ -46,6 +46,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:hint ="Email"
+            android:inputType="textEmailAddress"
             android:textAllCaps="false"
             />
 
@@ -67,6 +68,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:hint ="Password"
+            android:inputType="textPassword"
             android:textAllCaps="false"
              />
 
