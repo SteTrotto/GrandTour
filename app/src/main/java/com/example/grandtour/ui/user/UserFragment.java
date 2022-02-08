@@ -36,7 +36,6 @@ import java.util.concurrent.Executor;
 public class UserFragment extends Fragment {
 
 
-    private Button Nav_user;
 
     private UserViewModel UserViewModel;
     private FragmentUserBinding binding;
@@ -45,7 +44,6 @@ public class UserFragment extends Fragment {
     private Button Button_User;
     private Button Button_Sing_up;
     private FirebaseAuth mAuth;
-    private FirebaseAuth mAuth2;
     private final String TAG = "Accedi";
 
     final private String TAG_S = "USER";
@@ -70,16 +68,12 @@ public class UserFragment extends Fragment {
             }
         });
 
-        mAuth2 = FirebaseAuth.getInstance();
-        user =  mAuth2.getCurrentUser();
-
         //associa i valori alle variabili
         Edit_Mail_User = root.findViewById(R.id.login_mail);
         Edit_Pwd_User = root.findViewById(R.id.login_password);
         Button_User = root.findViewById(R.id.login);
         Button_Sing_up = root.findViewById(R.id.SingUp);
         mAuth = FirebaseAuth.getInstance();
-        Nav_user = root.findViewById(R.id.navigation_user);
 
 
         //bottone sing in
@@ -140,6 +134,7 @@ public class UserFragment extends Fragment {
     private void signIn(String email, String password)
     {
         Log.d(TAG, "signIn:" + email);
+        final boolean[] bool = {false};
         if (!validateForm()) {
             Toast.makeText(getContext(), "Email e/o password Errata.", Toast.LENGTH_SHORT).show();
             // Toast.makeText(Accedi.this, "Email e/o password Errata.", Toast.LENGTH_SHORT).show();
@@ -151,9 +146,11 @@ public class UserFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful())
+                        {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
+                            bool[0] =true;
                             //FirebaseUser user = mAuth.getCurrentUser();
 
                             Fragment fragment1 = null;
@@ -172,6 +169,7 @@ public class UserFragment extends Fragment {
                             }*/
                         }
                             else {
+                                bool[0] =false;
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getContext(),"Email e/o password Errata.", Toast.LENGTH_SHORT).show();

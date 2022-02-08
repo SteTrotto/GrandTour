@@ -16,6 +16,8 @@
     android:layout_marginTop="50dp">
 
     <TextView
+        android:textColor="@color/black"
+        android:text="Grand Tour"
         android:id="@+id/text_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,72 +31,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
         android:text="Indirizzo e-mail"
         android:textAllCaps="false"
         />
     <EditText
         android:id="@+id/mail"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:hint ="indirizzo e-mail"
         android:textAllCaps="false"
         />
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
         android:layout_height="34dp"
-        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
         android:text="Nome e Cognome"
         android:textAllCaps="false"
         />
     <EditText
+        android:layout_marginRight="10dp"
         android:id="@+id/nome_e_cognome"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
         android:hint ="Nome e Cognome"
         android:textAllCaps="false"
         />
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
         android:layout_height="34dp"
-        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
         android:text="Data di nascità"
         android:textAllCaps="false"
         />
     <EditText
+        android:layout_marginRight="10dp"
         android:id="@+id/DataNascita"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:hint ="Data nascità"
         android:textAllCaps="false"
-        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:layout_height="wrap_content"/>
     <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="34dp"
-    android:layout_gravity="center"
-    android:text="Password"
-    android:textAllCaps="false"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_marginLeft="10dp"
+        android:text="Password"
+        android:textAllCaps="false"
     />
     <EditText
+        android:layout_marginRight="10dp"
         android:id="@+id/pwd"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
         android:hint ="Password"
         android:textAllCaps="false"
         />
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/SingUp"
-        android:layout_width="130dp"
+        android:layout_width="160dp"
         android:layout_height="44dp"
+        android:background="@drawable/button_states"
         android:text="Iscriviti"
         android:textAllCaps="false"
         android:layout_gravity="center"
