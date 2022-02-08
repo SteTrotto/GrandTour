@@ -110,12 +110,6 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
 
     }
 
-    public static void setStr (String messaggio) //metodo utilizzato nel caso non ci siano recensioni
-    {
-        str = messaggio;
-    }
-
-
 }
 /*
        //colleghamo il database

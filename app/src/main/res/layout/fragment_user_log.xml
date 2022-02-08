@@ -89,29 +89,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:orientation="vertical"
         android:layout_marginTop="40dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="start"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:id="@+id/visibility1">
@@ -122,10 +110,8 @@
                 android:text="Profilo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -136,16 +122,17 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/baseline_expand_more_18"
+                android:layout_gravity="center|bottom"
+                android:background="@drawable/ic_down"
                 android:orientation="horizontal"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_marginBottom="2dp"/>
         </LinearLayout>
             <TextView
                 android:id="@+id/casella1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="left"
                 android:hint ="cose a caso"
                 android:textAllCaps="false"
                 android:layout_marginTop="5dp"
@@ -158,16 +145,16 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:orientation="vertical"
         android:layout_marginTop="10dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="start"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:id="@+id/visibility2">
@@ -178,10 +165,8 @@
                 android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -190,12 +175,13 @@
 
             <ImageButton
                 android:id="@+id/button2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/baseline_expand_more_18"
+                android:layout_gravity="center|bottom"
+                android:background="@drawable/ic_down"
                 android:orientation="horizontal"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_marginBottom="2dp"/>
         </LinearLayout>
         <TextView
             android:id="@+id/casella2"
@@ -210,39 +196,28 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:layout_marginEnd="20dp"
+            android:paddingBottom="10dp"
             android:visibility="gone"
             />
 
     </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:orientation="vertical"
         android:layout_marginTop="10dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="start"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:id="@+id/visibility3">
@@ -253,10 +228,8 @@
                 android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -267,10 +240,11 @@
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/baseline_expand_more_18"
+                android:layout_gravity="center|bottom"
+                android:background="@drawable/ic_down"
                 android:orientation="horizontal"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_marginBottom="2dp"/>
         </LinearLayout>
         <TextView
             android:id="@+id/casella3"

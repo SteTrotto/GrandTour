@@ -143,7 +143,7 @@ public class UserLogUtente extends Fragment {
             mRecyclerView = (RecyclerView) root.findViewById(R.id.lista);
             //gioco di spazi tra le recensioni
             SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
-//        mRecyclerView.addItemDecoration(itemDecorator);
+            mRecyclerView.addItemDecoration(itemDecorator);
 
 
             readRecensioni();
