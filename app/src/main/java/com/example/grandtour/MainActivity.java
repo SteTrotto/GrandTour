@@ -13,12 +13,17 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.grandtour.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
     static private Context context;
+
+    private FirebaseAuth mAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,4 +49,10 @@ public class MainActivity extends AppCompatActivity {
         return context;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+
+    }
 }
