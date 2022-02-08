@@ -107,7 +107,7 @@
         android:layout_height = "55dp"
         android:layout_gravity = "center"
         android:layout_marginTop = "20dp"
-        android:layout_marginBottom = "100dp"
+        android:layout_marginBottom = "50dp"
         android:background = "@drawable/button_states"
         android:text = "@string/inviaButton" />
 

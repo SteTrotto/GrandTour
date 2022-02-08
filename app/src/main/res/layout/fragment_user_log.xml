@@ -31,8 +31,7 @@
             android:textAlignment="center"
             android:layout_gravity="center"
             android:textSize="25sp"
-            android:text="Grand Tour"
-            >
+            android:text="Grand Tour">
 
         </TextView>
 
