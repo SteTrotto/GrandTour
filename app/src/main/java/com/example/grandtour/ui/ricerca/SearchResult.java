@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -72,8 +73,6 @@ public class SearchResult extends Fragment {
 
     final private String TAG_SR = "SEARCH_RESULT";
 
-    static private Context context;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -98,8 +97,6 @@ public class SearchResult extends Fragment {
                     }
                 })
         );
-
-        context = getContext();
 
         return root;
     }
@@ -222,6 +219,10 @@ public class SearchResult extends Fragment {
                                 }
                             });
                     mRecyclerViewViaggi.setAdapter(adapter);
+                    if(mViaggioList.size() == 0) {
+                        Toast.makeText(getContext(), "Non sono presenti viaggi",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -231,9 +232,6 @@ public class SearchResult extends Fragment {
         return viaggio;
     }
 
-    public static Context getContesto() {
-        return context;
-    }
 }
 
 class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {

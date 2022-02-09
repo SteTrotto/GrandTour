@@ -67,6 +67,7 @@ public class UserFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        Log.e(TAG_S, "----------------USER FRAGMENT--------------------");
 
         //associa i valori alle variabili
         Edit_Mail_User = root.findViewById(R.id.login_mail);

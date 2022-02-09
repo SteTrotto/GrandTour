@@ -23,6 +23,7 @@ import com.example.grandtour.adapter.ViaggiRecyclerViewAdapter;
 import com.example.grandtour.databinding.FragmentUserBinding;
 import com.example.grandtour.databinding.FragmentUserLogBinding;
 import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
+import com.example.grandtour.ui.home.HomeFragment;
 import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
 import com.example.grandtour.ui.visualizza_recensioni.FirebaseDatabaseHelper;
 import com.example.grandtour.ui.visualizza_recensioni.Recensione;
@@ -87,6 +88,8 @@ public class UserLogUtente extends Fragment {
     private TextView nome_cognome;
     private TextView Data;
 
+    int conta = 0;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         UserViewModel = new ViewModelProvider(this).get(UserViewModel.class);
@@ -121,10 +124,17 @@ public class UserLogUtente extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
 
-
+        conta++;
         user =  mAuth.getCurrentUser();
-        Log.e(TAG, "-------------------");
+        Log.e(TAG_S, "----------USER LOG UTENTE ----------");
+        if(conta == 4) { //2
+            Fragment fragment = null;
+            fragment = new HomeFragment();
+            replaceFragment(fragment);
+            //da vedere bene
+        } else {
         if(user == null) {
+            Log.e(TAG_S, "----------------USER LOG UTENTE to USER FRAGMENT--------------------");
             Fragment fragment1 = null;
             fragment1 = new UserFragment();
             replaceFragment(fragment1);
@@ -194,7 +204,7 @@ public class UserLogUtente extends Fragment {
                         contatti.setVisibility(View.GONE);
                 }
             });
-
+        }
         }
 
         return root;

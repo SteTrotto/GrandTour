@@ -36,11 +36,10 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
     private static Viaggio viaggio;
-    private List<Viaggio> mViaggioList = new ArrayList<>();
+    private List<Viaggio> mViaggioList;
 
     private RecyclerView mRecyclerViewViaggi;
     private ViaggiRecyclerViewAdapter adapter;
@@ -52,13 +51,14 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        mViaggioList = new ArrayList<>();
+
         readDB();
+        Log.e(TAG_H, "------------------HOME FRAGMENT------------------");
 
         mRecyclerViewViaggi = root.findViewById(R.id.home_recyclerview);
         mRecyclerViewViaggi.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -143,14 +143,13 @@ public class HomeFragment extends Fragment {
 
                     List<Viaggio> random = new ArrayList<>();
                     Random casuale = new Random();
+                    Log.e(TAG_H, "-SIZE:- " + mViaggioList.size() + " ----- ");
                     for (int i = 0; i < mViaggioList.size() && random.size() < 3; i++) {
                         int j = casuale.nextInt(mViaggioList.size());
                         Log.e(TAG_H, "----- " + j + " ----- ");
 
-                        if(random.contains(mViaggioList.get(j))) {
-                            Log.e(TAG_H, "----- " + mViaggioList.get(j).getNomeViaggio() + " ----- ");
+                        if(random.contains(mViaggioList.get(j)))
                             i--;
-                        }
                         else
                             random.add(mViaggioList.get(j));
                     }
