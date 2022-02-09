@@ -77,11 +77,6 @@ public class HomeFragment extends Fragment {
                 })
         );
 
-
-
-
-
-
         return root;
     }
 
@@ -143,11 +138,8 @@ public class HomeFragment extends Fragment {
 
                     List<Viaggio> random = new ArrayList<>();
                     Random casuale = new Random();
-                    Log.e(TAG_H, "-SIZE:- " + mViaggioList.size() + " ----- ");
                     for (int i = 0; i < mViaggioList.size() && random.size() < 3; i++) {
                         int j = casuale.nextInt(mViaggioList.size());
-                        Log.e(TAG_H, "----- " + j + " ----- ");
-
                         if(random.contains(mViaggioList.get(j)))
                             i--;
                         else

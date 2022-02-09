@@ -66,7 +66,6 @@ public class SearchFragment extends Fragment {
         final TextView textView = binding.textSearch;
         textView.setText("Cerca una Destinazione");
 
-        imageButton = (Button) root.findViewById(R.id.search_button);
         spinnerRegione = root.findViewById(R.id.spinner_regione);
         spinnerRegione.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
@@ -93,6 +92,7 @@ public class SearchFragment extends Fragment {
         });
 
         //bottone
+        imageButton = root.findViewById(R.id.search_button);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,8 +125,7 @@ public class SearchFragment extends Fragment {
                 fragment = new SearchResult();
                 replaceFragment(fragment);
             }
-        }
-        );
+        });
 
         return root;
     }

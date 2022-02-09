@@ -59,19 +59,7 @@
         android:spinnerMode="dropdown"
         style = "@style/spinner_style"
         android:popupBackground = "@drawable/popupspinner_style"/>
-<!--
-    <EditText
-        android:id="@+id/search_data_partenza"
-        android:layout_width="200dp"
-        android:layout_height="61dp"
-        android:text="Data partenza"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
--->
+
     <Spinner
         android:layout_width="210dp"
         android:layout_height="61dp"

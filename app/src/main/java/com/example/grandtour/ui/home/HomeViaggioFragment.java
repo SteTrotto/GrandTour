@@ -113,7 +113,6 @@ public class HomeViaggioFragment extends Fragment {
         image4 = root.findViewById(R.id.image_tappa4);
         tappa4 = root.findViewById(R.id.nome4_result);
         if(vResult.getTappa4().equalsIgnoreCase("")) {
-            //image4.setVisibility(View.INVISIBLE);
             tappa4.setVisibility(View.INVISIBLE);
             cardView.setVisibility(View.INVISIBLE);
         } else {
@@ -136,7 +135,6 @@ public class HomeViaggioFragment extends Fragment {
                 if(visibile) {
                     params.setMargins(0, 690, 0, 0);
                     linearLayout.setLayoutParams(params);
-                    //image.setVisibility(View.GONE);
                     cardViewViaggio.setVisibility(View.GONE);
                     visibile = false;
                     hide.setBackground(getActivity().getDrawable(R.drawable.baseline_expand_more_24));
@@ -144,7 +142,6 @@ public class HomeViaggioFragment extends Fragment {
                 else {
                     params.setMargins(0, 990, 0, 0);//270dp = 810px
                     linearLayout.setLayoutParams(params);
-                    //image.setVisibility(View.VISIBLE);
                     cardViewViaggio.setVisibility(View.VISIBLE);
                     visibile = true;
                     hide.setBackground(getActivity().getDrawable(R.drawable.baseline_expand_less_24));
