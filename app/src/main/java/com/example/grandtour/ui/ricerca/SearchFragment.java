@@ -1,42 +1,29 @@
 package com.example.grandtour.ui.ricerca;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
+
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
+
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.grandtour.InternetConnection;
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentSearchBinding;
-import com.example.grandtour.ui.user.UserSingUp;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class SearchFragment extends Fragment {
@@ -44,7 +31,7 @@ public class SearchFragment extends Fragment {
     private static SearchViewModel searchViewModel;
     private FragmentSearchBinding binding;
 
-    private Button imageButton;//private ImageButton imageButton;
+    private Button imageButton;
     private Spinner spinnerMezzo;
     private int spinnerSel;
     private Spinner spinnerRegione;

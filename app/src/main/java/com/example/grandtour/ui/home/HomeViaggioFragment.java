@@ -28,8 +28,6 @@ public class HomeViaggioFragment extends Fragment {
     private Viaggio vResult = HomeFragment.getViaggio();
 
     private TextView mezzo;
-    private TextView regione;
-    private TextView durata;
     private TextView nomeViaggio;
     private TextView tappa1;
     private TextView tappa2;

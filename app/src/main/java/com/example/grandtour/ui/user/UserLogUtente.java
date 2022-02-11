@@ -115,7 +115,6 @@ public class UserLogUtente extends Fragment {
         button_contatti = root.findViewById(R.id.button3);
         button_log_out = root.findViewById(R.id.log_out);
 
-        //mAuth = FirebaseAuth.getInstance();
 
         email = root.findViewById(R.id.email);
         nome_cognome = root.findViewById(R.id.nome_cognome);
@@ -127,82 +126,80 @@ public class UserLogUtente extends Fragment {
         conta++;
         user =  mAuth.getCurrentUser();
         Log.e(TAG_S, "----------USER LOG UTENTE ----------");
-        if(conta == 4) { //2
-            Fragment fragment = null;
-            fragment = new HomeFragment();
-            replaceFragment(fragment);
-            //da vedere bene
+        if(conta == 2) {
+            Fragment delete = this;
+            delete.onDestroy();
         } else {
-        if(user == null) {
-            Log.e(TAG_S, "----------------USER LOG UTENTE to USER FRAGMENT--------------------");
-            Fragment fragment1 = null;
-            fragment1 = new UserFragment();
-            replaceFragment(fragment1);
-        }
-        else {
-            email.setText(user.getEmail());
-            nome_cognome.setText(user.getDisplayName());
+            if(user == null) {
+                Log.e(TAG_S, "----------------USER LOG UTENTE to USER FRAGMENT--------------------");
+                Fragment fragment1 = null;
+                fragment1 = new UserFragment();
+                replaceFragment(fragment1);
+            }
+            else {
+                email.setText(user.getEmail());
+                nome_cognome.setText(user.getDisplayName());
 
-            profilo.setText("Email: " + email.getText() + "\n"
-                    + "Nome e Cognome: " + nome_cognome.getText() + "\n");
-            //+"Data di nascita: "+ Data.getText());
-            contatti.setText("Email: GrandTour@gmail.com" + "\n"
-                    + "Numero di Telefono: 0002 98 54");
+                profilo.setText("Email: " + email.getText() + "\n"
+                        + "Nome e Cognome: " + nome_cognome.getText() + "\n");
+                //+"Data di nascita: "+ Data.getText());
+                contatti.setText("Email: GrandTour@gmail.com" + "\n"
+                        + "Numero di Telefono: 0002 98 54");
 
-            //lista di recensioni
-            mRecyclerView = (RecyclerView) root.findViewById(R.id.lista);
-            //gioco di spazi tra le recensioni
-            SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
-            mRecyclerView.addItemDecoration(itemDecorator);
-            readRecensioni();
+                //lista di recensioni
+                mRecyclerView = (RecyclerView) root.findViewById(R.id.lista);
+                //gioco di spazi tra le recensioni
+                SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
+                mRecyclerView.addItemDecoration(itemDecorator);
+                readRecensioni();
 
-            button_log_out.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mAuth.getInstance()
-                            .signOut();
+                button_log_out.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mAuth.getInstance()
+                                .signOut();
 
-                    Fragment fragment = null;
-                    fragment = new UserFragment();
-                    replaceFragment(fragment);
-                }
-            });
-
-            button_profilo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (profilo.getVisibility() == View.GONE) {
-                        profilo.setVisibility(View.VISIBLE);
-                    } else
-                        profilo.setVisibility(View.GONE);
-                }
-            });
-
-
-            button_preferiti.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (preferiti.getVisibility() == View.GONE) {
-                        preferiti.setVisibility(View.VISIBLE);
-                        mRecyclerView.setVisibility(View.VISIBLE);
-
-                    } else {
-                        preferiti.setVisibility(View.GONE);
-                        mRecyclerView.setVisibility(View.GONE);
+                        Fragment fragment = null;
+                        fragment = new UserFragment();
+                        replaceFragment(fragment);
                     }
-                }
-            });
+                });
 
-            button_contatti.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (contatti.getVisibility() == View.GONE) {
-                        contatti.setVisibility(View.VISIBLE);
-                    } else
-                        contatti.setVisibility(View.GONE);
-                }
-            });
-        }
+                button_profilo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (profilo.getVisibility() == View.GONE) {
+                            profilo.setVisibility(View.VISIBLE);
+                        } else
+                            profilo.setVisibility(View.GONE);
+                    }
+                });
+
+
+                button_preferiti.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (preferiti.getVisibility() == View.GONE) {
+                            preferiti.setVisibility(View.VISIBLE);
+                            mRecyclerView.setVisibility(View.VISIBLE);
+
+                        } else {
+                            preferiti.setVisibility(View.GONE);
+                            mRecyclerView.setVisibility(View.GONE);
+                        }
+                    }
+                });
+
+                button_contatti.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (contatti.getVisibility() == View.GONE) {
+                            contatti.setVisibility(View.VISIBLE);
+                        } else
+                            contatti.setVisibility(View.GONE);
+                    }
+                });
+            }
         }
 
         return root;

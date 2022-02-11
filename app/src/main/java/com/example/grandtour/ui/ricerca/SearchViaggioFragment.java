@@ -1,12 +1,6 @@
 package com.example.grandtour.ui.ricerca;
 
-import android.app.ActionBar;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,34 +10,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.GlideBuilder;
-import com.example.grandtour.MainActivity;
-import com.example.grandtour.MyAppGlideModule;
 import com.example.grandtour.R;
 import com.example.grandtour.Viaggio;
-import com.example.grandtour.databinding.ActivityMainBinding;
 import com.example.grandtour.databinding.FragmentViaggioBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class SearchViaggioFragment extends Fragment {
 
@@ -52,8 +30,6 @@ public class SearchViaggioFragment extends Fragment {
     private Viaggio vResult = SearchResult.getViaggio();
 
     private TextView mezzo;
-    private TextView regione;
-    private TextView durata;
     private TextView nomeViaggio;
     private TextView tappa1;
     private TextView tappa2;
