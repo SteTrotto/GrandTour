@@ -51,6 +51,7 @@
             android:inputType="textEmailAddress"
             android:textAllCaps="false"
             android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/backgroubd_edittext"/>
 
         <TextView

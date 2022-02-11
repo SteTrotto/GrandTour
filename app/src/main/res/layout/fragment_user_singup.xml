@@ -13,7 +13,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.user.UserSingUp"
     android:orientation="vertical"
-    android:layout_marginTop="50dp">
+    android:layout_marginTop="50dp"
+    android:gravity= "center">
 
     <TextView
         android:textColor="@color/black"
@@ -26,6 +27,7 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,48 +36,53 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
+        android:textSize = "17sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:text="Indirizzo e-mail"
         android:textAllCaps="false"
         />
     <EditText
         android:id="@+id/mail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:hint ="indirizzo e-mail"
         android:inputType="textEmailAddress"
         android:textAllCaps="false"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/backgroubd_edittext"/>
     />
     <TextView
         android:layout_marginRight="10dp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="34dp"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:text="Nome e Cognome"
+        android:textSize = "17sp"
         android:textAllCaps="false"
         />
     <EditText
         android:layout_marginRight="10dp"
         android:id="@+id/nome_e_cognome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="15dp"
         android:hint ="Nome e Cognome"
         android:textAllCaps="false"
         android:background="@drawable/backgroubd_edittext"/>
         />
     <TextView
         android:layout_marginRight="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="34dp"
+        android:textSize = "17sp"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:text="Data di nascità"
         android:textAllCaps="false"
@@ -85,23 +92,25 @@
     <EditText
         android:layout_marginRight="10dp"
         android:id="@+id/DataNascita"
-        android:layout_width="match_parent"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
         android:hint ="Data nascità"
         android:textAllCaps="false"
         android:layout_marginLeft="10dp"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
+        android:layout_marginBottom="15dp"
         android:focusableInTouchMode="false"
-        android:layout_height="wrap_content"
         android:background="@drawable/backgroubd_edittext"/>
     />
     <TextView
         android:layout_marginRight="10dp"
+        android:textSize = "17sp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="34dp"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:text="Password"
         android:textAllCaps="false"
@@ -109,12 +118,13 @@
     <EditText
         android:layout_marginRight="10dp"
         android:id="@+id/pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width = "210dp"
+        android:layout_height = "61dp"
         android:layout_marginLeft="10dp"
         android:hint ="Password"
         android:inputType="textPassword"
         android:textAllCaps="false"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/backgroubd_edittext"/>
         />
     <Button

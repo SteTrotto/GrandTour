@@ -154,8 +154,6 @@ public class UserLogUtente extends Fragment {
             //gioco di spazi tra le recensioni
             SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
             mRecyclerView.addItemDecoration(itemDecorator);
-
-
             readRecensioni();
 
             button_log_out.setOnClickListener(new View.OnClickListener() {
