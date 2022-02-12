@@ -18,24 +18,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.grandtour.R;
-import com.example.grandtour.Viaggio;
-import com.example.grandtour.adapter.ViaggiRecyclerViewAdapter;
-import com.example.grandtour.databinding.FragmentUserBinding;
 import com.example.grandtour.databinding.FragmentUserLogBinding;
-import com.example.grandtour.databinding.FragmentVisualizzaRecensioneBinding;
-import com.example.grandtour.ui.home.HomeFragment;
-import com.example.grandtour.ui.ricerca_visualizza.Ricerca_VisualizzaFragment;
 import com.example.grandtour.ui.visualizza_recensioni.FirebaseDatabaseHelper;
 import com.example.grandtour.ui.visualizza_recensioni.Recensione;
 import com.example.grandtour.ui.visualizza_recensioni.RecycleView_Config;
 import com.example.grandtour.ui.visualizza_recensioni.SpacingitemDecorator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 
@@ -86,7 +77,6 @@ public class UserLogUtente extends Fragment {
 
     private TextView email;
     private TextView nome_cognome;
-    private TextView Data;
 
     int conta = 0;
 
@@ -118,7 +108,6 @@ public class UserLogUtente extends Fragment {
 
         email = root.findViewById(R.id.email);
         nome_cognome = root.findViewById(R.id.nome_cognome);
-        Data = root.findViewById(R.id.DataNascita);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -142,7 +131,6 @@ public class UserLogUtente extends Fragment {
 
                 profilo.setText("Email: " + email.getText() + "\n"
                         + "Nome e Cognome: " + nome_cognome.getText() + "\n");
-                //+"Data di nascita: "+ Data.getText());
                 contatti.setText("Email: GrandTour@gmail.com" + "\n"
                         + "Numero di Telefono: 0002 98 54");
 
@@ -220,41 +208,6 @@ public class UserLogUtente extends Fragment {
     }
 
     public void readRecensioni(){
-/*
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                recensioni.clear(); //pulisco le recensioni da qualsiasi dato
-                List<String> keys = new ArrayList<>();//serve per conservare tutte le chiavi delle recensioni
-                for (DataSnapshot keyNode : snapshot.getChildren()) //conterrà chiave e valore di uno specifico nodo
-                {
-
-                    Recensione recensione = keyNode.getValue(Recensione.class); //creo un oggetto recensine con i campi presi dal database
-
-                    if (recensione.getId_Utente().equals(user.getUid())) {
-                        keys.add(keyNode.getKey());//prendo la chiave del nodo e la salvo nella lista di tutte le chiavi
-                        recensioni.add(recensione);
-                        Log.e("test 1", recensione.getId_Utente());
-                    }
-
-                }
-                //dataStatus.DataIsLoaded(recensioni, keys);
-                adapter = new RecycleView_Config.RecensioniAdapter(recensioni, keys);
-
-                adapter.onBindViewHolder();
-                adapter.onCreateViewHolder();
-
-                mRecyclerView.setAdapter(adapter);
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
-
-            }
-
-        });**/
         new FirebaseDatabaseHelper().readRecensioniUtenete(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Recensione> recensioni, List<String> keys) {

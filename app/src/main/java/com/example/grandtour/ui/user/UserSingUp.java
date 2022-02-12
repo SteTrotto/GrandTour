@@ -1,7 +1,6 @@
 package com.example.grandtour.ui.user;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,12 +19,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.grandtour.MainActivity;
 import com.example.grandtour.R;
 import com.example.grandtour.Utente;
-import com.example.grandtour.databinding.FragmentUserBinding;
 import com.example.grandtour.databinding.FragmentUserSingupBinding;
-import com.example.grandtour.ui.ricerca.SearchFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,9 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.Executor;
+
 
 public class UserSingUp extends Fragment {
 
@@ -161,7 +156,6 @@ public class UserSingUp extends Fragment {
             if (password.length() < 6) {
                 valid = false;
                 Toast.makeText(getContext(), "La password deve avere almeno 6 caratteri",Toast.LENGTH_SHORT).show();
-              //  Toast.makeText(UserSingUp.this, "La password deve avere almeno 6 caratteri",Toast.LENGTH_SHORT).show();
             }
         }
         if(TextUtils.isEmpty(nUtente)){
@@ -171,12 +165,10 @@ public class UserSingUp extends Fragment {
             if (nUtente.contains(".")){
                 valid = false;
                 Toast.makeText(getContext(),"Errore, un carattere non è valido", Toast.LENGTH_SHORT).show();
-               // Toast.makeText(UserSingUp.this, "Errore, un carattere non è valido", Toast.LENGTH_SHORT).show();
             }
             if (nUtente.length() < 4){
                 valid = false;
                 Toast.makeText(getContext(),"Il nome utente deve avere almeno 4 caratteri",Toast.LENGTH_SHORT).show();
-                //Toast.makeText(UserSingUp.this, "Il nome utente deve avere almeno 4 caratteri",Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -202,19 +194,11 @@ public class UserSingUp extends Fragment {
                             Log.d("creazione utente", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            setNome(user);              //imposta nome utene dalla email
-
-                           // sendEmailVerification();    //manda email di verifica
-
-                            //mAuth = FirebaseAuth.getInstance();
-                            //mAuth.signOut();            //effettua il logout, perchè quando crea fa l'accesso in automatico
-
-                                    //ritorna all' accesso
+                            setNome(user);
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("errore creazione", "createUserWithEmail:failure", task.getException());
-                    //        Toast.makeText(UserSingUp.this, "Account già esistente.",Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -236,7 +220,6 @@ public class UserSingUp extends Fragment {
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(nome)
-                //.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
                 .build();
         user.updateProfile(profileUpdates)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
