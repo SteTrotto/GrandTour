@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -196,6 +197,10 @@ public class UserSingUp extends Fragment {
 
                             setNome(user);
 
+                            Fragment fragment = null;
+                            fragment = new UserFragment();
+                            replaceFragment(fragment);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("errore creazione", "createUserWithEmail:failure", task.getException());
@@ -205,6 +210,15 @@ public class UserSingUp extends Fragment {
                 });
         // [END create_user_with_email]
     }
+
+    public void replaceFragment(Fragment someFragment)
+    {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_activity_main, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
     public void setNome(FirebaseUser user) {
         String email = mail.getText().toString();
         int pos = email.indexOf("@");   //posizione@
@@ -230,6 +244,7 @@ public class UserSingUp extends Fragment {
                         }
                     }
                 });
+
     }
 
 }
