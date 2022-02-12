@@ -85,7 +85,6 @@ public class UserFragment extends Fragment {
                     return;
                 }
 
-                //String.valueOf(editText.getText()) prende il valore in stringa del editText
                 Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
                 Log.d(TAG_S, String.valueOf(Edit_Pwd_User.getText()));
                 //controllo log-in
@@ -162,9 +161,9 @@ public class UserFragment extends Fragment {
                             Fragment fragment1 = null;
                             fragment1 = new UserLogUtente();
                             replaceFragment(fragment1);
-
                         }
-                            else {
+                        else
+                            {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getContext(),"Email e/o password Errata.", Toast.LENGTH_SHORT).show();

@@ -55,7 +55,7 @@ public class UserSingUp extends Fragment {
     final Calendar myCalendar = Calendar.getInstance();
     private boolean andata;
 
-    final private String myFormat = "dd/MM/yy"; //In which you need put here
+    final private String myFormat = "dd/MM/yy";
     final private SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ITALY);
 
     final private String TAG_S = "USER";
@@ -98,7 +98,6 @@ public class UserSingUp extends Fragment {
                     return;
                 }
 
-                //String.valueOf(editText.getText()) prende il valore in stringa del editText
                 Log.d(TAG_S, String.valueOf(mail.getText()));
                 Log.d(TAG_S, String.valueOf(pwd.getText()));
                 //controllo registrazione
