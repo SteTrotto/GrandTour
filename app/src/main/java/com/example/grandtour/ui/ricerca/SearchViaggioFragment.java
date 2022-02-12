@@ -1,7 +1,6 @@
 package com.example.grandtour.ui.ricerca;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +59,6 @@ public class SearchViaggioFragment extends Fragment {
 
         binding = FragmentViaggioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        Log.d(TAG_SV,vResult.getRegione());
 
         mezzo = root.findViewById(R.id.mezzo_result);
         mezzo.setText(vResult.getMezzo());
@@ -140,7 +137,7 @@ public class SearchViaggioFragment extends Fragment {
                     hide.setBackground(getActivity().getDrawable(R.drawable.baseline_expand_more_24));
                 }
                 else {
-                    params.setMargins(0, 990, 0, 0);//270dp = 810px
+                    params.setMargins(0, 990, 0, 0);
                     linearLayout.setLayoutParams(params);
                     cardViewViaggio.setVisibility(View.VISIBLE);
                     visibile = true;

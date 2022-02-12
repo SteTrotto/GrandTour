@@ -59,8 +59,8 @@ public class SearchResult extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        readViewModel();    //function for the read of user form value
-        readDB();           //function for the read of the Database
+        readViewModel();
+        readDB();
 
         binding = FragmentSearchResultBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -76,7 +76,7 @@ public class SearchResult extends Fragment {
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
+
                     }
                 })
         );
@@ -135,64 +135,38 @@ public class SearchResult extends Fragment {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
 
                     for (DataSnapshot postSnapshot: task.getResult().child("Viaggi").getChildren()) {
-
-                        String idViaggio = postSnapshot.getKey();
-                        Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
-
                         Viaggio v = postSnapshot.getValue(Viaggio.class);
 
-                        Log.d(TAG_SR, regione);
-
-                        //test v result from DB
-                        Log.d(TAG_SR, v.getMezzo());
-                        Log.d(TAG_SR, v.getRegione());
-                        Log.d(TAG_SR, v.getDurata());
-                        Log.d(TAG_SR, v.getNomeViaggio());
-                        Log.d(TAG_SR, v.getTappa1());
-                        Log.d(TAG_SR, v.getTappa2());
-                        Log.d(TAG_SR, v.getTappa3());
-                        Log.d(TAG_SR, v.getTappa4());
-
-                        //nessun filtro in ricerca
                         if(!search_regione && !search_mezzo && !search_durata)
                                 mViaggioList.add(v);
 
-                        //ricerca solo regione
                         if(search_regione && !search_mezzo && !search_durata)
                             if(v.getRegione().equalsIgnoreCase(regione))
                                 mViaggioList.add(v);
 
-                        //ricerca solo mezzo
                         if(!search_regione && search_mezzo && !search_durata)
                             if(v.getMezzo().equalsIgnoreCase(mezzo))
                                 mViaggioList.add(v);
 
-                        //ricerca solo durata
                         if(!search_regione && !search_mezzo && search_durata)
                             if(v.getDurata().equalsIgnoreCase(durata))
                                 mViaggioList.add(v);
 
-                        //regione e mezzo
                         if(search_regione && search_mezzo && !search_durata)
                             if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo))
                                 mViaggioList.add(v);
 
-                        //durata e mezzo
                         if(!search_regione && search_mezzo && search_durata)
                             if(v.getDurata().equalsIgnoreCase(durata) && v.getMezzo().equalsIgnoreCase(mezzo))
                                 mViaggioList.add(v);
 
-                        //regione e durata
                         if(search_regione && !search_mezzo && search_durata)
                             if(v.getRegione().equalsIgnoreCase(regione) && v.getDurata().equalsIgnoreCase(durata))
                                 mViaggioList.add(v);
 
-                        //tutti filtri
                         if(search_regione && search_mezzo && search_durata)
                             if(v.getRegione().equalsIgnoreCase(regione) && v.getMezzo().equalsIgnoreCase(mezzo) && v.getDurata().equalsIgnoreCase(durata))
                                 mViaggioList.add(v);
-
-                        Log.d(TAG_SR, "----- " + idViaggio + " ----- ");
                     }
                     adapter = new ViaggiRecyclerViewAdapter(mViaggioList,
                             new ViaggiRecyclerViewAdapter.OnItemClickListener() {

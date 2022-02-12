@@ -25,7 +25,6 @@ import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentSearchBinding;
 
 
-
 public class SearchFragment extends Fragment {
 
     private static SearchViewModel searchViewModel;
@@ -57,11 +56,10 @@ public class SearchFragment extends Fragment {
         spinnerRegione.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                spinnerReg = pos;   //elemento selenzionato della lista
+                spinnerReg = pos;
             }
         });
 
-        //selezione oggetto spinner
         spinnerMezzo = root.findViewById(R.id.spinner_mezzo);
         spinnerMezzo.setOnItemSelectedListener(new SpinnerActivity(){
             @Override
@@ -78,7 +76,6 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        //bottone
         imageButton = root.findViewById(R.id.search_button);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,16 +90,11 @@ public class SearchFragment extends Fragment {
                 String mezzo = (String) spinnerMezzo.getItemAtPosition(spinnerSel);
                 String durata = (String) spinnerDurata.getItemAtPosition(spinnerDur);
 
-                Log.d(TAG_S, regione);
-                Log.d(TAG_S, mezzo);
-                Log.d(TAG_S, durata);
-
                 searchViewModel.setmRegione(regione);
                 searchViewModel.setmMezzo(mezzo);
                 searchViewModel.setmDurata(durata);
 
                 if(!InternetConnection.haveInternetConnection(getContext())) {
-                    Log.d(TAG_S, "ERRORE DI CONNESSIONE");
                     Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
                             Toast.LENGTH_SHORT).show();
                     return;

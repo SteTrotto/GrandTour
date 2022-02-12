@@ -33,32 +33,7 @@
         android:text="Milano"
         android:textColor = "@color/white"
         />
-<!--
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            android:layout_gravity="center"
-            android:id="@+id/info_image"/>
-
-        <TextView
-            android:id="@+id/info_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_margin="20dp"
-            android:textStyle = "normal"
-            android:textColor = "@color/black"
-            android:text="Milano"/>
-
-    </LinearLayout>
--->
     <view
         class="android.view.View"
         android:layout_width="fill_parent"

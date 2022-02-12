@@ -53,7 +53,6 @@ public class HomeFragment extends Fragment {
         mViaggioList = new ArrayList<>();
 
         readDB();
-        Log.e(TAG_H, "------------------HOME FRAGMENT------------------");
 
         mRecyclerViewViaggi = root.findViewById(R.id.home_recyclerview);
         mRecyclerViewViaggi.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -62,12 +61,11 @@ public class HomeFragment extends Fragment {
                 new RecyclerItemClickListenerHome(getContext(), mRecyclerViewViaggi ,new RecyclerItemClickListenerHome.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         viaggio = adapter.getViaggioList().get(position);
-                        Log.e(TAG_H, position + "");
                         openViaggio();
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
+
                     }
                 })
         );
@@ -110,25 +108,8 @@ public class HomeFragment extends Fragment {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
 
                     for (DataSnapshot postSnapshot: task.getResult().child("Viaggi").getChildren()) {
-
-                        String idViaggio = postSnapshot.getKey();
-                        Log.d(TAG_H, "----- " + idViaggio + " ----- ");
-
                         Viaggio v = postSnapshot.getValue(Viaggio.class);
-
-                        //test v result from DB
-                        Log.d(TAG_H, v.getMezzo());
-                        Log.d(TAG_H, v.getRegione());
-                        Log.d(TAG_H, v.getDurata());
-                        Log.d(TAG_H, v.getNomeViaggio());
-                        Log.d(TAG_H, v.getTappa1());
-                        Log.d(TAG_H, v.getTappa2());
-                        Log.d(TAG_H, v.getTappa3());
-                        Log.d(TAG_H, v.getTappa4());
-
                         mViaggioList.add(v);
-
-                        Log.d(TAG_H, "----- " + idViaggio + " ----- ");
                     }
 
                     List<Viaggio> random = new ArrayList<>();

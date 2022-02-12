@@ -1,7 +1,6 @@
 package com.example.grandtour.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.grandtour.MainActivity;
 import com.example.grandtour.R;
 import com.example.grandtour.Viaggio;
-import com.example.grandtour.ui.ricerca.SearchResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -23,7 +21,6 @@ import com.bumptech.glide.Glide;
 
 public class ViaggiRecyclerViewAdapter extends RecyclerView.Adapter<ViaggiRecyclerViewAdapter.ViaggioViewHolder>{
 
-    // To detect a click on the RecyclerView items
     public interface OnItemClickListener {
         void onItemClick(Viaggio viaggio);
     }
