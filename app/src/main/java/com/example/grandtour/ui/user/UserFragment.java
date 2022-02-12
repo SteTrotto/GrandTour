@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.grandtour.InternetConnection;
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentUserBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -77,6 +78,12 @@ public class UserFragment extends Fragment {
         Button_User.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!InternetConnection.haveInternetConnection(getContext())) {
+                    Log.d(TAG_S, "ERRORE DI CONNESSIONE");
+                    Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 //String.valueOf(editText.getText()) prende il valore in stringa del editText
                 Log.d(TAG_S, String.valueOf(Edit_Mail_User.getText()));
@@ -91,6 +98,13 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                if(!InternetConnection.haveInternetConnection(getContext())) {
+                    Log.d(TAG_S, "ERRORE DI CONNESSIONE");
+                    Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Fragment fragment = null;
                 fragment = new UserSingUp();
                 replaceFragment(fragment);
