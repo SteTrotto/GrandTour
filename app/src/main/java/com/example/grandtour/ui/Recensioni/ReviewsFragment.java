@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.grandtour.InternetConnection;
 import com.example.grandtour.R;
 import com.example.grandtour.databinding.FragmentReviewsBinding;
 import com.example.grandtour.ui.ricerca_recensione.Ricerca_RecensioneFragment;
@@ -38,13 +40,17 @@ public class ReviewsFragment extends Fragment {
         binding = FragmentReviewsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //final Button button = binding.button;
-
         //questo bottone è quello per andare a SCRIVERE le recensioni
         bottone_scrivi = root.findViewById(R.id.button);
         bottone_scrivi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!InternetConnection.haveInternetConnection(getContext())) {
+                    Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Fragment fragment = null;
                 fragment =new Ricerca_RecensioneFragment();
                 replaceFragment(fragment);
@@ -56,6 +62,12 @@ public class ReviewsFragment extends Fragment {
         bottone_visualizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!InternetConnection.haveInternetConnection(getContext())) {
+                    Toast.makeText(getContext(), "Errore di connessione, verifica la tua rete a internet",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Fragment fragment = null;
                 fragment =new Ricerca_VisualizzaFragment();
                 replaceFragment(fragment);

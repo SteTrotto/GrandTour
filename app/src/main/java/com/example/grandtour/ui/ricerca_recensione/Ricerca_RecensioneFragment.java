@@ -30,6 +30,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.grandtour.InternetConnection;
 import com.example.grandtour.R;
 import com.example.grandtour.Recensione;
 import com.example.grandtour.databinding.FragmentRicercaRecensioneBinding;
@@ -235,6 +236,7 @@ import java.util.HashMap;
           invia.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View view) {
+
                                            //login
                                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                            if (user != null) {
