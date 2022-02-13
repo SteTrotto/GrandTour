@@ -8,8 +8,6 @@ public class Recensione {
     private String idViaggio;
     private String id_Utente;
     private String nome_Utente;
-    //private String utente;
-    //private String data;
 
     //primo costruttore vuoto
     public Recensione() {

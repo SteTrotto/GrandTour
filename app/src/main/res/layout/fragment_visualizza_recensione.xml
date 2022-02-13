@@ -33,7 +33,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"/>
-<!-- opzioni colori #9370db  66B2FF -->
 
     </LinearLayout>
 </ScrollView>

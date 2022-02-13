@@ -56,6 +56,7 @@ public class Ricerca_VisualizzaFragment extends Fragment {
         Spinner viaggio = (Spinner) v.findViewById(R.id.spinner_search_viaggio1); //viene settato dopo
 
 
+        //se cambio regione cambiano anche i viaggi disponibili
         regione.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -230,7 +231,7 @@ public class Ricerca_VisualizzaFragment extends Fragment {
 
         return v;
     }
-
+    //Metodi che servono a recuperare il contenuto degli spinner da un altra classe
     public static void setRegione(String regione)
     {
         strRegione=regione;

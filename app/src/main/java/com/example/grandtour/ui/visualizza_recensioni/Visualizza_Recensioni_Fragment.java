@@ -68,17 +68,14 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
 
         //lista di recensioni
         mRecyclerView= (RecyclerView) v.findViewById(R.id.recycleview_recensioni);
-        //gioco di spazi tra le recensioni
+        //Spazi tra le recensioni
         SpacingitemDecorator itemDecorator = new SpacingitemDecorator(10);
         mRecyclerView.addItemDecoration(itemDecorator);
-
-        //cambiare nome di bottom nav menu
-        //View v = inflater.inflate(R.layout., container, false);
 
         new FirebaseDatabaseHelper().readRecensioni(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Recensione> recensioni, List<String> keys) {
-                if (recensioni.size() == 0 )//se non è presente alcuna recensione esce il messaggio
+                if (recensioni.size() == 0 )//se non è presente alcuna recensione esce il messaggio di avviso
                 {
                     Toast.makeText(getContext(), "Non sono presenti recensioni", Toast.LENGTH_LONG).show();
                 }
@@ -111,25 +108,3 @@ public class Visualizza_Recensioni_Fragment extends Fragment {
     }
 
 }
-/*
-       //colleghamo il database
-        //riferimento al database
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://grandtour-42d4d-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference().child("Name");
-
-        mNameView = (TextView) v.findViewById(R.id.textView2);
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String name = snapshot.getValue().toString();
-                mNameView.setText("Name: " + name);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        */
-

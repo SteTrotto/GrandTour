@@ -73,15 +73,15 @@ import java.util.HashMap;
         Spinner a = (Spinner) v.findViewById(R.id.spinner_search_regione);
 
         Spinner b = (Spinner) v.findViewById(R.id.spinner_search_viaggio); //viene settato dopo
-
+        //prendo il rating
         RatingBar rate=(RatingBar) v.findViewById(R.id.ratingBar);
-
+        //Titolo recensione
         EditText titolo=(EditText) v.findViewById(R.id.editTextTextPersonName);
-
+        //recensione
         EditText corpo=(EditText) v.findViewById(R.id.editTextCommento);
 
         Button invia;
-
+        //se cambio regione cambiano anche i viaggi disponibili
         a.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
